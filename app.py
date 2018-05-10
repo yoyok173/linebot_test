@@ -40,7 +40,11 @@ def callback():
 def handle_message(event):
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
-
+	elif(event.message.text== "貼圖"):
+		message = StickerSendMessage(
+		package_id='1',
+		sticker_id='1'
+)
 	else:
 		message = TextSendMessage(text=event.message.text)
 		
