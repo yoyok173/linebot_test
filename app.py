@@ -13,9 +13,9 @@ from linebot.models import (
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
 # Channel Secret
-handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -38,25 +38,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-   	# message = TextSendMessage(text='Hello, world')
-	# line_bot_api.reply_message(event.reply_token, message)
-	message = TextSendMessage(text=event.message.text)
+    message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(
         event.reply_token,
         message)
-	
-	# print("event.reply_token:", event.reply_token)
-    # print("event.message.text:", event.message.text)
-    # if event.message.text == "eyny":
-        # content = "eyny"
-        # line_bot_api.reply_message(
-            # event.reply_token,
-            # TextSendMessage(text=content))
-        # return 0
-	# else:
-		# usertext = usertext[::-1]
 
-	
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
