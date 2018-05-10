@@ -44,9 +44,9 @@ def handle_message(event):
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
 	elif(event.message.text== "貼圖辣"):
-		randsticker = random.randint(0,49)
+		randsticker = random.randint(140,180)
 		message = StickerSendMessage(
-		package_id='1',
+		package_id='2',
 		sticker_id=str(randsticker)
 		)
 	else:
