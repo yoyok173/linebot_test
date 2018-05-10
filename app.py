@@ -39,7 +39,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-	if(event.message.text="貼圖"):
+	if(event.message.text == "貼圖"):
 		message = StickerSendMessage(
 		package_id='1',
 		sticker_id='1'	
