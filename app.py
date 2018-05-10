@@ -47,7 +47,7 @@ def handle_message(event):
         # return 0
 		
 	# else:
-	usertext[::-1]
+	usertext = usertext[::-1]
 	message222 = TextSendMessage(text=usertext)		
 	line_bot_api.reply_message(event.reply_token, message222)
 
