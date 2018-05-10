@@ -50,7 +50,6 @@ def handle_message(event):
 		# usertext = usertext[::-1]
 	message = TextSendMessage(text='Hello, world')
 	line_bot_api.reply_message(event.reply_token, message)
-	return 0
 	
 import os
 if __name__ == "__main__":
