@@ -47,7 +47,8 @@ def handle_message(event):
 		randsticker = random.randint(0,99)
 		message = StickerSendMessage(
 		package_id='1',
-		sticker_id=str(randsticker) 
+		sticker_id=str(randsticker)
+		)
 	else:
 		message = TextSendMessage(text=event.message.text)
 		
