@@ -40,11 +40,11 @@ def callback():
 def handle_message(event):
 	if event.message.text == "貼圖":
 		message = StickerSendMessage(
-		package_id='1',
-		sticker_id='1'	
+			package_id='1',
+			sticker_id='1'	
 		)
 	if event.message.text == "表":
-        buttons_template = TemplateSendMessage(
+        message = TemplateSendMessage(
             alt_text='開始玩 template',
             template=ButtonsTemplate(
                 title='選擇服務',
