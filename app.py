@@ -38,37 +38,51 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    # message = TextSendMessage(text=event.message.text)
-    message = StickerSendMessage(
-    package_id='1',
-    sticker_id='1'
-	)
-	# message = TemplateSendMessage(
-		# alt_text='Buttons template',
-		# template=ButtonsTemplate(
-			# thumbnail_image_url='https://example.com/image.jpg',
-			# title='Menu',
-			# text='Please select',
-			# actions=[
-				# PostbackTemplateAction(
-					# label='postback',
-					# text='postback text',
-					# data='action=buy&itemid=1'
-				# ),
-				# MessageTemplateAction(
-					# label='message',
-					# text='message text'
-				# ),
-				# URITemplateAction(
-					# label='uri',
-					# uri='http://example.com/'
-				# )
-			# ]
-		# )
-	# )
 
-	# message = TextSendMessage(text='Hello, world')
+	if(event.message.text="貼圖"):
+		message = StickerSendMessage(
+		package_id='1',
+		sticker_id='1'	
+		)
+	elif(event.message.text == "表"):
+        buttons_template = TemplateSendMessage(
+            alt_text='開始玩 template',
+            template=ButtonsTemplate(
+                title='選擇服務',
+                text='請選擇',
+                thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
+                actions=[
+                    MessageTemplateAction(
+                        label='新聞',
+                        text='新聞'
+                    ),
+                    MessageTemplateAction(
+                        label='電影',
+                        text='電影'
+                    ),
+                    MessageTemplateAction(
+                        label='看廢文',
+                        text='看廢文'
+                    ),
+                    MessageTemplateAction(
+                        label='正妹',
+                        text='正妹'
+                    )
+                ]
+            )
+        )
+	elif(event.message.text="抽"):
+		image = requests.get(API_Get_Image)
+        url = image.json().get('Url')
+        message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+	else:
+		message = TextSendMessage(text=event.message.text)
+		
 	line_bot_api.reply_message(event.reply_token, message)
+	return 0
 	
 import os
 if __name__ == "__main__":
