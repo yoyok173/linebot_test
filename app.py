@@ -38,13 +38,12 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
-	if(event.message.text == "貼圖"):
+	if event.message.text == "貼圖":
 		message = StickerSendMessage(
 		package_id='1',
 		sticker_id='1'	
 		)
-	elif(event.message.text == "表"):
+	if event.message.text == "表":
         buttons_template = TemplateSendMessage(
             alt_text='開始玩 template',
             template=ButtonsTemplate(
@@ -71,7 +70,7 @@ def handle_message(event):
                 ]
             )
         )
-	elif(event.message.text="抽"):
+	if(event.message.text="抽"):
 		image = requests.get(API_Get_Image)
         url = image.json().get('Url')
         message = ImageSendMessage(
