@@ -38,56 +38,16 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	if event.message.text == "eyny":
+	if (event.message.text == "eyny"):
         content = "eyny"
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
+		
 	else:
 		message = TextSendMessage(text=event.message.text)		
 		line_bot_api.reply_message(event.reply_token, message)
-
-	# if event.message.text == "貼圖":
-		# message = StickerSendMessage(
-			# package_id='1',
-			# sticker_id='1'	
-		# )
-	# if event.message.text == "表":
-        # message = TemplateSendMessage(
-            # alt_text='開始玩 template',
-            # template=ButtonsTemplate(
-                # title='選擇服務',
-                # text='請選擇',
-                # thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
-                # actions=[
-                    # MessageTemplateAction(
-                        # label='新聞',
-                        # text='新聞'
-                    # ),
-                    # MessageTemplateAction(
-                        # label='電影',
-                        # text='電影'
-                    # ),
-                    # MessageTemplateAction(
-                        # label='看廢文',
-                        # text='看廢文'
-                    # ),
-                    # MessageTemplateAction(
-                        # label='正妹',
-                        # text='正妹'
-                    # )
-                # ]
-            # )
-        # )
-	# if(event.message.text="抽"):
-		# image = requests.get(API_Get_Image)
-        # url = image.json().get('Url')
-        # message = ImageSendMessage(
-            # original_content_url=url,
-            # preview_image_url=url
-        # )
-	# else:
 
 	
 import os
