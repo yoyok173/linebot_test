@@ -43,8 +43,8 @@ def callback():
 def handle_message(event):
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
-	elif(event.message.text== "來一張貼圖"):
-		randsticker = random.randint(0,99)
+	elif(event.message.text== "貼圖辣"):
+		randsticker = random.randint(0,49)
 		message = StickerSendMessage(
 		package_id='1',
 		sticker_id=str(randsticker)
