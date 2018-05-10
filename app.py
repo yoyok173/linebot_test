@@ -43,33 +43,9 @@ def handle_message(event):
     # package_id='1',
     # sticker_id='1'
 	# )
-	message = TemplateSendMessage(
-		alt_text='ImageCarousel template',
-		template=ImageCarouselTemplate(
-			columns=[
-				ImageCarouselColumn(
-					image_url='https://i.imgur.com/7G4Fk0n.png',
-					action=PostbackTemplateAction(
-						label='postback1',
-						text='postback text1',
-						data='action=buy&itemid=1'
-					)
-				),
-				ImageCarouselColumn(
-					image_url='https://i.imgur.com/7G4Fk0n.png',
-					action=PostbackTemplateAction(
-						label='postback2',
-						text='postback text2',
-						data='action=buy&itemid=2'
-					)
-				)
-			]
-		)
-	)
-	line_bot_api.reply_message(
-        event.reply_token,
-        message)
-
+	message = TextSendMessage(text='Hello, world')
+	line_bot_api.reply_message(event.reply_token, message)
+	
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
