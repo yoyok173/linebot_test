@@ -40,16 +40,17 @@ def callback():
 def handle_message(event):
     print("event.reply_token:", event.reply_token)
     print("event.message.text:", event.message.text)
-	usertext = event.message.text
-	if (usertext == "abc"):
-        usertext = usertext[::-1]
-		message222 = TextSendMessage(text=usertext)		
-		line_bot_api.reply_message(event.reply_token, message222)		
+    if event.message.text == "eyny":
+        content = "eyny"
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=content))
+        return 0
 	else:
 		# usertext = usertext[::-1]
-		message222 = TextSendMessage(text=usertext)		
-		line_bot_api.reply_message(event.reply_token, message222)
-
+		message = TextSendMessage(text='Hello, world')
+		line_bot_api.reply_message(event.reply_token, message)
+		return 0
 	
 import os
 if __name__ == "__main__":
