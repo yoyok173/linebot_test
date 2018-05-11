@@ -32,6 +32,7 @@ doskey /history
 > git 雙push
 
 https://yami.io/git-multiple-origin/
+https://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes
 
 ```javascript
 查看目前所有的路徑：
@@ -45,3 +46,19 @@ $ git remote set-url origin --push --add https://github.com/howarder3/linebot_te
 再檢查一次：
 $ git remote -v
 ```
+
+> cmd history 指令
+
+doskey /history
+
+> VS code 註解快速鍵
+
+Ctrl + /
+
+> sublime 註解快速鍵
+
+Ctrl + Shift + /
+
+> notepad++ 註解快速鍵
+
+Ctrl + Q
