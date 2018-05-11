@@ -4,12 +4,30 @@
 
 https://github.com/yaoandy107/line-bot-tutorial
 
+> in cmd
+
+```javascript
+git remote
+echo "# linebot_test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/howarder3/linebot_test.git
+git push -u origin master
+
+git add .
+git commit -m 'update readme'
+git push origin master
+git push heroku master
+
+doskey /history
+```
+
 > git 雙push
 
 https://yami.io/git-multiple-origin/
 
-in cmd
-```
+```javascript
 查看目前所有的路徑：
 $ git remote -v
 (push) 意味著會被推送的遠端
