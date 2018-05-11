@@ -1,5 +1,8 @@
 >　在資料夾路徑那邊輸入 cmd
 
+> 主要教學參考
+
+https://github.com/yaoandy107/line-bot-tutorial
 
 # Line Bot 教學
 
