@@ -19,6 +19,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
+user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -52,10 +54,24 @@ def handle_message(event):
 	else:
 		message = TextSendMessage(text=event.message.text)
 		
+	#push message to one user
+	line_bot_api.push_message(user_id, 
+	TextSendMessage(text='Hello World!'))
+		
 	line_bot_api.reply_message(
 		event.reply_token,
 		message)
+		
 
+		
+#push message to one user
+line_bot_api.push_message(user_id, 
+    TextSendMessage(text='Hello World!'))
+# push message to multiple users
+# line_bot_api.multicast(['user_id1', 'user_id2'], 
+    # TextSendMessage(text='Hello World!'))	
+		
+		
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
