@@ -1,3 +1,6 @@
+>　在資料夾路徑那邊輸入 cmd
+
+
 # Line Bot 教學
 
 本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的學舌鳥機器人。
