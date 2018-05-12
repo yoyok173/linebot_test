@@ -194,7 +194,7 @@ def handle_message(event):
 		print (reply_message) 
 		split_result = reply_message.split(' ', 1 )
 		print (split_result)
-		if(split_result.len < 1):
+		if(split_result.len() < 1):
 			message = TextSendMessage(text="學習字詞失敗 > <")
 			line_bot_api.reply_message(event.reply_token,message)
 		else:
