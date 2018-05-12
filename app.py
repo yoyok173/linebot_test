@@ -189,7 +189,7 @@ def handle_message(event):
 		message = TextSendMessage(text=reply_message)
 		line_bot_api.reply_message(event.reply_token,message)
 		
-	elif(user_message = "!教育"):
+	elif(user_message.find("!教育") == 0):
 		reply_message = user_message.lstrip("!教育 ")
 		print (reply_message) 
 		split_result = reply_message.split(' ', 1 )
