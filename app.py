@@ -118,7 +118,7 @@ def handle_message(event):
 	now = datetime.datetime.now()
 
 	# print (event.source.userId)
-	if(now.minute == 1):
+	if(now.second == 1):
 		# line_bot_api.reply_message(event.reply_token,message)
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
