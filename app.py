@@ -157,7 +157,7 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "母湯哦" or "母湯" or "母湯喔"):
+	elif(event.message.text== "母湯哦"):
 		message = ImageSendMessage(
 		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
 		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
