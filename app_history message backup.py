@@ -24,7 +24,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
-def get_sheet(list_top,list_name,list_score):
+def get_sheet(list_time,list_name,list_content):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -35,8 +35,8 @@ def get_sheet(list_top,list_name,list_score):
 	service = build('sheets', 'v4', http=creds.authorize(Http()))
 
 	# Call the Sheets API
-	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'A2:C11'
+	SPREADSHEET_ID = '1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk'
+	RANGE_NAME = 'A2:D'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -46,10 +46,10 @@ def get_sheet(list_top,list_name,list_score):
 		sheet_result = "hello world!"
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.		
-			list_top.append(row[0])
-			list_name.append(row[1])
-			list_score.append(row[2])
-			print('%s:%s score:%s' % (row[0], row[1] , row[2]))
+			list_time.append(row[0])
+			# list_name.append(row[1])
+			list_content.append(row[3])
+			# print('time:%s content:%s' % (row[0], row[1] , row[2]))
 		
 
 # def post_content():
@@ -120,15 +120,16 @@ def handle_message(event):
 	if(event.message.text== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "即時排名"):
-		list_top = []
+	elif(event.message.text== "歷史訊息"):
+		line_bot_api.push_message(user_id,TextSendMessage(text="以下僅列出前10筆歷史訊息"))
+		list_time = []
 		list_name = []
-		list_score = []
-		get_sheet(list_top,list_name,list_score)
-		print (list_top,list_name,list_score)
+		list_content = []
+		get_sheet(list_time,list_name,list_content)
+		print (list_time,list_name,list_content)
 		score_str = ""
 		for i in range(0,10):
-			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
+			score_str += (str(list_content[i])+"	("+list_time[i]+")\n")
 		print(score_str)
 		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(event.message.text== "貼圖辣"):
