@@ -112,6 +112,7 @@ def callback():
     return 'OK'
 
 now = datetime.datetime.now()
+today = time.strftime("%c")
 
 print(today)
 # print (event.source.userId)
@@ -172,7 +173,7 @@ def handle_message(event):
 	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 	# spreadsheet_key_path = 'spreadsheet_key'
 	# if cheapest_price is not None:
-	today = time.strftime("%c")
+
 	# with open(spreadsheet_key_path) as f:
 	#    spreadsheet_key = f.read().strip()
 	# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
