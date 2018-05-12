@@ -42,7 +42,7 @@ gss_client = auth_gss_client(auth_json_path, gss_scopes)
 def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
-    sheet.insert_row([today,messageid,messagetype,test], 2)
+    sheet.insert_row([today,messageid,messagetype,text], 2)
 
 
 
