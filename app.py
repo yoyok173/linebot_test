@@ -82,6 +82,8 @@ def update_sheet(gss_client, key, today,messageid,messagetype,text):
     sheet.insert_row([today,messageid,messagetype,text], 2)
 
 
+video_list = ["https://i.imgur.com/Upmorh0.mp4"]
+image_list = ["https://i.imgur.com/Upmorh0.gif","https://i.imgur.com/rUZ4AdD.jpg"]
 
 # update.py
 		
@@ -162,8 +164,8 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == ("母湯test")):		
 		message = VideoSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.mp4',
-		preview_image_url='https://i.imgur.com/Upmorh0.gif'
+		original_content_url='https://i.imgur.com/Upmorh0.gifv',
+		preview_image_url='https://i.imgur.com/Upmorh0.gifv'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 	
