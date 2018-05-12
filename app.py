@@ -116,8 +116,6 @@ def handle_message(event):
 		message = TextSendMessage(text='Hello')
 	elif(event.message.text== "排名"):
 		get_sheet()
-		
-			)
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(
