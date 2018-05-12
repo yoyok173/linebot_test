@@ -21,7 +21,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage
 )
 
 def get_sheet(list_top,list_name,list_target,target):
@@ -113,12 +113,12 @@ def callback():
 
 now = datetime.datetime.now()
 
-print(now.second)
+print(today)
 # print (event.source.userId)
-if(now.second == 1):
-	# line_bot_api.reply_message(event.reply_token,message)
-	message = TextSendMessage(text='Hello World !!!')
-	line_bot_api.push_message(user_id,TextSendMessage(text=message))
+
+# line_bot_api.reply_message(event.reply_token,message)
+message = TextSendMessage(text='Hello World !!!')
+line_bot_api.push_message(user_id,TextSendMessage(text=message))
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -157,7 +157,12 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	
+	elif(event.message.text== "母湯哦"):
+		message = ImageSendMessage(
+		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
+		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
+		)
+		line_bot_api.reply_message(event.reply_token, message)
 	# lineuserid = event.source.userId
 	messageid = event.message.id
 	# lineuserid = "howard"
@@ -170,7 +175,7 @@ def handle_message(event):
 	today = time.strftime("%c")
 	# with open(spreadsheet_key_path) as f:
 	#    spreadsheet_key = f.read().strip()
-	update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
+	# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
 	# push message to one user
 	# line_bot_api.push_message(user_id, 
 	# TextSendMessage(text='Hello World!'))
