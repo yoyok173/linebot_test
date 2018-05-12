@@ -149,7 +149,7 @@ def callback():
 
 now = datetime.datetime.now()
 today = time.strftime("%c")
-mode = 0
+mode = 1
 
 
 # print (event.source.userId)
