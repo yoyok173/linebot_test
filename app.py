@@ -88,9 +88,9 @@ def handle_message(event):
 		sticker_id=str(randsticker)
 		)
 	else:
-		lineuserid=event.source.userId
-		messagetype=event.message.type
-		text=event.message.text
+		lineuserid = event.source.userId
+		messagetype = event.message.type
+		text = event.message.text
 		message = TextSendMessage(text)
 		spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 		# spreadsheet_key_path = 'spreadsheet_key'
