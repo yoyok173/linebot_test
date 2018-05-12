@@ -43,11 +43,12 @@ def get_sheet(sheet_result):
 	if not values:
 		print('No data found.')
 	else:
+		sheet_result = "hello world!"
 		print('Name, Major:')
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.
 			print('%s:%s:%s' % (row[0], row[1],row[2]))
-		sheet_result = "hello world!"
+		
 
 # def post_content():
 	
@@ -120,8 +121,8 @@ def handle_message(event):
 		sheet_result = ""
 		get_sheet(sheet_result)
 		print (sheet_result)
-		line_bot_api.push_message(user_id, 
-		TextSendMessage(text=sheet_result))
+		# line_bot_api.push_message(user_id, 
+		# TextSendMessage(text=sheet_result))
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(
