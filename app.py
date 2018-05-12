@@ -156,19 +156,20 @@ mode = 0
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+	global mode 
 	print(now)
 	print(event)	
 	spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"	
 	user_message = event.message.text
-	
+
 	if(mode == 0):
 		if(user_message== "!說話"):
-			global mode = 1
+			mode = 1
 			message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說聲「!閉嘴」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
 	else:
 		if(user_message== "!閉嘴"):
-			global mode = 0
+			mode = 0
 			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說聲「!說話」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message== "test"):
