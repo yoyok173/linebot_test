@@ -3,11 +3,9 @@ import gspread
 import re
 import datetime
 
+from flask import Flask, request, abort
 from urllib.request import urlopen
 from oauth2client.service_account import ServiceAccountCredentials
-
-from flask import Flask, request, abort
-
 
 from linebot import (
     LineBotApi, WebhookHandler
