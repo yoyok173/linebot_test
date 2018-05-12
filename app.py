@@ -90,7 +90,7 @@ def handle_message(event):
 		)
 	else:
 		# lineuserid = event.source.userId
-		messageid = event.source.userId
+		messageid = event.message.id
 		# lineuserid = "howard"
 		messagetype = event.message.type
 		text = event.message.text
