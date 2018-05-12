@@ -2,6 +2,7 @@ import time
 import gspread
 import re
 import datetime
+import random
 
 from flask import Flask, request, abort
 from urllib.request import urlopen
@@ -17,7 +18,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
-import random
+
  
 app = Flask(__name__)
 

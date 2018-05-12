@@ -14,3 +14,6 @@ six==1.11.0
 uritemplate==3.0.0
 urllib3==1.22
 flask
+linebot
+linebot.exceptions
+linebot.models
