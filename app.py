@@ -127,7 +127,7 @@ def handle_message(event):
 		print (list_top,list_name,list_score)
 		score_str = ""
 		for i in range(0,10):
-			score_str += (str(list_top[i])+" "+list_name[i]+" "+list_score[i]+"\n")
+			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
 		print(score_str)
 		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(event.message.text== "貼圖辣"):
