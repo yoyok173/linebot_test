@@ -149,7 +149,7 @@ def callback():
 
 now = datetime.datetime.now()
 today = time.strftime("%c")
-mode = 0
+global mode = 0
 
 
 # print (event.source.userId)
@@ -160,7 +160,7 @@ def handle_message(event):
 	print(event)	
 	spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"	
 	user_message = event.message.text
-
+	
 	if(mode == 0):
 		if(user_message== "!說話"):
 			mode = 1
