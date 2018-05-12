@@ -180,7 +180,7 @@ def handle_message(event):
 	elif(user_message.find("!機率") == 0):
 		probability = random.randint(0,101)
 		reply_message = user_message.lstrip("!機率 ")
-		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是： "+ str(probability) + " % !!!"
+		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
 		message = TextSendMessage(text=reply_message)
 		line_bot_api.reply_message(event.reply_token,message)
 	
