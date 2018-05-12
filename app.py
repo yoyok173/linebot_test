@@ -126,7 +126,7 @@ def handle_message(event):
 		get_sheet(list_top,list_name,list_score)
 		print (list_top,list_name,list_score)
 		score_str = ""
-		for i in range(0,10)
+		for i in range(0,10):
 			score_str += str(list_top[i])
 		print(score_str)
 		# line_bot_api.push_message(user_id, 
