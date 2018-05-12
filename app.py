@@ -124,6 +124,9 @@ def handle_message(event):
 	if(event.message.text== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
+	elif(event.message.text== "WC"):
+		message = TextSendMessage(text='廁所尻尻')
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(event.message.text== "即時排名"):
 		list_top = []
 		list_name = []
@@ -154,7 +157,7 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "母湯哦"):
+	elif(event.message.text== "母湯哦" or "母湯" or "母湯喔"):
 		message = ImageSendMessage(
 		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
 		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
