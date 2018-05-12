@@ -24,7 +24,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
-def get_sheet(mylist):
+def get_sheet(list_top,list_name,list_score):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -46,9 +46,9 @@ def get_sheet(mylist):
 		sheet_result = "hello world!"
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.		
-			mylist.append(row[0])
-			mylist.append(row[1])
-			mylist.append(row[2])
+			list_top.append(row[0])
+			list_name.append(row[1])
+			list_score.append(row[2])
 			print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
 
@@ -120,9 +120,15 @@ def handle_message(event):
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
 	elif(event.message.text== "排名"):
-		mylist = []
-		get_sheet(mylist)
-		print (mylist)
+		list_top = []
+		list_name = []
+		list_score = []
+		get_sheet(list_top,list_name,list_score)
+		print (list_top,list_name,list_score)
+		score_str = ""
+		for i in range(0,10)
+			score_str += str(list_top[i])
+		print(score_str)
 		# line_bot_api.push_message(user_id, 
 		# TextSendMessage(text=sheet_result))
 	elif(event.message.text== "貼圖辣"):
