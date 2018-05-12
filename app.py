@@ -36,7 +36,7 @@ def get_sheet(mylist):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'A2:B10'
+	RANGE_NAME = 'A2:C11'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -48,7 +48,8 @@ def get_sheet(mylist):
 			# Print columns A and E, which correspond to indices 0 and 4.		
 			mylist.append(row[0])
 			mylist.append(row[1])
-			print('%s:%s' % (row[0], row[1]))
+			mylist.append(row[2])
+			print('%s:%s score:' % (row[0], row[1],row[2]))
 		
 
 # def post_content():
