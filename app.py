@@ -164,15 +164,15 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == ("母湯test")):		
 		message = VideoSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.gifv',
-		preview_image_url='https://i.imgur.com/Upmorh0.gifv'
+		original_content_url='https://media.giphy.com/media/aiJCZs4olkfBu/giphy.gif',
+		preview_image_url='https://media.giphy.com/media/aiJCZs4olkfBu/giphy.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 	
 	elif(user_message.find("母湯") == 0):
 		message = ImageSendMessage(
-		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
-		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
+		original_content_url='https://media.giphy.com/media/aiJCZs4olkfBu/giphy.gif',
+		preview_image_url='https://media.giphy.com/media/aiJCZs4olkfBu/giphy.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 		
