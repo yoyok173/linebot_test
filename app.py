@@ -170,7 +170,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token, message)
 	
 	elif(user_message.find("母湯") == 0):
-		random_pic_i = random.randint(0,len(image_list)-1)
+		# random_pic_i = random.randint(0,len(image_list)-1)
 		message = ImageSendMessage(
 		original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 		preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
