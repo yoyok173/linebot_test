@@ -77,6 +77,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+	print (event)
+
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
 	elif(event.message.text== "貼圖辣"):
@@ -97,9 +99,9 @@ def handle_message(event):
 		# with open(spreadsheet_key_path) as f:
 		#    spreadsheet_key = f.read().strip()
 		update_sheet(gss_client, spreadsheet_key, today, text)
-	#push message to one user
-	line_bot_api.push_message(user_id, 
-	TextSendMessage(text='Hello World!'))
+	# push message to one user
+	# line_bot_api.push_message(user_id, 
+	# TextSendMessage(text='Hello World!'))
 		
 	line_bot_api.reply_message(
 		event.reply_token,
