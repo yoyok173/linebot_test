@@ -47,7 +47,7 @@ def get_sheet(mylist):
 		print('Name, Major:')
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.		
-			mylist.append(row[0],row[1],row[2])
+			mylist.append(row[2])
 			print('%s:%s:%s' % (row[0], row[1],row[2]))
 		
 
