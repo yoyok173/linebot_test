@@ -127,42 +127,42 @@ def handle_message(event):
 	elif(user_message== "WC"):
 		message = TextSendMessage(text='廁所尻尻')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("排名")):
-		list_top = []
-		list_name = []
-		list_score = []
-		get_sheet(list_top,list_name,list_score,2)
-		print (list_top,list_name,list_score)
-		score_str = ""
-		for i in range(0,10):
-			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
-		print(score_str)
-		message = TextSendMessage(text=score_str)
-		line_bot_api.reply_message(event.reply_token,message)
-		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-	elif(user_message.find("褲子")):
-		list_top = []
-		list_name = []
-		list_time = []
-		get_sheet(list_top,list_name,list_time,6)
+	# elif(user_message.find("排名")):
+		# list_top = []
+		# list_name = []
+		# list_score = []
+		# get_sheet(list_top,list_name,list_score,2)
 		# print (list_top,list_name,list_score)
-		score_str = ""
-		score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
-		for i in range(1,10):
-			score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
-		print(score_str)
-		message = TextSendMessage(text=score_str)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "貼圖辣"):
-		randsticker = random.randint(140,180)
-		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("母湯")):
-		message = ImageSendMessage(
-		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
-		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
-		)
-		line_bot_api.reply_message(event.reply_token, message)
+		# score_str = ""
+		# for i in range(0,10):
+			# score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
+		# print(score_str)
+		# message = TextSendMessage(text=score_str)
+		# line_bot_api.reply_message(event.reply_token,message)
+		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
+	# elif(user_message.find("褲子")):
+		# list_top = []
+		# list_name = []
+		# list_time = []
+		# get_sheet(list_top,list_name,list_time,6)
+		print (list_top,list_name,list_score)
+		# score_str = ""
+		# score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
+		# for i in range(1,10):
+			# score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
+		# print(score_str)
+		# message = TextSendMessage(text=score_str)
+		# line_bot_api.reply_message(event.reply_token,message)
+	# elif(user_message == "貼圖辣"):
+		# randsticker = random.randint(140,180)
+		# message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
+		# line_bot_api.reply_message(event.reply_token,message)
+	# elif(user_message.find("母湯")):
+		# message = ImageSendMessage(
+		# original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
+		# preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
+		# )
+		# line_bot_api.reply_message(event.reply_token, message)
 	# lineuserid = event.source.userId
 	messageid = event.message.id
 	# lineuserid = "howard"
