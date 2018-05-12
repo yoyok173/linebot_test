@@ -114,9 +114,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	print (event)
-	# print (event.source.userId)
+	print (event)	
+	now = datetime.datetime.now()
 
+	# print (event.source.userId)
+	if(now.minute == 1):
+		# line_bot_api.reply_message(event.reply_token,message)
+		message = TextSendMessage(text='Hello World !!!')
+		line_bot_api.reply_message(event.reply_token,message)
+	
 	if(event.message.text== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
@@ -159,8 +165,6 @@ def handle_message(event):
 	# message = TextSendMessage(text)
 	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 	# spreadsheet_key_path = 'spreadsheet_key'
-	now = datetime.datetime.now()
-
 	# if cheapest_price is not None:
 	today = time.strftime("%c")
 	# with open(spreadsheet_key_path) as f:
