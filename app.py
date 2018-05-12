@@ -128,9 +128,8 @@ def handle_message(event):
 		get_sheet(list_time,list_name,list_content)
 		print (list_time,list_name,list_content)
 		score_str = ""
-		score_str += "time: , content: "
 		for i in range(0,10):
-			score_str += (str(list_time[i])+"\t"+list_content[i]+"\n")
+			score_str += (str(list_content[i])+"	("+list_time[i]+")\n")
 		print(score_str)
 		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(event.message.text== "貼圖辣"):
