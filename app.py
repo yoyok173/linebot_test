@@ -36,7 +36,7 @@ def get_sheet(mylist):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '19nQvlQIGRIoGELFxGfHWazG45DM7D2GccZg8wlD85_g'
-	RANGE_NAME = 'E2:G10'
+	RANGE_NAME = 'A2:B10'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -44,10 +44,10 @@ def get_sheet(mylist):
 		print('No data found.')
 	else:
 		sheet_result = "hello world!"
-		print('Name, Major:')
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.		
-			mylist.append(row[2])
+			mylist.append(row[0])
+			mylist.append(row[1])
 			print('%s:%s:%s' % (row[0], row[1],row[2]))
 		
 
