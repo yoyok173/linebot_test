@@ -24,7 +24,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
-def get_sheet(list_top,list_name,list_target,target):
+def get_score_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -52,9 +52,34 @@ def get_sheet(list_top,list_name,list_target,target):
 			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
 
-# def post_content():
-	
-			
+def get_key_sheet(key,response):
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	RANGE_NAME = 'A2:B'
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:
+			# Print columns A and E, which correspond to indices 0 and 4.		
+			list_key.append(row[0])
+			list_response.append(row[1])
+			# >>> ["foo", "bar", "baz"].index("bar")
+			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
+		if key in list_key:
+			response = list_response[list_key.index(key)]
+		
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
     return gspread.authorize(credentials)
@@ -120,6 +145,8 @@ def callback():
 
 now = datetime.datetime.now()
 today = time.strftime("%c")
+# mode = 0
+
 
 # print (event.source.userId)
 
@@ -129,7 +156,6 @@ def handle_message(event):
 	print(event)	
 	spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"	
 	user_message = event.message.text
-	print (user_message.find("排名"))
 
 	if(user_message== "test"):
 		message = TextSendMessage(text='Hello World !!!')
@@ -137,11 +163,11 @@ def handle_message(event):
 	elif(user_message== "WC"):
 		message = TextSendMessage(text='廁所尻尻')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("排名") == 0):
+	elif(user_message=="即時排名"):
 		list_top = []
 		list_name = []
 		list_score = []
-		get_sheet(list_top,list_name,list_score,2)
+		get_score_sheet(list_top,list_name,list_score,2)
 		print (list_top,list_name,list_score)
 		score_str = ""
 		for i in range(0,10):
@@ -150,11 +176,11 @@ def handle_message(event):
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-	elif(user_message.find("褲子") == 0):
+	elif(user_message=="脫褲子"):
 		list_top = []
 		list_name = []
 		list_time = []
-		get_sheet(list_top,list_name,list_time,6)
+		get_score_sheet(list_top,list_name,list_time,6)
 		# print (list_top,list_name,list_score)
 		score_str = ""
 		score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
@@ -201,6 +227,11 @@ def handle_message(event):
 			update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
 			message = TextSendMessage(text="已學習字詞 !!!")
 			line_bot_api.reply_message(event.reply_token,message)
+	else:
+		response = ""
+		get_key_sheet(user_message,response)
+		message = TextSendMessage(text=response)
+		line_bot_api.reply_message(event.reply_token,message)
 	
 	# lineuserid = event.source.userId
 	messageid = event.message.id
