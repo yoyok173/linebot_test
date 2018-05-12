@@ -114,14 +114,6 @@ def callback():
 now = datetime.datetime.now()
 today = time.strftime("%c")
 
-list_pic = [https://imgur.com/Upmorh0,
-https://imgur.com/N48r8cd,
-https://imgur.com/iSAnJd4,
-https://imgur.com/8H72aoG,
-https://imgur.com/BTNb7zf,
-https://imgur.com/XO7YFi5,
-https://imgur.com/x0qYhR7,
-https://i.imgur.com/rUZ4AdD.jpg]
 # print (event.source.userId)
 
 @handler.add(MessageEvent, message=TextMessage)
