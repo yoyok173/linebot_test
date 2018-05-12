@@ -4,6 +4,11 @@ import re
 import datetime
 import random
 
+from __future__ import print_function
+from apiclient.discovery import build
+from httplib2 import Http
+from oauth2client import file, client, tools
+
 from flask import Flask, request, abort
 from urllib.request import urlopen
 from oauth2client.service_account import ServiceAccountCredentials
@@ -18,6 +23,33 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
+def get_sheet():
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '19nQvlQIGRIoGELFxGfHWazG45DM7D2GccZg8wlD85_g'
+	RANGE_NAME = 'E:G'
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		print('Name, Major:')
+		for row in values:
+			# Print columns A and E, which correspond to indices 0 and 4.
+			print('%s:%s:%s' % (row[0], row[1],row[2]))
+
+# def post_content():
+	
+			
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
     return gspread.authorize(credentials)
@@ -82,28 +114,32 @@ def handle_message(event):
 
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
+	elif(event.message.text== "排名"):
+		get_sheet()
+		
+			)
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(
 		package_id='2',
 		sticker_id=str(randsticker)
 		)
-	else:
-		# lineuserid = event.source.userId
-		messageid = event.message.id
-		# lineuserid = "howard"
-		messagetype = event.message.type
-		text = event.message.text
-		message = TextSendMessage(text)
-		spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
-		# spreadsheet_key_path = 'spreadsheet_key'
-		now = datetime.datetime.now()
+	
+	# lineuserid = event.source.userId
+	messageid = event.message.id
+	# lineuserid = "howard"
+	messagetype = event.message.type
+	text = event.message.text
+	message = TextSendMessage(text)
+	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
+	# spreadsheet_key_path = 'spreadsheet_key'
+	now = datetime.datetime.now()
 
-		# if cheapest_price is not None:
-		today = time.strftime("%c")
-		# with open(spreadsheet_key_path) as f:
-		#    spreadsheet_key = f.read().strip()
-		update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
+	# if cheapest_price is not None:
+	today = time.strftime("%c")
+	# with open(spreadsheet_key_path) as f:
+	#    spreadsheet_key = f.read().strip()
+	update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
 	# push message to one user
 	# line_bot_api.push_message(user_id, 
 	# TextSendMessage(text='Hello World!'))
