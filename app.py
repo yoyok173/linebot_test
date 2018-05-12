@@ -120,14 +120,14 @@ print(today)
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	print (event)	
-	
-	if(event.message.text== "test"):
+	user_message = event.message.text
+	if(user_message== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "WC"):
+	elif(user_message== "WC"):
 		message = TextSendMessage(text='廁所尻尻')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "即時排名"):
+	elif(user_message.find("排名")):
 		list_top = []
 		list_name = []
 		list_score = []
@@ -140,7 +140,7 @@ def handle_message(event):
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-	elif(event.message.text== "脫褲子"):
+	elif(user_message.find("褲子")):
 		list_top = []
 		list_name = []
 		list_time = []
@@ -153,11 +153,11 @@ def handle_message(event):
 		print(score_str)
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "貼圖辣"):
+	elif(user_message == "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(event.message.text== "母湯哦"):
+	elif(user_message.find("母湯")):
 		message = ImageSendMessage(
 		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
 		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
