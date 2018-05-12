@@ -149,7 +149,7 @@ def callback():
 
 now = datetime.datetime.now()
 today = time.strftime("%c")
-# mode = 0
+mode = 0
 
 
 # print (event.source.userId)
@@ -161,100 +161,110 @@ def handle_message(event):
 	spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"	
 	user_message = event.message.text
 
-	if(user_message== "test"):
-		message = TextSendMessage(text='Hello World !!!')
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message=="即時排名"):
-		list_top = []
-		list_name = []
-		list_score = []
-		get_score_sheet(list_top,list_name,list_score,2)
-		print (list_top,list_name,list_score)
-		score_str = ""
-		for i in range(0,10):
-			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
-		print(score_str)
-		message = TextSendMessage(text=score_str)
-		line_bot_api.reply_message(event.reply_token,message)
-		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-	elif(user_message=="脫褲子"):
-		list_top = []
-		list_name = []
-		list_time = []
-		get_score_sheet(list_top,list_name,list_time,6)
-		# print (list_top,list_name,list_score)
-		score_str = ""
-		score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
-		for i in range(1,10):
-			score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
-		print(score_str)
-		message = TextSendMessage(text=score_str)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "貼圖辣"):
-		randsticker = random.randint(140,180)
-		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == ("母湯電影版")):		
-		message = VideoSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.mp4',
-		preview_image_url='https://i.imgur.com/Upmorh0.gif'
-		)
-		line_bot_api.reply_message(event.reply_token, message)
-	
-	elif(user_message.find("母湯") == 0):
-		# random_pic_i = random.randint(0,len(image_list)-1)
-		message = ImageSendMessage(
-		original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
-		preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
-		)
-		line_bot_api.reply_message(event.reply_token, message)
-		
-	elif(user_message.find("!機率") == 0):
-		probability = random.randint(0,101)
-		reply_message = user_message.lstrip("!機率 ")
-		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
-		message = TextSendMessage(text=reply_message)
-		line_bot_api.reply_message(event.reply_token,message)
-		
-	elif(user_message.find("!教育") == 0):
-		reply_message = user_message.lstrip("!教育 ")
-		print (reply_message) 
-		split_result = reply_message.split(' ', 1 )
-		print (split_result)
-		if(len(split_result) <= 1):
-			message = TextSendMessage(text="學習字詞失敗 > <")
+	if(mode == 0):
+		if(user_message== "!說話"):
+			mode = 1
+			message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說聲「!閉嘴」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
+	else(mode == 1):
+		if(user_message== "!閉嘴"):
+			mode = 0
+			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說聲「!說話」 > <')
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message== "test"):
+			message = TextSendMessage(text='Hello World !!!')
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message=="即時排名"):
+			list_top = []
+			list_name = []
+			list_score = []
+			get_score_sheet(list_top,list_name,list_score,2)
+			print (list_top,list_name,list_score)
+			score_str = ""
+			for i in range(0,10):
+				score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
+			print(score_str)
+			message = TextSendMessage(text=score_str)
+			line_bot_api.reply_message(event.reply_token,message)
+			# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
+		elif(user_message=="脫褲子"):
+			list_top = []
+			list_name = []
+			list_time = []
+			get_score_sheet(list_top,list_name,list_time,6)
+			# print (list_top,list_name,list_score)
+			score_str = ""
+			score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
+			for i in range(1,10):
+				score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
+			print(score_str)
+			message = TextSendMessage(text=score_str)
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message == "貼圖辣"):
+			randsticker = random.randint(140,180)
+			message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message == ("母湯電影版")):		
+			message = VideoSendMessage(
+			original_content_url='https://i.imgur.com/Upmorh0.mp4',
+			preview_image_url='https://i.imgur.com/Upmorh0.gif'
+			)
+			line_bot_api.reply_message(event.reply_token, message)
+		
+		elif(user_message.find("母湯") == 0):
+			# random_pic_i = random.randint(0,len(image_list)-1)
+			message = ImageSendMessage(
+			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
+			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
+			)
+			line_bot_api.reply_message(event.reply_token, message)
+			
+		elif(user_message.find("!機率") == 0):
+			probability = random.randint(0,101)
+			reply_message = user_message.lstrip("!機率 ")
+			reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
+			message = TextSendMessage(text=reply_message)
+			line_bot_api.reply_message(event.reply_token,message)
+			
+		elif(user_message.find("!教育") == 0):
+			reply_message = user_message.lstrip("!教育 ")
+			print (reply_message) 
+			split_result = reply_message.split(' ', 1 )
+			print (split_result)
+			if(len(split_result) <= 1):
+				message = TextSendMessage(text="學習字詞失敗 > <")
+				line_bot_api.reply_message(event.reply_token,message)
+			else:
+				update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
+				message = TextSendMessage(text="已學習字詞 !!!")
+				line_bot_api.reply_message(event.reply_token,message)
 		else:
-			update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
-			message = TextSendMessage(text="已學習字詞 !!!")
-			line_bot_api.reply_message(event.reply_token,message)
-	else:
-		# response = ""
-		key_message = get_key_sheet(user_message)
-		if key_message != 0:
-			message = TextSendMessage(text=key_message)
-			line_bot_api.reply_message(event.reply_token,message)
-	
-	# lineuserid = event.source.userId
-	messageid = event.message.id
-	# lineuserid = "howard"
-	messagetype = event.message.type
-	text = event.message.text
-	# message = TextSendMessage(text)
-
-	# spreadsheet_key_path = 'spreadsheet_key'
-	# if cheapest_price is not None:
-
-	# with open(spreadsheet_key_path) as f:
-	#    spreadsheet_key = f.read().strip()
-	# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
-	# push message to one user
-	# line_bot_api.push_message(user_id, 
-	# TextSendMessage(text='Hello World!'))
+			# response = ""
+			key_message = get_key_sheet(user_message)
+			if key_message != 0:
+				message = TextSendMessage(text=key_message)
+				line_bot_api.reply_message(event.reply_token,message)
 		
-	# line_bot_api.reply_message(
-		# event.reply_token,
-		# message)
+		# lineuserid = event.source.userId
+		# messageid = event.message.id
+		# lineuserid = "howard"
+		# messagetype = event.message.type
+		# text = event.message.text
+		# message = TextSendMessage(text)
+
+		# spreadsheet_key_path = 'spreadsheet_key'
+		# if cheapest_price is not None:
+
+		# with open(spreadsheet_key_path) as f:
+		#    spreadsheet_key = f.read().strip()
+		# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
+		# push message to one user
+		# line_bot_api.push_message(user_id, 
+		# TextSendMessage(text='Hello World!'))
+			
+		# line_bot_api.reply_message(
+			# event.reply_token,
+			# message)
 		
 
 		
