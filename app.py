@@ -130,7 +130,9 @@ def handle_message(event):
 		for i in range(0,10):
 			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
 		print(score_str)
-		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
+		message = TextSendMessage(text=score_str)
+		line_bot_api.reply_message(event.reply_token,message)
+		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
