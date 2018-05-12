@@ -127,7 +127,7 @@ today = time.strftime("%c")
 def handle_message(event):
 	print(now)
 	print(event)	
-		spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
+	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 	user_message = event.message.text
 	print (user_message.find("排名"))
 
