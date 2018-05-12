@@ -24,7 +24,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
-def get_sheet():
+def get_sheet(sheet_result):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -116,7 +116,10 @@ def handle_message(event):
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
 	elif(event.message.text== "排名"):
-		get_sheet()
+		sheet_result = ""
+		get_sheet(sheet_result)
+		line_bot_api.push_message(user_id, 
+		TextSendMessage(text=sheet_result))
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(
