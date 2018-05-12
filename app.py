@@ -78,7 +78,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	print (event)
-	print (event.source.userId)
+	# print (event.source.userId)
 
 	if(event.message.text== "abc"):
 		message = TextSendMessage(text='Hello')
@@ -89,7 +89,8 @@ def handle_message(event):
 		sticker_id=str(randsticker)
 		)
 	else:
-		lineuserid = event.source.userId
+		# lineuserid = event.source.userId
+		lineuserid = howard
 		messagetype = event.message.type
 		text = event.message.text
 		message = TextSendMessage(text)
