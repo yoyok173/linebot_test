@@ -39,10 +39,10 @@ gss_scopes = ['https://spreadsheets.google.com/feeds']
 
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
-def update_sheet(gss_client, key, today,lineuserid,messagetype,text):
+def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
-    sheet.insert_row([today,lineuserid,messagetype,test], 2)
+    sheet.insert_row([today,messageid,messagetype,test], 2)
 
 
 
@@ -90,7 +90,8 @@ def handle_message(event):
 		)
 	else:
 		# lineuserid = event.source.userId
-		lineuserid = howard
+		messageid = event.source.userId
+		# lineuserid = "howard"
 		messagetype = event.message.type
 		text = event.message.text
 		message = TextSendMessage(text)
@@ -102,7 +103,7 @@ def handle_message(event):
 		today = time.strftime("%c")
 		# with open(spreadsheet_key_path) as f:
 		#    spreadsheet_key = f.read().strip()
-		update_sheet(gss_client, spreadsheet_key, today, lineuserid,messagetype,text)
+		update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
 	# push message to one user
 	# line_bot_api.push_message(user_id, 
 	# TextSendMessage(text='Hello World!'))
