@@ -162,7 +162,7 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == ("母湯test")):		
+	elif(user_message == ("母湯電影版")):		
 		message = VideoSendMessage(
 		original_content_url='https://i.imgur.com/Upmorh0.mp4',
 		preview_image_url='https://i.imgur.com/Upmorh0.gif'
@@ -170,7 +170,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token, message)
 	
 	elif(user_message.find("母湯") == 0):
-		random_pic_i = randint(0,len(image_list))
+		random_pic_i = random.randint(0,len(image_list))
 		message = ImageSendMessage(
 		original_content_url= image_list[random_pic_i],
 		preview_image_url= image_list[random_pic_i]
