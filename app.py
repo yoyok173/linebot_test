@@ -24,7 +24,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
-def get_sheet(list_top,list_name,list_score):
+def get_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -36,7 +36,7 @@ def get_sheet(list_top,list_name,list_score):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'A2:C11'
+	RANGE_NAME = 'A2:G11'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -48,8 +48,8 @@ def get_sheet(list_top,list_name,list_score):
 			# Print columns A and E, which correspond to indices 0 and 4.		
 			list_top.append(row[0])
 			list_name.append(row[1])
-			list_score.append(row[2])
-			print('%s:%s score:%s' % (row[0], row[1] , row[2]))
+			list_target.append(row[target])
+			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
 
 # def post_content():
@@ -124,7 +124,7 @@ def handle_message(event):
 		list_top = []
 		list_name = []
 		list_score = []
-		get_sheet(list_top,list_name,list_score)
+		get_sheet(list_top,list_name,list_score,2)
 		print (list_top,list_name,list_score)
 		score_str = ""
 		for i in range(0,10):
@@ -133,6 +133,19 @@ def handle_message(event):
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
+	elif(event.message.text== "脫褲子"):
+		list_top = []
+		list_name = []
+		list_time = []
+		get_sheet(list_top,list_name,list_time,6)
+		# print (list_top,list_name,list_score)
+		score_str = ""
+		score_str += (str(list_top[0])+"\t"+list_name[0]+"\t\n")
+		for i in range(1,10):
+			score_str += (str(list_top[i])+":"+list_name[i]+"還需要"+list_time[i]+"才能脫"+list_time[i-1]+"的褲子\n")
+		print(score_str)
+		message = TextSendMessage(text=score_str)
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
