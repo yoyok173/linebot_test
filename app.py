@@ -119,6 +119,7 @@ def handle_message(event):
 	elif(event.message.text== "排名"):
 		sheet_result = ""
 		get_sheet(sheet_result)
+		print (sheet_result)
 		line_bot_api.push_message(user_id, 
 		TextSendMessage(text=sheet_result))
 	elif(event.message.text== "貼圖辣"):
