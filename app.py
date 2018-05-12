@@ -164,9 +164,6 @@ def handle_message(event):
 	if(user_message== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message== "WC"):
-		message = TextSendMessage(text='廁所尻尻')
-		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message=="即時排名"):
 		list_top = []
 		list_name = []
