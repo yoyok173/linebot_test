@@ -47,6 +47,7 @@ def get_sheet(sheet_result):
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.
 			print('%s:%s:%s' % (row[0], row[1],row[2]))
+		sheet_result = "hello world!"
 
 # def post_content():
 	
