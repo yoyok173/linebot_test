@@ -113,11 +113,12 @@ def callback():
 
 now = datetime.datetime.now()
 
+print(now.second)
 # print (event.source.userId)
 if(now.second == 1):
 	# line_bot_api.reply_message(event.reply_token,message)
 	message = TextSendMessage(text='Hello World !!!')
-	line_bot_api.push_message(user_id,TextSendMessage(text=message ))
+	line_bot_api.push_message(user_id,TextSendMessage(text=message))
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
