@@ -140,9 +140,9 @@ def handle_message(event):
 		get_sheet(list_top,list_name,list_time,6)
 		# print (list_top,list_name,list_score)
 		score_str = ""
-		score_str += (str(list_top[0])+"\t"+list_name[0]+"\t\n")
+		score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
 		for i in range(1,10):
-			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t\t\t還需要"+list_time[i]+"才能脫 "+list_name[i-1]+" 的褲子\n")
+			score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
 		print(score_str)
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
