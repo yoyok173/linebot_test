@@ -18,6 +18,9 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage
 )
 
+def auth_gss_client(path, scopes):
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
+    return gspread.authorize(credentials)
 
  
 app = Flask(__name__)
@@ -29,7 +32,10 @@ handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
 user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
 
 auth_json_path = "./auth.json"
+
 gss_scopes = ['https://spreadsheets.google.com/feeds']
+
+
 
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
@@ -98,9 +104,6 @@ def handle_message(event):
 		event.reply_token,
 		message)
 		
-def auth_gss_client(path, scopes):
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
-    return gspread.authorize(credentials)
 
 		
 		
