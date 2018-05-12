@@ -21,7 +21,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
 def get_sheet(list_top,list_name,list_target,target):
@@ -160,10 +160,10 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == ("母湯test")):
-		message = ImageSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.gif',
-		preview_image_url='https://i.imgur.com/Upmorh0.gif'
+	elif(user_message == ("母湯test")):		
+		message = VideoSendMessage(
+		original_content_url='https://i.imgur.com/Upmorh0.mp4',
+		preview_image_url='https://i.imgur.com/Upmorh0.mp4'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 	
