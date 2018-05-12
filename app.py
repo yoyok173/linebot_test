@@ -86,8 +86,9 @@ def handle_message(event):
 		sticker_id=str(randsticker)
 		)
 	else:
-		message = TextSendMessage(text=event.message.text)
-		spreadsheet_key = "19nQvlQIGRIoGELFxGfHWazG45DM7D2GccZg8wlD85_g"	
+		text=event.message.text
+		message = TextSendMessage(text)
+		spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 		# spreadsheet_key_path = 'spreadsheet_key'
 		now = datetime.datetime.now()
 
@@ -95,7 +96,7 @@ def handle_message(event):
 		today = time.strftime("%c")
 		# with open(spreadsheet_key_path) as f:
 		#    spreadsheet_key = f.read().strip()
-		update_sheet(gss_client, spreadsheet_key, today, message)
+		update_sheet(gss_client, spreadsheet_key, today, text)
 	#push message to one user
 	line_bot_api.push_message(user_id, 
 	TextSendMessage(text='Hello World!'))
