@@ -142,7 +142,7 @@ def handle_message(event):
 		score_str = ""
 		score_str += (str(list_top[0])+"\t"+list_name[0]+"\t\n")
 		for i in range(1,10):
-			score_str += (str(list_top[i])+":"+list_name[i]+"還需要"+list_time[i]+"才能脫"+list_time[i-1]+"的褲子\n")
+			score_str += (str(list_top[i])+"\t"+list_name[i]+"\t\t\t還需要"+list_time[i]+"才能脫 "+list_name[i-1]+" 的褲子\n")
 		print(score_str)
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
