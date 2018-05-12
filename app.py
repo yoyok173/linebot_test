@@ -117,9 +117,10 @@ def handle_message(event):
 	print (event)
 	# print (event.source.userId)
 
-	if(event.message.text== "abc"):
-		message = TextSendMessage(text='Hello')
-	elif(event.message.text== "排名"):
+	if(event.message.text== "test"):
+		message = TextSendMessage(text='Hello World!')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(event.message.text== "即時排名"):
 		list_top = []
 		list_name = []
 		list_score = []
@@ -132,17 +133,15 @@ def handle_message(event):
 		line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(event.message.text== "貼圖辣"):
 		randsticker = random.randint(140,180)
-		message = StickerSendMessage(
-		package_id='2',
-		sticker_id=str(randsticker)
-		)
+		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
+		line_bot_api.reply_message(event.reply_token,message)
 	
 	# lineuserid = event.source.userId
 	messageid = event.message.id
 	# lineuserid = "howard"
 	messagetype = event.message.type
 	text = event.message.text
-	message = TextSendMessage(text)
+	# message = TextSendMessage(text)
 	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 	# spreadsheet_key_path = 'spreadsheet_key'
 	now = datetime.datetime.now()
@@ -156,9 +155,9 @@ def handle_message(event):
 	# line_bot_api.push_message(user_id, 
 	# TextSendMessage(text='Hello World!'))
 		
-	line_bot_api.reply_message(
-		event.reply_token,
-		message)
+	# line_bot_api.reply_message(
+		# event.reply_token,
+		# message)
 		
 
 		
