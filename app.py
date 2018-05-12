@@ -162,8 +162,8 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == ("母湯test")):
 		message = ImageSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.gifv',
-		preview_image_url='https://i.imgur.com/Upmorh0.gifv'
+		original_content_url='https://i.imgur.com/Upmorh0.gif',
+		preview_image_url='https://i.imgur.com/Upmorh0.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 	
