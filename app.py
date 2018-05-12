@@ -49,7 +49,7 @@ def get_sheet(mylist):
 			mylist.append(row[0])
 			mylist.append(row[1])
 			mylist.append(row[2])
-			print('%s:%s score:' % (row[0], row[1],row[2]))
+			print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
 
 # def post_content():
