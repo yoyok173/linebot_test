@@ -71,6 +71,8 @@ def get_key_sheet(key,response):
 	if not values:
 		print('No data found.')
 	else:
+		list_key = []
+		list_response = []
 		for row in values:
 			# Print columns A and E, which correspond to indices 0 and 4.		
 			list_key.append(row[0])
