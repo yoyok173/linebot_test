@@ -83,7 +83,7 @@ def update_sheet(gss_client, key, today,messageid,messagetype,text):
 
 
 video_list = ["https://i.imgur.com/Upmorh0.mp4"]
-image_list = ["https://i.imgur.com/Upmorh0.gif","https://i.imgur.com/rUZ4AdD.jpg"]
+image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
 
 # update.py
 		
@@ -170,7 +170,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token, message)
 	
 	elif(user_message.find("母湯") == 0):
-		random_pic_i = random.randint(0,len(image_list))
+		random_pic_i = random.randint(0,len(image_list)-1)
 		message = ImageSendMessage(
 		original_content_url= image_list[random_pic_i],
 		preview_image_url= image_list[random_pic_i]
