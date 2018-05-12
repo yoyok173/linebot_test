@@ -114,7 +114,14 @@ def callback():
 now = datetime.datetime.now()
 today = time.strftime("%c")
 
-
+list_pic = [https://imgur.com/Upmorh0,
+https://imgur.com/N48r8cd,
+https://imgur.com/iSAnJd4,
+https://imgur.com/8H72aoG,
+https://imgur.com/BTNb7zf,
+https://imgur.com/XO7YFi5,
+https://imgur.com/x0qYhR7,
+https://i.imgur.com/rUZ4AdD.jpg]
 # print (event.source.userId)
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -161,12 +168,21 @@ def handle_message(event):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == ("母湯test")):
+		message = ImageSendMessage(
+		original_content_url='https://i.imgur.com/Upmorh0.gifv',
+		preview_image_url='https://i.imgur.com/Upmorh0.gifv'
+		)
+		line_bot_api.reply_message(event.reply_token, message)
+	
 	elif(user_message.find("母湯") == 0):
 		message = ImageSendMessage(
 		original_content_url='https://i.imgur.com/rUZ4AdD.jpg',
 		preview_image_url='https://i.imgur.com/rUZ4AdD.jpg'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
+		
+
 	# lineuserid = event.source.userId
 	messageid = event.message.id
 	# lineuserid = "howard"
