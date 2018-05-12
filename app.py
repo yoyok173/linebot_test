@@ -194,12 +194,12 @@ def handle_message(event):
 		print (reply_message) 
 		split_result = reply_message.split(' ', 1 )
 		print (split_result)
-		if(len(split_result) < 1):
+		if(len(split_result) <= 1):
 			message = TextSendMessage(text="學習字詞失敗 > <")
 			line_bot_api.reply_message(event.reply_token,message)
 		else:
 			update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
-			message = TextSendMessage(text="已學習字詞!!")
+			message = TextSendMessage(text="已學習字詞 !!!")
 			line_bot_api.reply_message(event.reply_token,message)
 	
 	# lineuserid = event.source.userId
