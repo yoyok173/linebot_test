@@ -163,7 +163,7 @@ def handle_message(event):
 	elif(user_message == ("母湯test")):		
 		message = VideoSendMessage(
 		original_content_url='https://i.imgur.com/Upmorh0.mp4',
-		preview_image_url='https://i.imgur.com/Upmorh0.mp4'
+		preview_image_url='https://i.imgur.com/Upmorh0.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 	
