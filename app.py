@@ -80,6 +80,11 @@ def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
     sheet.insert_row([today,messageid,messagetype,text], 2)
+	
+def update_sheet_key(gss_client, key, input , output):
+    wks = gss_client.open_by_key(key)
+    sheet = wks.sheet1
+    sheet.insert_row([input , output], 2)
 
 
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
@@ -122,7 +127,7 @@ today = time.strftime("%c")
 def handle_message(event):
 	print(now)
 	print(event)	
-
+		spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
 	user_message = event.message.text
 	print (user_message.find("排名"))
 
@@ -183,6 +188,20 @@ def handle_message(event):
 		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
 		message = TextSendMessage(text=reply_message)
 		line_bot_api.reply_message(event.reply_token,message)
+		
+	elif(user_message = "!教育"):
+		reply_message = user_message.lstrip("!教育 ")
+		print (reply_message) 
+		split_result = reply_message.split(' ', 1 )
+		print (split_result)
+		if(split_result[1] != NULL):
+			update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
+			message = TextSendMessage(text="已學習字詞!!")
+			line_bot_api.reply_message(event.reply_token,message)
+		else:
+			message = TextSendMessage(text="學習字詞失敗 > <")
+			line_bot_api.reply_message(event.reply_token,message)
+
 	
 	# lineuserid = event.source.userId
 	messageid = event.message.id
@@ -190,7 +209,7 @@ def handle_message(event):
 	messagetype = event.message.type
 	text = event.message.text
 	# message = TextSendMessage(text)
-	spreadsheet_key = "1Txkvi53ANaFl8Qqug4EsaKTwTGDIgDEarhrewEe2Ruk"	
+
 	# spreadsheet_key_path = 'spreadsheet_key'
 	# if cheapest_price is not None:
 
