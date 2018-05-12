@@ -52,7 +52,7 @@ def get_score_sheet(list_top,list_name,list_target,target):
 			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
 
-def get_key_sheet(key,response):
+def get_key_sheet(key):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -80,7 +80,9 @@ def get_key_sheet(key,response):
 			# >>> ["foo", "bar", "baz"].index("bar")
 			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		if key in list_key:
-			response = list_response[list_key.index(key)]
+			return list_response[list_key.index(key)]
+		else:
+			return 0
 		
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
@@ -230,10 +232,11 @@ def handle_message(event):
 			message = TextSendMessage(text="已學習字詞 !!!")
 			line_bot_api.reply_message(event.reply_token,message)
 	else:
-		response = ""
-		get_key_sheet(user_message,response)
-		message = TextSendMessage(text=response)
-		line_bot_api.reply_message(event.reply_token,message)
+		# response = ""
+		key_message = get_key_sheet(user_message)
+		if key_message != 0:
+			message = TextSendMessage(text=key_message)
+			line_bot_api.reply_message(event.reply_token,message)
 	
 	# lineuserid = event.source.userId
 	messageid = event.message.id
