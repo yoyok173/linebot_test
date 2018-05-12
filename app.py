@@ -35,7 +35,7 @@ def get_sheet(mylist):
 	service = build('sheets', 'v4', http=creds.authorize(Http()))
 
 	# Call the Sheets API
-	SPREADSHEET_ID = '19nQvlQIGRIoGELFxGfHWazG45DM7D2GccZg8wlD85_g'
+	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 	RANGE_NAME = 'A2:B10'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
