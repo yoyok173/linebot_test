@@ -121,6 +121,13 @@ random.randrange(0, 101, 2)
 
 https://dotblogs.com.tw/chris0920/2010/10/25/18560
 
+> python random choose one item in list
+
+```javascript
+foo = ['a', 'b', 'c', 'd', 'e']
+print(random.choice(foo))
+```
+
 > python list multi search
 
 https://zhidao.baidu.com/question/488359074223051332.html
