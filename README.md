@@ -1,3 +1,5 @@
+# linebot_test
+
 > 在資料夾路徑那邊輸入 cmd
 
 > 主要教學參考
@@ -154,12 +156,15 @@ index = list.index("object")
 
 > python range
 
->>> range(10)        # 0-9 (不含10)
+> range(10)        # 0-9 (不含10)
+
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
->>> range(1, 11)     # 1-11 (不含11)
+
+> range(1, 11)     # 1-11 (不含11)
+
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-randint(0, 9) # 0-9(包含)
+> randint(0, 9) # 0-9(包含)
 
 http://www.runoob.com/python/python-func-range.html
 http://www.cnblogs.com/buro79xxd/archive/2011/05/23/2054493.html
