@@ -14,6 +14,12 @@ https://medium.com/@lukehong/%E5%88%9D%E6%AC%A1%E5%98%97%E8%A9%A6-line-bot-sdk-e
 
 https://console.developers.google.com/apis/dashboard?project=inlaid-way-203806&folder&organizationId&duration=PT1H
 
+> google sheet API 參考文件
+
+spreadsheetId/sheetId用法 與 取Sheet與範圍
+
+https://developers.google.com/sheets/api/guides/concepts
+
 > apriltestbot dictionary list
 
 https://docs.google.com/spreadsheets/d/1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk/edit#gid=0
@@ -140,8 +146,33 @@ https://ephrain.net/python-%E5%9C%A8%E5%87%BD%E5%BC%8F%E8%A3%A1%E4%BD%BF%E7%94%A
 ```javascript
 index = list.index("object")
 ```
+> python find in list
+
+```javascript
+3 in [1, 2, 3]
+```
+
+> python range
+
+>>> range(10)        # 0-9 (不含10)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> range(1, 11)     # 1-11 (不含11)
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+randint(0, 9) # 0-9(包含)
+
+http://www.runoob.com/python/python-func-range.html
+http://www.cnblogs.com/buro79xxd/archive/2011/05/23/2054493.html
 
 > Heroku Scheduler
 
 https://devcenter.heroku.com/articles/scheduler
 
+> git 多人合作
+
+http://tech-marsw.logdown.com/blog/2013/08/17/git-notes-github-n-person-cooperation-settings
+
+> git branch
+
+https://ihower.tw/blog/archives/2620
+https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E4%BD%95%E8%AC%82%E5%88%86%E6%94%AF
