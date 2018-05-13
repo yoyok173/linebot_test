@@ -162,28 +162,61 @@ def get_food_sheet(key):
 # line_bot_api.multicast(['user_id1', 'user_id2'], 
     # TextSendMessage(text='Hello World!'))	
 	
-def gacha():
-	random_number = random.randint(0,100)
+def gacha_BGD():
+	random_number = random.randint(0,999)
+	if random_number <= 30-1:
+		gacha_BGD_result = "4★"
+	elif random_number <= 30+85-1:
+		gacha_BGD_result = "3★"
+	elif random_number <= 30+885-1:
+		gacha_BGD_result = "2★"
+	return gacha_BGD_result
+	
+def gacha_last_BGD():
+	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		gacha_result = "SSR"
-	elif random_number <= 3+12-1:
-		gacha_result = "SR"
-	elif random_number <= 3+12+85-1:
-		gacha_result = "R"
-	elif random_number <= 3+12+86-1:
-		gacha_result = "1%的N..."	
-	return gacha_result
-
-def ten_gacha():	
-	gacha_result = "【熱心提醒您，本遊戲沒有保底功能 ^_^ 】\n您抽到的是：\n"
+		gacha_BGD_result = "4★"
+	elif random_number <= 3+97-1:
+		gacha_BGD_result = "3★"
+	return gacha_BGD_result
+	
+def ten_gacha_BGD():	
 	for i in range(9):
-		gacha_result += gacha()
+		gacha_BGD_result += gacha_BGD()
 		if i == 4:
-			gacha_result += "\n"
+			gacha_BGD_result += "\n"
 		else:
-			gacha_result += " , "
-	gacha_result += gacha()
-	return gacha_result
+			gacha_BGD_result += " , "
+	gacha_BGD_result += gacha_last_BGD()
+	return gacha_BGD_result
+	
+def gacha_CGSS():
+	random_number = random.randint(0,99)
+	if random_number <= 3-1:
+		gacha_CGSS_result = "SSR"
+	elif random_number <= 3+12-1:
+		gacha_CGSS_result = "SR"
+	elif random_number <= 3+12+85-1:
+		gacha_CGSS_result = "R"
+	return gacha_CGSS_result
+	
+def gacha_last_CGSS():
+	random_number = random.randint(0,99)
+	if random_number <= 3-1:
+		gacha_CGSS_result = "SSR"
+	elif random_number <= 3+97-1:
+		gacha_CGSS_result = "SR"
+	return gacha_CGSS_result
+	
+def ten_gacha_CGSS():	
+	for i in range(9):
+		gacha_CGSS_result += gacha_CGSS()
+		if i == 4:
+			gacha_CGSS_result += "\n"
+		else:
+			gacha_CGSS_result += " , "
+	gacha_CGSS_result += gacha_last_CGSS()
+	return gacha_CGSS_result
 
 def teach(user_message):
 	reply_message = user_message.lstrip("!教育 ")
@@ -318,14 +351,26 @@ def handle_message(event):
 			random_number = random.randint(1,int(reply_message))
 			message = TextSendMessage(text=random_number)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!單抽"):
-			gacha_result = gacha()
-			message = TextSendMessage(text=gacha_result)
+		elif(user_message == "!CGSS單抽"):
+			gacha_CGSS_result = "【您抽到的是：】\n"
+			gacha_CGSS_result = gacha_CGSS()
+			message = TextSendMessage(text=gacha_CGSS_result)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message in ["!十連","!十抽"]):
-			gacha_result = ten_gacha()
-			message = TextSendMessage(text=gacha_result)
-			line_bot_api.reply_message(event.reply_token,message)	
+		elif(user_message in ["!CGSS十連","!CGSS十抽"]):
+			gacha_CGSS_result = "【您抽到的是：】\n"
+			gacha_CGSS_result = ten_gacha_CGSS()
+			message = TextSendMessage(text=gacha_CGSS_result)
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message == "!BGD單抽"):
+			gacha_BGD_result = "【您抽到的是：】\n"
+			gacha_BGD_result = gacha_BGD()
+			message = TextSendMessage(text=gacha_BGD_result)
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message in ["!BGD十連","!BGD十抽"]):
+			gacha_BGD_result = "【您抽到的是：】\n"
+			gacha_BGD_result += ten_gacha_BGD()
+			message = TextSendMessage(text=gacha_BGD_result)
+			line_bot_api.reply_message(event.reply_token,message)			
 		elif(user_message.find("!教育") == 0):
 			teach_result = teach(user_message)
 			message = TextSendMessage(text=teach_result)
