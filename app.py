@@ -281,7 +281,7 @@ def handle_message(event):
 			food = get_food_sheet(2)
 			message = TextSendMessage(text=food)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message.find("!抽籤") == 0)
+		elif(user_message.find("!抽籤") == 0):
 			reply_message = user_message.lstrip("!抽籤 ")
 			random_number = random.randint(1,int(reply_message))
 			message = TextSendMessage(text=random_number)
