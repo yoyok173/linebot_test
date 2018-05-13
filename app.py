@@ -180,7 +180,8 @@ def gacha_last_BGD():
 		last_gacha_BGD_result = "3★"
 	return last_gacha_BGD_result
 	
-def ten_gacha_BGD():	
+def ten_gacha_BGD():
+	ten_gacha_BGD_result=""
 	for i in range(9):
 		ten_gacha_BGD_result += gacha_BGD()
 		if i == 4:
@@ -209,6 +210,7 @@ def gacha_last_CGSS():
 	return last_gacha_CGSS_result
 	
 def ten_gacha_CGSS():	
+	ten_gacha_CGSS_result=""
 	for i in range(9):
 		ten_gacha_CGSS_result += gacha_CGSS()
 		if i == 4:
