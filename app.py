@@ -167,12 +167,12 @@ def handle_message(event):
 	elif(mode == 0):
 		if(user_message== "!說話"):
 			mode = 1
-			message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說聲「!閉嘴」 > <')
+			message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說「!閉嘴」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
 	else:
 		if(user_message== "!閉嘴"):
 			mode = 0
-			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說聲「!說話」 > <')
+			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說「!說話」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message=="即時排名"):
 			list_top = []
