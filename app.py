@@ -175,20 +175,20 @@ def gacha_BGD():
 def gacha_last_BGD():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		gacha_BGD_result = "4★"
+		last_gacha_BGD_result = "4★"
 	elif random_number <= 3+97-1:
-		gacha_BGD_result = "3★"
-	return gacha_BGD_result
+		last_gacha_BGD_result = "3★"
+	return last_gacha_BGD_result
 	
 def ten_gacha_BGD():	
 	for i in range(9):
-		gacha_BGD_result += gacha_BGD()
+		ten_gacha_BGD_result += gacha_BGD()
 		if i == 4:
-			gacha_BGD_result += "\n"
+			ten_gacha_BGD_result += "\n"
 		else:
-			gacha_BGD_result += " , "
-	gacha_BGD_result += gacha_last_BGD()
-	return gacha_BGD_result
+			ten_gacha_BGD_result += " , "
+	ten_gacha_BGD_result += gacha_last_BGD()
+	return ten_gacha_BGD_result
 	
 def gacha_CGSS():
 	random_number = random.randint(0,99)
@@ -203,20 +203,20 @@ def gacha_CGSS():
 def gacha_last_CGSS():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		gacha_CGSS_result = "SSR"
+		last_gacha_CGSS_result = "SSR"
 	elif random_number <= 3+97-1:
-		gacha_CGSS_result = "SR"
-	return gacha_CGSS_result
+		last_gacha_CGSS_result = "SR"
+	return last_gacha_CGSS_result
 	
 def ten_gacha_CGSS():	
 	for i in range(9):
-		gacha_CGSS_result += gacha_CGSS()
+		ten_gacha_CGSS_result += gacha_CGSS()
 		if i == 4:
-			gacha_CGSS_result += "\n"
+			ten_gacha_CGSS_result += "\n"
 		else:
-			gacha_CGSS_result += " , "
-	gacha_CGSS_result += gacha_last_CGSS()
-	return gacha_CGSS_result
+			ten_gacha_CGSS_result += " , "
+	ten_gacha_CGSS_result += gacha_last_CGSS()
+	return ten_gacha_CGSS_result
 
 def teach(user_message):
 	reply_message = user_message.lstrip("!教育 ")
@@ -354,7 +354,7 @@ def handle_message(event):
 		elif(user_message == "!CGSS單抽"):
 			result = "【您抽到的是：】\n"
 			result += gacha_CGSS()
-			message = TextSendMessage(text=esult)
+			message = TextSendMessage(text=result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message in ["!CGSS十連","!CGSS十抽","!CGSS10連","!CGSS10抽"]):
 			result = "【您抽到的是：】\n"
