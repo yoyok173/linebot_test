@@ -352,23 +352,23 @@ def handle_message(event):
 			message = TextSendMessage(text=random_number)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message == "!CGSS單抽"):
-			gacha_CGSS_result = "【您抽到的是：】\n"
-			gacha_CGSS_result = gacha_CGSS()
+			result = "【您抽到的是：】\n"
+			result += gacha_CGSS()
 			message = TextSendMessage(text=gacha_CGSS_result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message in ["!CGSS十連","!CGSS十抽"]):
-			gacha_CGSS_result = "【您抽到的是：】\n"
-			gacha_CGSS_result = ten_gacha_CGSS()
+			result = "【您抽到的是：】\n"
+			result += ten_gacha_CGSS()
 			message = TextSendMessage(text=gacha_CGSS_result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message == "!BGD單抽"):
-			gacha_BGD_result = "【您抽到的是：】\n"
-			gacha_BGD_result = gacha_BGD()
+			result = "【您抽到的是：】\n"
+			result += gacha_BGD()
 			message = TextSendMessage(text=gacha_BGD_result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message in ["!BGD十連","!BGD十抽"]):
-			gacha_BGD_result = "【您抽到的是：】\n"
-			gacha_BGD_result += ten_gacha_BGD()
+			result = "【您抽到的是：】\n"
+			result += ten_gacha_BGD()
 			message = TextSendMessage(text=gacha_BGD_result)
 			line_bot_api.reply_message(event.reply_token,message)			
 		elif(user_message.find("!教育") == 0):
