@@ -211,7 +211,8 @@ def teach(user_message):
 		success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
 		return success_learn
 
-def slient_mode(mode,user_message,event):
+def slient_mode(user_message,event):
+	global mode
 	if(user_message== "!說話"):
 		mode = 1
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
@@ -256,7 +257,7 @@ def handle_message(event):
 			message = TextSendMessage(text="(active mode)")
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(mode == 0):
-		slient_mode(mode,user_message,event)
+		slient_mode(user_message,event)
 	elif(mode == 1):
 		if(user_message== "!閉嘴"):
 			mode = 0
