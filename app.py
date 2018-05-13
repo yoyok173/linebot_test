@@ -158,8 +158,7 @@ mode = 1
 def handle_message(event):
 	global mode 
 	print(now)
-	print(event)	
-	spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"	
+	print(event)		
 	user_message = event.message.text
 	
 	if(user_message== "test"):
@@ -236,6 +235,7 @@ def handle_message(event):
 				message = TextSendMessage(text="學習字詞失敗 > <")
 				line_bot_api.reply_message(event.reply_token,message)
 			else:
+				spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
 				update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
 				message = TextSendMessage(text="已學習字詞 !!!")
 				line_bot_api.reply_message(event.reply_token,message)

@@ -124,6 +124,16 @@ len(items)
 
 http://ez2learn.com/basic/if.html
 
+> python global variable
+
+https://ephrain.net/python-%E5%9C%A8%E5%87%BD%E5%BC%8F%E8%A3%A1%E4%BD%BF%E7%94%A8%E5%85%A8%E5%9F%9F%E8%AE%8A%E6%95%B8%E8%A6%81%E5%8A%A0-global/
+
+> python find list index
+
+```javascript
+index = list.index("object")
+```
+
 > Heroku Scheduler
 
 https://devcenter.heroku.com/articles/scheduler
