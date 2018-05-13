@@ -27,7 +27,7 @@ from linebot.models import (
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
 # image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
 
-BGD_namelist = ["牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ','上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ','白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜','氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ','北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音'"]
+BGD_namelist = ["'牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ','上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ','白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜','氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ','北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音'"]
 
 app = Flask(__name__)
 # Channel Access Token
