@@ -132,9 +132,9 @@ def get_food_sheet(key):
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	if key == 1:
-		RANGE_NAME = 'food!A'
+		RANGE_NAME = 'food!A:A'
 	elif key == 2:
-		RANGE_NAME = 'food!B'
+		RANGE_NAME = 'food!B:B'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
