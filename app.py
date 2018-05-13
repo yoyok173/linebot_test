@@ -61,7 +61,7 @@ def get_score_sheet(list_top,list_name,list_target,target):
 			list_name.append(row[1])
 			list_target.append(row[target])
 		
-def get_key_sheet(key):
+def get_key_response(key):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -82,12 +82,9 @@ def get_key_sheet(key):
 	else:
 		list_key = []
 		list_response = []
-		for row in values:
-			# Print columns A and E, which correspond to indices 0 and 4.		
+		for row in values:	
 			list_key.append(row[0])
 			list_response.append(row[1])
-			# >>> ["foo", "bar", "baz"].index("bar")
-			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		if key in list_key:
 			# list_response = list_key.index(key)
 			list_response_index = [i for i,v in enumerate(list_key) if v==key]
@@ -261,11 +258,11 @@ def	active_mode(user_message,event):
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-	elif(user_message == "脫褲子"):
+	elif(user_message in ["脫褲子","脫內褲"]):
 		score_str = your_pants()
 		message = TextSendMessage(text=score_str)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "貼圖辣"):
+	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
 		line_bot_api.reply_message(event.reply_token,message)
@@ -327,11 +324,10 @@ def	active_mode(user_message,event):
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
 	else:
-		key_message = get_key_sheet(user_message)
+		key_message = get_key_response(user_message)
 		if key_message != 0:
 			message = TextSendMessage(text=key_message)
 			line_bot_api.reply_message(event.reply_token,message)
-
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
