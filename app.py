@@ -118,6 +118,36 @@ def update_sheet_key(gss_client, key, input , output):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
     sheet.insert_row([input , output], 2)
+	
+def get_food_sheet(key):
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	if key == 1:
+		RANGE_NAME = 'food!A'
+	elif key == 2:
+		RANGE_NAME = 'food!B'
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		list_food = []
+		for row in values:	
+			list_food.append(row[0])
+			
+		random_food_index = random.randint(0,len(list_food)-1)
+		return list_food[random_food_index]
+
 
 
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
@@ -243,7 +273,10 @@ def handle_message(event):
 			reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
 			message = TextSendMessage(text=reply_message)
 			line_bot_api.reply_message(event.reply_token,message)
-			
+		elif(user_message.find("!抽飲料") == 0):
+			food = get_food_sheet(2)
+			message = TextSendMessage(text=food)
+			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message.find("!教育") == 0):
 			reply_message = user_message.lstrip("!教育 ")
 			print (reply_message) 
