@@ -189,7 +189,7 @@ def handle_message(event):
 			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message== "!說話"):
-			mode = 0
+			mode = 1
 			message = TextSendMessage(text='我已經正在說話囉 ^_^ ，歡迎來跟我互動 ^_^ ')
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message=="即時排名"):
