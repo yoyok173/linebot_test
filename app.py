@@ -204,7 +204,7 @@ def teach(user_message):
 	else:
 		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
 		update_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
-		success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
+		success_learn ="已學習字詞 「"+split_result[0]+"」 !!!"
 		return success_learn
 
 def leaderboard():
