@@ -245,7 +245,7 @@ def slient_mode(user_message,event):
 
 def	active_mode(user_message,event):
 	global mode
-	if(user_message in ["!閉嘴","!安靜"]):
+	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
