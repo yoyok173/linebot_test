@@ -29,10 +29,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
-user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
+# user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
 auth_json_path = "./auth.json"
-gss_scopes = ['https://spreadsheets.google.com/feeds']
-gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 now = datetime.datetime.now()
 today = time.strftime("%c")
@@ -102,6 +100,9 @@ def get_key_sheet(key):
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
     return gspread.authorize(credentials)
+
+gss_scopes = ['https://spreadsheets.google.com/feeds']
+gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
