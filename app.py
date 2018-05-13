@@ -312,13 +312,13 @@ def handle_message(event):
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message == "!十連"):
-			gacha_result = "熱心提醒您，本遊戲沒有保底功能^_^\n您抽到的是：\n"
+			gacha_result = "【熱心提醒您，本遊戲沒有保底功能^_^】\n您抽到的是：\n"
 			for i in range(9):
 				gacha_result += gacha()
-				if i == 5:
+				if i == 4:
 					gacha_result += "\n"
 				else:
-					gacha_result += ","
+					gacha_result += " , "
 			gacha_result += gacha()
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)	
