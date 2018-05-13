@@ -164,6 +164,12 @@ def handle_message(event):
 	if(user_message== "test"):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message== "state"):
+		if mode == 0:
+			message = TextSendMessage(text="(silent mode)")
+		elif mode == 1:
+			message = TextSendMessage(text="(active mode)")
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(mode == 0):
 		if(user_message== "!說話"):
 			mode = 1
