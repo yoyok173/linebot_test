@@ -322,7 +322,7 @@ def handle_message(event):
 			gacha_result = gacha()
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!十連"):
+		elif(user_message in ["!十連","!十抽"]):
 			gacha_result = ten_gacha()
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)	
