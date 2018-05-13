@@ -132,9 +132,9 @@ def get_food_sheet(key):
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	if key == 1:
-		RANGE_NAME = 'food!A:A'
+		RANGE_NAME = 'food!A2:A'
 	elif key == 2:
-		RANGE_NAME = 'food!B:B'
+		RANGE_NAME = 'food!B2:B'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -272,6 +272,10 @@ def handle_message(event):
 			reply_message = user_message.lstrip("!機率 ")
 			reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
 			message = TextSendMessage(text=reply_message)
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message.find("!抽食物") == 0):
+			food = get_food_sheet(1)
+			message = TextSendMessage(text=food)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message.find("!抽飲料") == 0):
 			food = get_food_sheet(2)
