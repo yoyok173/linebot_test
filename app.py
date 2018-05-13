@@ -24,6 +24,20 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
+app = Flask(__name__)
+# Channel Access Token
+line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
+user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
+auth_json_path = "./auth.json"
+gss_scopes = ['https://spreadsheets.google.com/feeds']
+gss_client = auth_gss_client(auth_json_path, gss_scopes)
+
+now = datetime.datetime.now()
+today = time.strftime("%c")
+mode = 1
+
 def get_score_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -89,25 +103,6 @@ def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
     return gspread.authorize(credentials)
 
- 
-app = Flask(__name__)
-
-# Channel Access Token
-line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
-user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
-
-auth_json_path = "./auth.json"
-
-gss_scopes = ['https://spreadsheets.google.com/feeds']
-
-gss_client = auth_gss_client(auth_json_path, gss_scopes)
-
-now = datetime.datetime.now()
-today = time.strftime("%c")
-mode = 1
-
 def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
@@ -169,12 +164,12 @@ def gacha_last_BGD():
 def ten_gacha_BGD():
 	ten_gacha_BGD_result=""
 	for i in range(9):
-		ten_gacha_BGD_result += gacha_BGD()
+		ten_gacha_BGD_result += str(gacha_BGD())
 		if i == 4:
 			ten_gacha_BGD_result += "\n"
 		else:
 			ten_gacha_BGD_result += " , "
-	ten_gacha_BGD_result += gacha_last_BGD()
+	ten_gacha_BGD_result += str(gacha_last_BGD())
 	return ten_gacha_BGD_result
 	
 def gacha_CGSS():
@@ -196,12 +191,12 @@ def gacha_last_CGSS():
 def ten_gacha_CGSS():	
 	ten_gacha_CGSS_result=""
 	for i in range(9):
-		ten_gacha_CGSS_result += gacha_CGSS()
+		ten_gacha_CGSS_result += str(gacha_CGSS())
 		if i == 4:
 			ten_gacha_CGSS_result += "\n"
 		else:
 			ten_gacha_CGSS_result += " , "
-	ten_gacha_CGSS_result += gacha_last_CGSS()
+	ten_gacha_CGSS_result += str(gacha_last_CGSS())
 	return ten_gacha_CGSS_result
 
 def teach(user_message):
@@ -360,30 +355,6 @@ def handle_message(event):
 				message = TextSendMessage(text=key_message)
 				line_bot_api.reply_message(event.reply_token,message)
 		
-		# lineuserid = event.source.userId
-		# messageid = event.message.id
-		# lineuserid = "howard"
-		# messagetype = event.message.type
-		# text = event.message.text
-		# message = TextSendMessage(text)
-
-		# spreadsheet_key_path = 'spreadsheet_key'
-		# if cheapest_price is not None:
-
-		# with open(spreadsheet_key_path) as f:
-		#    spreadsheet_key = f.read().strip()
-		# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
-		# push message to one user
-		# line_bot_api.push_message(user_id, 
-		# TextSendMessage(text='Hello World!'))
-			
-		# line_bot_api.reply_message(
-			# event.reply_token,
-			# message)
-		
-
-		
-		
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
@@ -397,3 +368,25 @@ if __name__ == "__main__":
 # push message to multiple users
 # line_bot_api.multicast(['user_id1', 'user_id2'], 
     # TextSendMessage(text='Hello World!'))	
+
+# lineuserid = event.source.userId
+# messageid = event.message.id
+# lineuserid = "howard"
+# messagetype = event.message.type
+# text = event.message.text
+# message = TextSendMessage(text)
+
+# spreadsheet_key_path = 'spreadsheet_key'
+# if cheapest_price is not None:
+
+# with open(spreadsheet_key_path) as f:
+#    spreadsheet_key = f.read().strip()
+# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
+# push message to one user
+# line_bot_api.push_message(user_id, 
+# TextSendMessage(text='Hello World!'))
+
+# line_bot_api.reply_message(
+# event.reply_token,
+# message)
+		
