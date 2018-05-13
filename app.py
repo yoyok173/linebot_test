@@ -313,7 +313,7 @@ def handle_message(event):
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message == "!十連"):
 			gacha_result = "熱心提醒您，本遊戲沒有保底功能^_^\n您抽到的是："
-			for i in range(9)
+			for i in range(9):
 				gacha_result += gacha()
 				gacha_result += ","
 			gacha_result += gacha()
