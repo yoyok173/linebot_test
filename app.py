@@ -255,7 +255,8 @@ def handle_message(event):
 			else:
 				spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
 				update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
-				message = TextSendMessage(text="已學習字詞 !!!")
+				success_learn ="已學習字詞「"+split_result[0]+"」 !"
+				message = TextSendMessage(text=success_learn)
 				line_bot_api.reply_message(event.reply_token,message)
 		else:
 			# response = ""
