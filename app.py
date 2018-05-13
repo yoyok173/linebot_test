@@ -79,8 +79,10 @@ def get_key_sheet(key):
 			list_response.append(row[1])
 			# >>> ["foo", "bar", "baz"].index("bar")
 			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
-		for key in list_key:
-			print (list_response[list_key.index(key)])
+		if key in list_key:
+			# list_response = list_key.index(key)
+			list_response = [i for i,v in enumerate(list_key) if v==key]
+			print (list_response)
 			return list_response[list_key.index(key)]
 		else:
 			return 0
