@@ -287,7 +287,7 @@ def handle_message(event):
 			message = TextSendMessage(text=random_number)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message == "!單抽"):
-			random_number = random.randint(0,101))
+			random_number = random.randint(0,100))
 			if random_number <= 3-1:
 				gacha_result = "你抽到了 SSR !!!!!"
 			elif random_number <= 3+12-1:
@@ -295,7 +295,7 @@ def handle_message(event):
 			elif random_number <= 3+12+85-1:
 				gacha_result = "R辣幹"
 			elif random_number <= 3+12+86-1:
-				gacha_result = "只有1%的N卡你也抽得到......"	
+				gacha_result = "只有1%的N你也抽得到......"	
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message.find("!教育") == 0):
