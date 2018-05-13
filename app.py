@@ -84,7 +84,8 @@ def get_key_sheet(key):
 			list_response_index = [i for i,v in enumerate(list_key) if v==key]
 			print (list_response_index)
 			random_reply = random.randint(0,len(list_response_index)-1)
-			return list_response[list_response_index(random_reply)]
+			random_reply_index = list_response_index(random_reply)
+			return list_response[random_reply_index]
 		else:
 			return 0
 		
