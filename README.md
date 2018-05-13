@@ -10,6 +10,9 @@ https://github.com/yaoandy107/line-bot-tutorial
 
 https://medium.com/@lukehong/%E5%88%9D%E6%AC%A1%E5%98%97%E8%A9%A6-line-bot-sdk-eaa4abbe8d6e
 
+> google API
+
+https://console.developers.google.com/apis/dashboard?project=inlaid-way-203806&folder&organizationId&duration=PT1H
 
 > apriltestbot dictionary list
 
@@ -109,6 +112,10 @@ random.randrange(0, 101, 2)
 ```
 
 https://dotblogs.com.tw/chris0920/2010/10/25/18560
+
+> python list multi search
+
+https://zhidao.baidu.com/question/488359074223051332.html
 
 > python replace
 
