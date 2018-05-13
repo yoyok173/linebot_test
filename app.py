@@ -211,6 +211,30 @@ def teach(user_message):
 		success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
 		return success_learn
 
+def leaderboard():
+	list_top = []
+	list_name = []
+	list_score = []
+	get_score_sheet(list_top,list_name,list_score,2)
+	# print (list_top,list_name,list_score)
+	score_str = ""
+	for i in range(0,10):
+		score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
+	# print(score_str)
+	return score_str
+
+def your_pants():
+	list_top = []
+	list_name = []
+	list_time = []
+	get_score_sheet(list_top,list_name,list_time,6)
+	# print (list_top,list_name,list_score)
+	score_str = ""
+	score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
+	for i in range(1,10):
+		score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
+	return score_str
+			
 def slient_mode(user_message,event):
 	global mode
 	if(user_message== "!說話"):
@@ -221,7 +245,94 @@ def slient_mode(user_message,event):
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
+
+def	active_mode(user_message,event):
+	global mode
+	if(user_message in ["!閉嘴","!安靜"]):
+		mode = 0
+		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!說話"):
+		mode = 1
+		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["即時排名","即時戰況"]):
+		score_str = leaderboard()
+		message = TextSendMessage(text=score_str)
+		line_bot_api.reply_message(event.reply_token,message)
+		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
+	elif(user_message == "脫褲子"):
+		score_str = your_pants()
+		message = TextSendMessage(text=score_str)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "貼圖辣"):
+		randsticker = random.randint(140,180)
+		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "母湯電影版"):		
+		message = VideoSendMessage(
+		original_content_url='https://i.imgur.com/Upmorh0.mp4',
+		preview_image_url='https://i.imgur.com/Upmorh0.gif'
+		)
+		line_bot_api.reply_message(event.reply_token, message)
+	elif(user_message == "!抽食物"):
+		food = get_food_sheet(1)
+		message = TextSendMessage(text=food)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!抽飲料"):
+		food = get_food_sheet(2)
+		message = TextSendMessage(text=food)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!CGSS單抽"):
+		result = "【您抽到的是：】\n"
+		result += gacha_CGSS()
+		message = TextSendMessage(text=result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["!CGSS十連","!CGSS十抽","!CGSS10連","!CGSS10抽"]):
+		result = "【您抽到的是：】\n"
+		result += ten_gacha_CGSS()
+		message = TextSendMessage(text=result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!BGD單抽"):
+		result = "【您抽到的是：】\n"
+		result += gacha_BGD()
+		message = TextSendMessage(text=result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["!BGD十連","!BGD十抽","!BGD10連","!BGD10抽"]):
+		result = "【您抽到的是：】\n"
+		result += ten_gacha_BGD()
+		message = TextSendMessage(text=result)
+		line_bot_api.reply_message(event.reply_token,message)	
 		
+	# ------ below are find function ------	 
+	elif(user_message.find("母湯") == 0):
+		message = ImageSendMessage(
+		original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
+		preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
+		)
+		line_bot_api.reply_message(event.reply_token, message)	
+	elif(user_message.find("!機率") == 0):
+		probability = random.randint(0,101)
+		reply_message = user_message.lstrip("!機率 ")
+		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
+		message = TextSendMessage(text=reply_message)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!抽數字") == 0):
+		reply_message = user_message.lstrip("!抽數字 ")
+		random_number = random.randint(1,int(reply_message))
+		message = TextSendMessage(text=random_number)
+		line_bot_api.reply_message(event.reply_token,message)		
+	elif(user_message.find("!教育") == 0):
+		teach_result = teach(user_message)
+		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
+	else:
+		key_message = get_key_sheet(user_message)
+		if key_message != 0:
+			message = TextSendMessage(text=key_message)
+			line_bot_api.reply_message(event.reply_token,message)
+
+	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -259,106 +370,7 @@ def handle_message(event):
 	elif(mode == 0):
 		slient_mode(user_message,event)
 	elif(mode == 1):
-		if(user_message== "!閉嘴"):
-			mode = 0
-			message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message== "!說話"):
-			mode = 1
-			message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message=="即時排名"):
-			list_top = []
-			list_name = []
-			list_score = []
-			get_score_sheet(list_top,list_name,list_score,2)
-			print (list_top,list_name,list_score)
-			score_str = ""
-			for i in range(0,10):
-				score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
-			print(score_str)
-			message = TextSendMessage(text=score_str)
-			line_bot_api.reply_message(event.reply_token,message)
-			# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
-		elif(user_message=="脫褲子"):
-			list_top = []
-			list_name = []
-			list_time = []
-			get_score_sheet(list_top,list_name,list_time,6)
-			# print (list_top,list_name,list_score)
-			score_str = ""
-			score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
-			for i in range(1,10):
-				score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
-			print(score_str)
-			message = TextSendMessage(text=score_str)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "貼圖辣"):
-			randsticker = random.randint(140,180)
-			message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == ("母湯電影版")):		
-			message = VideoSendMessage(
-			original_content_url='https://i.imgur.com/Upmorh0.mp4',
-			preview_image_url='https://i.imgur.com/Upmorh0.gif'
-			)
-			line_bot_api.reply_message(event.reply_token, message)
-		
-		elif(user_message.find("母湯") == 0):
-			message = ImageSendMessage(
-			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
-			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
-			)
-			line_bot_api.reply_message(event.reply_token, message)
-			
-		elif(user_message.find("!機率") == 0):
-			probability = random.randint(0,101)
-			reply_message = user_message.lstrip("!機率 ")
-			reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
-			message = TextSendMessage(text=reply_message)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!抽食物"):
-			food = get_food_sheet(1)
-			message = TextSendMessage(text=food)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!抽飲料"):
-			food = get_food_sheet(2)
-			message = TextSendMessage(text=food)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message.find("!抽數字") == 0):
-			reply_message = user_message.lstrip("!抽數字 ")
-			random_number = random.randint(1,int(reply_message))
-			message = TextSendMessage(text=random_number)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!CGSS單抽"):
-			result = "【您抽到的是：】\n"
-			result += gacha_CGSS()
-			message = TextSendMessage(text=result)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message in ["!CGSS十連","!CGSS十抽","!CGSS10連","!CGSS10抽"]):
-			result = "【您抽到的是：】\n"
-			result += ten_gacha_CGSS()
-			message = TextSendMessage(text=result)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message == "!BGD單抽"):
-			result = "【您抽到的是：】\n"
-			result += gacha_BGD()
-			message = TextSendMessage(text=result)
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message in ["!BGD十連","!BGD十抽","!BGD10連","!BGD10抽"]):
-			result = "【您抽到的是：】\n"
-			result += ten_gacha_BGD()
-			message = TextSendMessage(text=result)
-			line_bot_api.reply_message(event.reply_token,message)			
-		elif(user_message.find("!教育") == 0):
-			teach_result = teach(user_message)
-			message = TextSendMessage(text=teach_result)
-			line_bot_api.reply_message(event.reply_token,message)
-		else:
-			key_message = get_key_sheet(user_message)
-			if key_message != 0:
-				message = TextSendMessage(text=key_message)
-				line_bot_api.reply_message(event.reply_token,message)
+		active_mode(user_message,event)
 		
 import os
 if __name__ == "__main__":
