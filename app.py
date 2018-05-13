@@ -273,13 +273,18 @@ def handle_message(event):
 			reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
 			message = TextSendMessage(text=reply_message)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message.find("!抽食物") == 0):
+		elif(user_message == "!抽食物"):
 			food = get_food_sheet(1)
 			message = TextSendMessage(text=food)
 			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message.find("!抽飲料") == 0):
+		elif(user_message == "!抽飲料"):
 			food = get_food_sheet(2)
 			message = TextSendMessage(text=food)
+			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message.find("!抽籤") == 0)
+			reply_message = user_message.lstrip("!抽籤 ")
+			random_number = random.randint(1,int(reply_message))
+			message = TextSendMessage(text=random_number)
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message.find("!教育") == 0):
 			reply_message = user_message.lstrip("!教育 ")
