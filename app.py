@@ -181,7 +181,7 @@ def handle_message(event):
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message== "!閉嘴"):
 			mode = 0
-			message = TextSendMessage(text='我已經閉嘴了 > < (小聲)')
+			message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 			line_bot_api.reply_message(event.reply_token,message)
 	elif(mode == 1):
 		if(user_message== "!閉嘴"):
@@ -190,7 +190,7 @@ def handle_message(event):
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message== "!說話"):
 			mode = 1
-			message = TextSendMessage(text='我已經正在說話囉 ^_^ ，歡迎來跟我互動 ^_^ ')
+			message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
 			line_bot_api.reply_message(event.reply_token,message)
 		elif(user_message=="即時排名"):
 			list_top = []
