@@ -24,6 +24,11 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
+# video_list = ["https://i.imgur.com/Upmorh0.mp4"]
+# image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
+
+BGD_namelist = ["牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ','上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ','白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜','氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ','北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音'"]
+
 app = Flask(__name__)
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -140,33 +145,27 @@ def get_food_sheet(key):
 		random_food_index = random.randint(0,len(list_food)-1)
 		return list_food[random_food_index]
 
-# video_list = ["https://i.imgur.com/Upmorh0.mp4"]
-# image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
-	
 def gacha_BGD():
 	random_number = random.randint(0,999)
 	if random_number <= 30-1:
-		return "4★"
+		return "4★ "+random.choice(BGD_namelist)
 	elif random_number <= 30+85-1:
-		return "3★"
+		return "3★ "+random.choice(BGD_namelist)
 	elif random_number <= 30+85+885-1:
-		return "2★"
+		return "2★ "+random.choice(BGD_namelist)
 	
 def gacha_last_BGD():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		return "4★"
+		return "4★ "+random.choice(BGD_namelist)
 	elif random_number <= 3+97-1:
-		return "3★"
+		return "3★ "+random.choice(BGD_namelist)
 	
 def ten_gacha_BGD():
 	ten_gacha_BGD_result=""
 	for i in range(9):
 		ten_gacha_BGD_result += str(gacha_BGD())
-		if i == 4:
-			ten_gacha_BGD_result += "\n"
-		else:
-			ten_gacha_BGD_result += " , "
+		ten_gacha_BGD_result += "\n"
 	ten_gacha_BGD_result += str(gacha_last_BGD())
 	return ten_gacha_BGD_result
 	
@@ -290,12 +289,12 @@ def	active_mode(user_message,event):
 		result += ten_gacha_CGSS()
 		message = TextSendMessage(text=result)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!BGD單抽"):
+	elif(user_message in ["!BGD單抽","!bgd單抽"]):
 		result = "【您抽到的是：】\n"
 		result += gacha_BGD()
 		message = TextSendMessage(text=result)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!BGD十連","!BGD十抽","!BGD10連","!BGD10抽"]):
+	elif(user_message in ["!BGD十連","!BGD十抽","!BGD10連","!BGD10抽","!bgd十連","!bgd十抽","!bgd10連","!bgd10抽"]):
 		result = "【您抽到的是：】\n"
 		result += ten_gacha_BGD()
 		message = TextSendMessage(text=result)
