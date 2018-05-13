@@ -163,7 +163,7 @@ def get_food_sheet(key):
     # TextSendMessage(text='Hello World!'))	
 	
 def gacha():
-	random_number = random.randint(0,100))
+	random_number = random.randint(0,100)
 	if random_number <= 3-1:
 		gacha_result = "你抽到了 SSR !!!!!"
 	elif random_number <= 3+12-1:
