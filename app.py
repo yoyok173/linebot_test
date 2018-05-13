@@ -152,15 +152,6 @@ def get_food_sheet(key):
 
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
 # image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
-
-# update.py
-		
-#push message to one user
-# line_bot_api.push_message(user_id, 
-    # TextSendMessage(text='Hello World!'))
-# push message to multiple users
-# line_bot_api.multicast(['user_id1', 'user_id2'], 
-    # TextSendMessage(text='Hello World!'))	
 	
 def gacha_BGD():
 	random_number = random.randint(0,999)
@@ -411,3 +402,12 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+	
+# notes 
+	
+#push message to one user
+# line_bot_api.push_message(user_id, 
+    # TextSendMessage(text='Hello World!'))
+# push message to multiple users
+# line_bot_api.multicast(['user_id1', 'user_id2'], 
+    # TextSendMessage(text='Hello World!'))	
