@@ -174,6 +174,16 @@ def gacha():
 		gacha_result = "只有1%的N你也抽得到......"	
 	return gacha_result
 
+def teach(user_message):
+	reply_message = user_message.lstrip("!教育 ")
+	split_result = reply_message.split(' ', 1 )
+	if(len(split_result) <= 1):
+		return "學習字詞失敗 > <"
+	else:
+		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
+		update_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
+		success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
+		return success_learn
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -301,22 +311,19 @@ def handle_message(event):
 			gacha_result = gacha()
 			message = TextSendMessage(text=gacha_result)
 			line_bot_api.reply_message(event.reply_token,message)
+		elif(user_message == "!十連"):
+			gacha_result = "熱心提醒您，本遊戲沒有保底功能^_^\n您抽到的是："
+			for i in range(9)
+				gacha_result += gacha()
+				gacha_result += ","
+			gacha_result += gacha()
+			message = TextSendMessage(text=gacha_result)
+			line_bot_api.reply_message(event.reply_token,message)	
 		elif(user_message.find("!教育") == 0):
-			reply_message = user_message.lstrip("!教育 ")
-			print (reply_message) 
-			split_result = reply_message.split(' ', 1 )
-			print (split_result)
-			if(len(split_result) <= 1):
-				message = TextSendMessage(text="學習字詞失敗 > <")
-				line_bot_api.reply_message(event.reply_token,message)
-			else:
-				spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
-				update_sheet_key(gss_client, spreadsheet_key,split_result[0],split_result[1])
-				success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
-				message = TextSendMessage(text=success_learn)
-				line_bot_api.reply_message(event.reply_token,message)
+			teach_result = teach(user_message)
+			message = TextSendMessage(text=teach_result)
+			line_bot_api.reply_message(event.reply_token,message)
 		else:
-			# response = ""
 			key_message = get_key_sheet(user_message)
 			if key_message != 0:
 				message = TextSendMessage(text=key_message)
