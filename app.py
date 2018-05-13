@@ -44,14 +44,11 @@ def get_score_sheet(list_top,list_name,list_target,target):
 		print('No data found.')
 	else:
 		sheet_result = "hello world!"
-		for row in values:
-			# Print columns A and E, which correspond to indices 0 and 4.		
+		for row in values:	
 			list_top.append(row[0])
 			list_name.append(row[1])
 			list_target.append(row[target])
-			# print('%s:%s score:%s' % (row[0], row[1] , row[2]))
 		
-
 def get_key_sheet(key):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -105,9 +102,11 @@ auth_json_path = "./auth.json"
 
 gss_scopes = ['https://spreadsheets.google.com/feeds']
 
-
-
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
+
+now = datetime.datetime.now()
+today = time.strftime("%c")
+mode = 1
 
 def update_sheet(gss_client, key, today,messageid,messagetype,text):
     wks = gss_client.open_by_key(key)
@@ -148,28 +147,24 @@ def get_food_sheet(key):
 		random_food_index = random.randint(0,len(list_food)-1)
 		return list_food[random_food_index]
 
-
-
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
 # image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
 	
 def gacha_BGD():
 	random_number = random.randint(0,999)
 	if random_number <= 30-1:
-		gacha_BGD_result = "4★"
+		return "4★"
 	elif random_number <= 30+85-1:
-		gacha_BGD_result = "3★"
+		return "3★"
 	elif random_number <= 30+885-1:
-		gacha_BGD_result = "2★"
-	return gacha_BGD_result
+		return "2★"
 	
 def gacha_last_BGD():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		last_gacha_BGD_result = "4★"
+		return "4★"
 	elif random_number <= 3+97-1:
-		last_gacha_BGD_result = "3★"
-	return last_gacha_BGD_result
+		return "3★"
 	
 def ten_gacha_BGD():
 	ten_gacha_BGD_result=""
@@ -185,20 +180,18 @@ def ten_gacha_BGD():
 def gacha_CGSS():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		gacha_CGSS_result = "SSR"
+		return "SSR"
 	elif random_number <= 3+12-1:
-		gacha_CGSS_result = "SR"
+		return "SR"
 	elif random_number <= 3+12+85-1:
-		gacha_CGSS_result = "R"
-	return gacha_CGSS_result
+		return "R"
 	
 def gacha_last_CGSS():
 	random_number = random.randint(0,99)
 	if random_number <= 3-1:
-		last_gacha_CGSS_result = "SSR"
+		return "SSR"
 	elif random_number <= 3+97-1:
-		last_gacha_CGSS_result = "SR"
-	return last_gacha_CGSS_result
+		return "SR"
 	
 def ten_gacha_CGSS():	
 	ten_gacha_CGSS_result=""
@@ -239,13 +232,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
-now = datetime.datetime.now()
-today = time.strftime("%c")
-mode = 1
-
-
-# print (event.source.userId)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
