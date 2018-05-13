@@ -36,7 +36,7 @@ def get_score_sheet(list_top,list_name,list_target,target):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'Sheet1!A2:G11'
+	RANGE_NAME = 'A2:G11'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
