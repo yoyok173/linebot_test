@@ -152,7 +152,7 @@ def gacha_BGD():
 		return "4★"
 	elif random_number <= 30+85-1:
 		return "3★"
-	elif random_number <= 30+885-1:
+	elif random_number <= 30+85+885-1:
 		return "2★"
 	
 def gacha_last_BGD():
@@ -210,7 +210,17 @@ def teach(user_message):
 		update_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
 		success_learn ="已學習字詞 「"+split_result[0]+"」  !!!"
 		return success_learn
-	
+
+def slient_mode(mode,user_message):
+	if(user_message== "!說話"):
+		mode = 1
+		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message== "!閉嘴"):
+		mode = 0
+		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
+		line_bot_api.reply_message(event.reply_token,message)
+		
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -232,7 +242,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	global mode 
-	print(now)
+	print(today)
 	print(event)		
 	user_message = event.message.text
 	
@@ -246,14 +256,7 @@ def handle_message(event):
 			message = TextSendMessage(text="(active mode)")
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(mode == 0):
-		if(user_message== "!說話"):
-			mode = 1
-			message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
-			line_bot_api.reply_message(event.reply_token,message)
-		elif(user_message== "!閉嘴"):
-			mode = 0
-			message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
-			line_bot_api.reply_message(event.reply_token,message)
+		slient_mode(mode,user_message)
 	elif(mode == 1):
 		if(user_message== "!閉嘴"):
 			mode = 0
