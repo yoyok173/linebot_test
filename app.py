@@ -315,6 +315,7 @@ def switch_mode(key):
 	global mode	
 	if(key == 0):
 		mode = 0
+		print(mode)
 		return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 	elif(key == 1):
 		mode = 1
@@ -358,6 +359,7 @@ def	active_mode(user_message,event):
 	for i in range(len(CMD_Matrix)):
 		if(user_message.lower() in CMD_Matrix[i][0]):
 			message = CMD_Matrix[i][1]
+			print(mode)
 			line_bot_api.reply_message(event.reply_token,message)
 			# don't execute the following commands if Matrix 1 is executed.
 	# ------ below are find function ------	 
