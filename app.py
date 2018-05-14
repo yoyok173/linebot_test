@@ -237,7 +237,7 @@ def gacha_SC():
 def gacha_SC_Last():
 	global SC_SSR_P_prob, SC_SSR_S_prob, SC_SR_P_prob
 	rand = random.randint(0,999)
-	if rand < SC_SSR_P_prob
+	if rand < SC_SSR_P_prob:
 		return "[P] SSR"
 	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob):
 		return "[S] SSR"
