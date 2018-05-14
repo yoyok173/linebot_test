@@ -16,9 +16,9 @@ https://medium.com/@lukehong/%E5%88%9D%E6%AC%A1%E5%98%97%E8%A9%A6-line-bot-sdk-e
 
 https://console.developers.google.com/apis/dashboard?project=inlaid-way-203806&folder&organizationId&duration=PT1H
 
-> Heroku CLI
+> Heroku CLI (安裝Heroku 環境)
 
-
+https://devcenter.heroku.com/articles/heroku-cli
 
 > google sheet API 參考文件
 
