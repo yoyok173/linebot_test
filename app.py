@@ -326,7 +326,7 @@ def forget(user_message):
 	split_result = reply_message.split(' ',1)
 	print(split_result)
 	if(len(split_result) <= 1):
-		return "忘記字詞失敗 > < 你確定你有教過我這個?"
+		return "忘記字詞失敗 > < 你好歹也告訴我要忘記的內容是什麼吧?"
 	else:
 		key = split_result[0]
 		response = split_result[1]
@@ -353,20 +353,20 @@ def forget(user_message):
 		for row in values:	
 			list_key.append(row[0])
 			list_response.append(row[1])
-		print (len(list_key),len(list_response))	
-		for i in range(0,len(list_key)):
-			if(list_key[i]==key and list_response[i]==response):
-				print (i)
-				#clear_range = 'Sheet1!A'+str(i)+':B'+str(i)
-				#sheet_request = service.spreadsheets().values().clear(spreadsheetId=SPREADSHEET_ID, range=clear_range).execute()
-				wks = gss_client.open_by_key(SPREADSHEET_ID)
-				sheet = wks.sheet1
-				#sheet.delete_row(i)
-				sheet.update_acell('A'+str(i+2), 'test')
-				sheet.update_acell('B'+str(i+2), 'test')
-				return "忘記字詞成功 !!!"
-			else:
-				return "忘記字詞失敗 > < 你是不是連教過我什麼都忘了?"
+		print (len(list_key),len(list_response))
+		if key in list_key:	
+			for i in range(0,len(list_key)):
+				if(list_key[i]==key and list_response[i]==response):
+					print (i)
+					wks = gss_client.open_by_key(SPREADSHEET_ID)
+					sheet = wks.sheet1
+					#sheet.delete_row(i)
+					sheet.update_acell('A'+str(i+2), 'test')
+					sheet.update_acell('B'+str(i+2), 'test')
+					return "忘記字詞 「"+key+"」 成功 !!!"
+			return "忘記字詞失敗 > < 你是不是連自己教過的東西都忘了?"
+		else:
+			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
 
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
