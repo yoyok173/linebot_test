@@ -311,12 +311,11 @@ def slient_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message)
 
 def switch_mode(key):
+	global mode	
 	if key == 0:
-		global mode
 		mode = 0
 		return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 	elif key == 1:
-		global mode
 		mode = 1
 		return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
 
