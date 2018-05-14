@@ -355,6 +355,8 @@ def forget(user_message):
 		for i in range(0,len(list_key)):
 			if(list_key[i]==key and list_response[i]==response):
 				print (i)
+				wks = gss_client.open_by_key(SPREADSHEET_ID)
+    			sheet = wks.sheet1
 				sheet.delete_row(i)
 				return "忘記字詞成功 !!!"
 			else:
@@ -393,7 +395,7 @@ CMD_Matrix = [ # exact cmd
 
 CMD_Matrix_2 = [] # find functions add later
 
-def	active_mode(user_message,event):
+def active_mode(user_message,event):
 	'''global CMD_Matrix
 	for i in range(len(CMD_Matrix)):
 		if(user_message.lower() in CMD_Matrix[i][0]):
