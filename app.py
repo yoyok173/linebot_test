@@ -322,8 +322,8 @@ def switch_off():
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
 CMD_Matrix = [ # exact cmd
-[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_on())],
-[["!說話"],TextSendMessage(text = switch_off())],
+[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
+[["!說話"],TextSendMessage(text = switch_on())],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書","!help"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
