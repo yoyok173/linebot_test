@@ -478,19 +478,16 @@ def handle_message(event):
 		message = TextSendMessage(text='Hello World !!!')
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "state"):
-		if mode == 0:
-			message = TextSendMessage(
-				text="(silent mode)" if mode == 0 else "(active mode)"
-			)
-		# elif mode == 1:
-			# message = TextSendMessage(text="(active mode)")
+		message = TextSendMessage(
+			text="(silent mode)" if mode == 0 else "(active mode)"
+		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
 	else:
-		if mode == 0:
+		if mode == 0
 			slient_mode(user_message,event) 
 		else: 
 			active_mode(user_message,event)
