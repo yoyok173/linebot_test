@@ -305,15 +305,19 @@ def slient_mode(user_message,event):
 		mode = 1 
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
-	else:
+	elif(user_message== "!閉嘴"):
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
 
 def switch_mode():
 	global mode
-	mode = not mode
-	text = '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <' if mode == 0 else '我已經正在說話囉，歡迎來跟我互動 ^_^ '
+	if mode == 1:
+		mode = 0
+		text = '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
+	elif mode == 0:
+		mode = 1
+		text = '我已經正在說話囉，歡迎來跟我互動 ^_^ '
 	return text
 
 CMD_Matrix = [ # exact cmd
@@ -487,7 +491,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
 	else:
-		if mode == 0
+		if mode == 0:
 			slient_mode(user_message,event) 
 		else: 
 			active_mode(user_message,event)
