@@ -321,6 +321,45 @@ def switch_off():
 	mode = 0
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
+def forget(user_message):
+	reply_message = user_message.lstrip("!忘記 ")
+	split_result = reply_message.split(' ', 1 )
+	if(len(split_result) <= 1):
+		return "忘記字詞失敗 > <"
+	else:
+		key = split_result[0]
+		response = split_result[1]
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	RANGE_NAME = 'Sheet1!A2:B800'
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		list_key = []
+		list_response = []
+		for row in values:	
+			list_key.append(row[0])
+			list_response.append(row[1])
+		for i in range(0,len(list_key)):
+			if(list_key[i]==key and list_response[i]==response):
+				print (i)
+				sheet.delete_row(i)
+				return "忘記字詞成功 !!!"
+			else:
+				return "忘記字詞失敗 > <"
+
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
 [["!說話"],TextSendMessage(text = switch_on())],
@@ -423,7 +462,7 @@ def	active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message)
 
 	# ------ below are find function ------	 
-	if(user_message.find("母湯") == 0):
+	if(user_message.find("母湯") >= 0):
 		message = ImageSendMessage(
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
@@ -448,6 +487,10 @@ def	active_mode(user_message,event):
 		teach_result = teach(user_message,1)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
+    elif(user_message.find("!忘記") == 0):
+        forget_result = forget(user_message)
+        message = TextSendMessage(text=forget_result)
+        line_bot_api.reply_message(event.reply_token,message)
 	else:
 		key_message = get_key_response(user_message)
 		if key_message != 0:
