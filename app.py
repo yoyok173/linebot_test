@@ -362,6 +362,7 @@ def	active_mode(user_message,event):
 			print(mode)
 			line_bot_api.reply_message(event.reply_token,message)
 			# don't execute the following commands if Matrix 1 is executed.'''
+	global mode
 	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
@@ -453,11 +454,6 @@ def	active_mode(user_message,event):
 			message = TextSendMessage(text=key_message)
 			line_bot_api.reply_message(event.reply_token,message)
 	#for i in range
-			
-	
-		
-	
-			
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
