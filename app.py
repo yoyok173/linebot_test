@@ -366,7 +366,7 @@ def handle_message(event):
 	elif(user_message== "!重新開機"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
-		sys.exit("restarting...")
+		sys.exit(0)
 	elif(mode == 0):
 		slient_mode(user_message,event)
 	elif(mode == 1):
