@@ -355,9 +355,11 @@ def forget(user_message):
 		for i in range(0,len(list_key)):
 			if(list_key[i]==key and list_response[i]==response):
 				print (i)
-				wks = gss_client.open_by_key(SPREADSHEET_ID)
-				sheet = wks.sheet1
-				sheet.delete_row(i)
+				clear_range = 'Sheet1!A'+str(i)+':B'+str(i)
+				sheet_request = service.spreadsheets().values().clear(spreadsheetId=SPREADSHEET_ID, range=clear_range).execute()
+				#wks = gss_client.open_by_key()
+				#sheet = wks.sheet1
+				#sheet.delete_row(i)
 				return "忘記字詞成功 !!!"
 			else:
 				return "忘記字詞失敗 > <"
