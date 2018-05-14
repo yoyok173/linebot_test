@@ -310,14 +310,16 @@ def slient_mode(user_message,event):
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
 
-def switch_mode():
+def switch_mode(key):
 	global mode
-	mode = not mode
+	if key == 1:
+		mode = not mode
 	text = '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <' if mode == 0 else '我已經正在說話囉，歡迎來跟我互動 ^_^ '
 	return text
 
 CMD_Matrix = [ # exact cmd
-[["!閉嘴","!安靜","!你閉嘴","!你安靜","!說話"],TextSendMessage(text = switch_mode())],
+[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(1))],
+[["!說話"],TextSendMessage(text = switch_mode(0))],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
