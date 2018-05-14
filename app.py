@@ -100,7 +100,7 @@ def get_key_response(key):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B2000'
+	RANGE_NAME = 'Sheet1!A2:C2000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -109,15 +109,26 @@ def get_key_response(key):
 	else:
 		list_key = []
 		list_response = []
+		list_type = []
 		for row in values:	
 			list_key.append(row[0])
 			list_response.append(row[1])
+			list_type.append(row[2])
 		if key in list_key:
 			# list_response = list_key.index(key)
 			list_response_index = [i for i,v in enumerate(list_key) if v==key]
 			print (list_response_index)
 			random_reply = random.randint(0,len(list_response_index)-1)
-			return list_response[list_response_index[random_reply]]
+			response_index = list_response_index[random_reply]
+			if(list_type[response_index]=="str"):
+				message = TextSendMessage(text=list_response[response_index])
+			elif(list_type[response_index]=="pic"):
+				content = list_response[response_index]
+				message = ImageSendMessage(
+				original_content_url= content,
+				preview_image_url= content
+				)
+			return message
 		else:
 			return 0
 		
@@ -136,8 +147,13 @@ def update_sheet(gss_client, key, today,messageid,messagetype,text):
 def update_sheet_key(gss_client, key, input , output):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
-    sheet.insert_row([input , output], 2)
+    sheet.insert_row([input , output,"str"], 2)
 	
+def update_pic_sheet_key(gss_client, key, input , output):
+    wks = gss_client.open_by_key(key)
+    sheet = wks.sheet1
+    sheet.insert_row([input , output,"pic"], 2)
+
 def get_food_sheet(key):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -270,6 +286,16 @@ def teach(user_message,teachmode):
 		elif teachmode == 1:
 			success_learn ="我學會 「"+split_result[0]+"」 了 >////< "
 		return success_learn
+
+def teach_pic(user_message,teachmode):
+	reply_message = user_message.lstrip("!給智乃看圖 ")
+	split_result = reply_message.split(' ', 1 )
+	if(len(split_result) <= 1):
+		return "你給我看這什麼東西????"
+	else:
+		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
+		update_pic_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
+		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
 def leaderboard():
 	list_top = []
@@ -504,9 +530,7 @@ def active_mode(user_message,event):
 	else:
 		key_message = get_key_response(user_message)
 		if key_message != 0:
-			message = TextSendMessage(text=key_message)
 			line_bot_api.reply_message(event.reply_token,message)
-	#for i in range
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
