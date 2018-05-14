@@ -418,7 +418,7 @@ def active_mode(user_message,event):
 		mode = 1
 		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!使用說明書"):
+	elif(user_message in ["!使用說明書","!help","!說明書"]):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
