@@ -198,15 +198,21 @@ def ten_gacha_CGSS():
 	ten_gacha_CGSS_result += str(gacha_last_CGSS())
 	return ten_gacha_CGSS_result
 
-def teach(user_message):
-	reply_message = user_message.lstrip("!教育 ")
+def teach(user_message,teachmode):
+	if teachmode == 0:
+		reply_message = user_message.lstrip("!教育 ")
+	elif teachmode == 1:
+		reply_message = user_message.lstrip("!調教 ")
 	split_result = reply_message.split(' ', 1 )
 	if(len(split_result) <= 1):
 		return "學習字詞失敗 > <"
 	else:
 		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
 		update_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
-		success_learn ="已學習字詞 「"+split_result[0]+"」 !!!"
+		if teachmode == 0:
+			success_learn ="已學習字詞 「"+split_result[0]+"」 !!!"
+		elif teachmode == 1:
+			success_learn ="我學會 「"+split_result[0]+"」 了 >////< "
 		return success_learn
 
 def leaderboard():
@@ -330,7 +336,11 @@ def	active_mode(user_message,event):
 		message = TextSendMessage(text=random_number)
 		line_bot_api.reply_message(event.reply_token,message)		
 	elif(user_message.find("!教育") == 0):
-		teach_result = teach(user_message)
+		teach_result = teach(user_message,0)
+		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!調教") == 0):
+		teach_result = teach(user_message,1)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
 	else:
