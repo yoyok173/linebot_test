@@ -327,6 +327,8 @@ def forget(user_message):
 	print(split_result)
 	if(len(split_result) <= 1):
 		return "忘記字詞失敗 > < 你好歹也告訴我要忘記的內容是什麼吧?"
+	elif(key=="智乃"):
+		return "oh~ 抱歉~ 我學過的東西是不會忘記的 =) "
 	else:
 		key = split_result[0]
 		response = split_result[1]

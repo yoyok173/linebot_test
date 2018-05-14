@@ -16,11 +16,19 @@ https://medium.com/@lukehong/%E5%88%9D%E6%AC%A1%E5%98%97%E8%A9%A6-line-bot-sdk-e
 
 https://console.developers.google.com/apis/dashboard?project=inlaid-way-203806&folder&organizationId&duration=PT1H
 
+> Heroku CLI
+
+
+
 > google sheet API 參考文件
 
 spreadsheetId/sheetId用法 與 取Sheet與範圍
 
 https://developers.google.com/sheets/api/guides/concepts
+
+> gspread library 與參考文件
+
+https://github.com/burnash/gspread
 
 > apriltestbot dictionary list
 
@@ -145,6 +153,10 @@ len(items)
 > python if
 
 http://ez2learn.com/basic/if.html
+
+> pyhton split
+
+http://www.runoob.com/python/att-string-split.html
 
 > python global variable
 
