@@ -323,7 +323,8 @@ def switch_off():
 
 def forget(user_message):
 	reply_message = user_message.lstrip("!忘記 ")
-	split_result = reply_message.split(' ', 1 )
+	split_result = reply_message.split(' ',1)
+	print(split_result)
 	if(len(split_result) <= 1):
 		return "忘記字詞失敗 > <"
 	else:
