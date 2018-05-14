@@ -340,7 +340,7 @@ def forget(user_message):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B800'
+	RANGE_NAME = 'Sheet1!A2:B3000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -352,6 +352,7 @@ def forget(user_message):
 		for row in values:	
 			list_key.append(row[0])
 			list_response.append(row[1])
+		print (len(list_key),len(list_response))	
 		for i in range(0,len(list_key)):
 			if(list_key[i]==key and list_response[i]==response):
 				print (i)
