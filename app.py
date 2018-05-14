@@ -287,7 +287,7 @@ def teach(user_message,teachmode):
 			success_learn ="我學會 「"+split_result[0]+"」 了 >////< "
 		return success_learn
 
-def teach_pic(user_message,teachmode):
+def teach_pic(user_message):
 	reply_message = user_message.lstrip("!智乃看圖片 ")
 	split_result = reply_message.split(' ', 1 )
 	if(len(split_result) <= 1):
@@ -524,7 +524,7 @@ def active_mode(user_message,event):
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message.find("!智乃看圖片") == 0):
-		teach_result = teach(user_message,1)
+		teach_result = teach_pic(user_message)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message.find("!忘記") == 0):
