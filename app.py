@@ -321,7 +321,7 @@ CMD_Matrix = [ # exact cmd
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
-[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(randsticker = random.randint(140,180)))],
+[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(random.randint(140,180)))],
 [["母湯"], VideoSendMessage(
 	original_content_url = 'https://i.imgur.com/Upmorh0.mp4',
 	preview_image_url = 'https://i.imgur.com/Upmorh0.gif'
