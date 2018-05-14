@@ -326,7 +326,7 @@ def forget(user_message):
 	split_result = reply_message.split(' ',1)
 	print(split_result)
 	if(len(split_result) <= 1):
-		return "忘記字詞失敗 > <"
+		return "忘記字詞失敗 > < 你確定你有教過我這個?"
 	else:
 		key = split_result[0]
 		response = split_result[1]
@@ -366,7 +366,7 @@ def forget(user_message):
 				sheet.update_acell('B'+str(i+2), 'test')
 				return "忘記字詞成功 !!!"
 			else:
-				return "忘記字詞失敗 > <"
+				return "忘記字詞失敗 > < 你是不是連教過我什麼都忘了?"
 
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
