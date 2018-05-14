@@ -356,7 +356,7 @@ def forget(user_message):
 			if(list_key[i]==key and list_response[i]==response):
 				print (i)
 				wks = gss_client.open_by_key(SPREADSHEET_ID)
-    			sheet = wks.sheet1
+				sheet = wks.sheet1
 				sheet.delete_row(i)
 				return "忘記字詞成功 !!!"
 			else:
