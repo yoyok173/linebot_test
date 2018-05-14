@@ -361,8 +361,8 @@ def forget(user_message):
 				wks = gss_client.open_by_key(SPREADSHEET_ID)
 				sheet = wks.sheet1
 				#sheet.delete_row(i)
-				sheet.update_acell('A'+str(i), 'test')
-				sheet.update_acell('B'+str(i), 'test')
+				sheet.update_acell('A'+str(i+2), 'test')
+				sheet.update_acell('B'+str(i+2), 'test')
 				return "忘記字詞成功 !!!"
 			else:
 				return "忘記字詞失敗 > <"
