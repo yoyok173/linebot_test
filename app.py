@@ -476,8 +476,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	global mode 
-	print("now: "+today)
-	print("mode: "+mode)
+	print("now: "+str(today))
+	print("mode: "+str(mode))
 	print(event)		
 	user_message = event.message.text
 	
