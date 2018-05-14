@@ -358,7 +358,7 @@ def forget(user_message):
 				print (i)
 				#clear_range = 'Sheet1!A'+str(i)+':B'+str(i)
 				#sheet_request = service.spreadsheets().values().clear(spreadsheetId=SPREADSHEET_ID, range=clear_range).execute()
-				wks = gss_client.open_by_key()
+				wks = gss_client.open_by_key(SPREADSHEET_ID)
 				sheet = wks.sheet1
 				sheet.deleteRow(i)
 				return "忘記字詞成功 !!!"
