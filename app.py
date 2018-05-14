@@ -75,14 +75,13 @@ def get_score_sheet(list_top,list_name,list_target,target):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'A2:G11'
+	RANGE_NAME = 'A2:M11'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
 	if not values:
 		print('No data found.')
 	else:
-		sheet_result = "hello world!"
 		for row in values:	
 			list_top.append(row[0])
 			list_name.append(row[1])
@@ -306,18 +305,16 @@ def slient_mode(user_message,event):
 		mode = 1 
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message== "!閉嘴"):
+	else:
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
-		
+
 def switch_mode():
 	global mode
 	mode = not mode
-	if mode == 0:
-		return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
-	else:
-		return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
+	text = '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <' if mode == 0 else '我已經正在說話囉，歡迎來跟我互動 ^_^ '
+	return text
 
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜","!說話"],TextSendMessage(text = switch_mode())],
@@ -350,19 +347,16 @@ CMD_Matrix = [ # exact cmd
 ]
 
 CMD_Matrix_2 = [] # find functions add later
-		
+
 def	active_mode(user_message,event):
 	global CMD_Matrix
 	for i in range(len(CMD_Matrix)):
 		if(user_message.lower() in CMD_Matrix[i][0]):
-			if(i == 0):
-				CMD_Matrix[i][1]
-				break 
 			message = CMD_Matrix[i][1]
 			line_bot_api.reply_message(event.reply_token,message)
 			return # don't execute the following commands if Matrix 1 is executed.
 	#for i in range
-	
+			
 	'''if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
