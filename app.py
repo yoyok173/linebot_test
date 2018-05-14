@@ -29,7 +29,21 @@ from linebot.models import (
 # video_list = ["https://i.imgur.com/Upmorh0.mp4"]
 # image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
 
-BGD_namelist = ['牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ','上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ','白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜','氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ','北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音']
+BGD_namelist = [
+'牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
+'上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ',
+'白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜',
+'氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ',
+'北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音']
+
+SC_nameList = [
+'風野灯織','八宮めぐる','櫻木真乃','月岡恋鐘',
+'田中摩美々','幽谷霧子','三峰結華','白瀬咲耶',
+'桑山千雪','大崎甘奈','大崎甜花','小宮果穂',
+'杜野凛世','園田智代子','西城樹里','有栖川夏葉'
+]
+
+
 
 app = Flask(__name__)
 # Channel Access Token
@@ -42,6 +56,12 @@ auth_json_path = "./auth.json"
 now = datetime.datetime.now()
 today = time.strftime("%c")
 mode = 1
+# game SSR Prob
+SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
+SC_SSR_S_prob = 30 # SC Support idol SSR_probability
+SC_SR_P_prob = 60 # SC Produce idol SR_probability
+SC_SR_S_prob = 100 # SC Support idol SR_probability
+SC_R_R_prob = 290 # SC Support idol R_probability
 
 def get_score_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
@@ -197,6 +217,42 @@ def ten_gacha_CGSS():
 			ten_gacha_CGSS_result += " , "
 	ten_gacha_CGSS_result += str(gacha_last_CGSS())
 	return ten_gacha_CGSS_result
+	
+def gacha_SC():
+	global SC_SSR_P_prob, SC_SSR_S_prob, SC_SR_P_prob, SC_SR_S_prob
+	rand = random.randint(0,999)
+	if rand < SC_SSR_P_prob:
+		return "[P] SSR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob):
+		return "[S] SSR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob + SC_SR_P_prob):
+		return "[P] SR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob + SC_SR_P_prob + SC_SR_S_prob):
+		return "[S] SR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob + SC_SR_P_prob + SC_SR_S_prob + SC_R_R_prob):
+		return "[P] R"
+	else:
+		return "[S] R"
+		
+def gacha_SC_Last():
+	global SC_SSR_P_prob, SC_SSR_S_prob, SC_SR_P_prob
+	rand = random.randint(0,999)
+	if rand < SC_SSR_P_prob
+		return "[P] SSR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob):
+		return "[S] SSR"
+	elif rand < (SC_SSR_P_prob + SC_SSR_S_prob + SC_SR_P_prob):
+		return "[P] SR"
+	else:
+		return "[S] SR"
+	
+def multi_gacha_SC(number):
+	sc_gacha_result = ""
+	for i in range(number-1):
+		sc_gacha_result += str(gacha_SC())
+		sc_gacha_result += "\n"
+	sc_gacha_result += str(gacha_SC_Last())
+	return sc_gacha_result
 
 def teach(user_message,teachmode):
 	if teachmode == 0:
@@ -247,7 +303,7 @@ def readme():
 def slient_mode(user_message,event):
 	global mode
 	if(user_message== "!說話"):
-		mode = 1
+		mode = 1 
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "!閉嘴"):
@@ -255,18 +311,62 @@ def slient_mode(user_message,event):
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
 		
-def switch_mode(user_message,event):
+def switch_mode():
 	global mode
-	
+	mode = not mode
+	message = TextSendMessage(
+		text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
+		if mode == 0 else
+		'我已經正在說話囉，歡迎來跟我互動 ^_^ '
+		)
+	line_bot_api.reply_message(event.reply_token,message)
 
 
-CMD_Matrix = [
-[["即時排名","即時戰況"], TextSendMessage(text = leaderboard())]
+CMD_Matrix = [ # exact cmd
+[["!閉嘴","!安靜","!你閉嘴","!你安靜","!說話"], switch_mode()],
+[["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
+[["!使用說明書"], TextSendMessage(text = readme_text)],
+[["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
+[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(randsticker = random.randint(140,180)))],
+[["母湯"], VideoSendMessage(
+	original_content_url = 'https://i.imgur.com/Upmorh0.mp4',
+	preview_image_url = 'https://i.imgur.com/Upmorh0.gif'
+	)],
+[["母湯電影版"], ImageSendMessage(
+		original_content_url = "https://i.imgur.com/rUZ4AdD.jpg",
+		preview_image_url = "https://i.imgur.com/rUZ4AdD.jpg"
+	)],
+[["!抽食物"], TextSendMessage(text = get_food_sheet(1))],
+[["!抽飲料"], TextSendMessage(text = get_food_sheet(2))],
+[["!cgss單抽"]
+	, TextSendMessage(text ="【您抽到的是：】\n" + gacha_CGSS())],
+[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]
+	, TextSendMessage(text ="【您抽到的是：】\n" + ten_gacha_CGSS())],
+[["!bgd單抽","!gbp單抽"]
+	, TextSendMessage(text = "【您抽到的是：】\n" + gacha_BGD())],
+[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]
+	, TextSendMessage(text = "【您抽到的是：】\n" + ten_gacha_BGD())],
+[["!sc單抽"]
+	, TextSendMessage(text ="【SC 單抽結果】\n" + multi_gacha_SC(1))],
+[["!sc十連","!sc十抽","!sc10連","!sc10抽"]
+	, TextSendMessage(text ="【SC 10連結果】\n" + multi_gacha_SC(10))]
 ]
+
+CMD_Matrix_2 = [] # find functions add later
 		
 def	active_mode(user_message,event):
-	global mode
-	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+	global CMD_Matrix
+	for i in range(len(CMD_Matrix)):
+		if(user_message.lower() in CMD_Matrix[i][0]):
+			if(i == 0):
+				CMD_Matrix[i][1]
+				break 
+			message = CMD_Matrix[i][1]
+			line_bot_api.reply_message(event.reply_token,message)
+			return # don't execute the following commands if Matrix 1 is executed.
+	#for i in range
+	
+	'''if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
@@ -289,7 +389,7 @@ def	active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		randsticker = random.randint(140,180)
-		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker))
+		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker = random.randint(140,180)))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == "母湯電影版"):		
 		message = VideoSendMessage(
@@ -324,15 +424,15 @@ def	active_mode(user_message,event):
 		result = "【您抽到的是：】\n"
 		result += ten_gacha_BGD()
 		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)	
+		line_bot_api.reply_message(event.reply_token,message)'''
 		
 	# ------ below are find function ------	 
-	elif(user_message.find("母湯") == 0):
+	if(user_message.find("母湯") == 0):
 		message = ImageSendMessage(
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
-		line_bot_api.reply_message(event.reply_token, message)	
+		line_bot_api.reply_message(event.reply_token, message)
 	elif(user_message.find("!機率") == 0):
 		probability = random.randint(0,101)
 		reply_message = user_message.lstrip("!機率 ")
@@ -357,6 +457,7 @@ def	active_mode(user_message,event):
 		if key_message != 0:
 			message = TextSendMessage(text=key_message)
 			line_bot_api.reply_message(event.reply_token,message)
+			
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -388,9 +489,11 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "state"):
 		if mode == 0:
-			message = TextSendMessage(text="(silent mode)")
-		elif mode == 1:
-			message = TextSendMessage(text="(active mode)")
+			message = TextSendMessage(
+				text="(silent mode)" if mode == 0 else "(active mode)"
+			)
+		# elif mode == 1:
+			# message = TextSendMessage(text="(active mode)")
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
