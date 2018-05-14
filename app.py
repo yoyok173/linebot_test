@@ -233,9 +233,9 @@ def your_pants():
 	return score_str
 	
 def readme():
-	with open('readme.txt', 'rb') as f:
-		contents = f.read()
-	return contents
+	with open('readme.txt', 'r') as f:
+		content = f.read()
+    return content.decode('utf-8')  # 自行判斷標準輸出編碼
 			
 def slient_mode(user_message,event):
 	global mode
