@@ -355,47 +355,14 @@ CMD_Matrix = [ # exact cmd
 CMD_Matrix_2 = [] # find functions add later
 
 def	active_mode(user_message,event):
-	global CMD_Matrix
+	'''global CMD_Matrix
 	for i in range(len(CMD_Matrix)):
 		if(user_message.lower() in CMD_Matrix[i][0]):
 			message = CMD_Matrix[i][1]
 			print(mode)
 			line_bot_api.reply_message(event.reply_token,message)
-			# don't execute the following commands if Matrix 1 is executed.
-	# ------ below are find function ------	 
-	if(user_message.find("母湯") == 0):
-		message = ImageSendMessage(
-			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
-			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
-		)
-		line_bot_api.reply_message(event.reply_token, message)
-	elif(user_message.find("!機率") == 0):
-		probability = random.randint(0,101)
-		reply_message = user_message.lstrip("!機率 ")
-		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
-		message = TextSendMessage(text=reply_message)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("!抽數字") == 0):
-		reply_message = user_message.lstrip("!抽數字 ")
-		random_number = random.randint(1,int(reply_message))
-		message = TextSendMessage(text=random_number)
-		line_bot_api.reply_message(event.reply_token,message)		
-	elif(user_message.find("!教育") == 0):
-		teach_result = teach(user_message,0)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("!調教") == 0):
-		teach_result = teach(user_message,1)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
-	else:
-		key_message = get_key_response(user_message)
-		if key_message != 0:
-			message = TextSendMessage(text=key_message)
-			line_bot_api.reply_message(event.reply_token,message)
-	#for i in range
-			
-	'''if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+			# don't execute the following commands if Matrix 1 is executed.'''
+	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
@@ -452,7 +419,42 @@ def	active_mode(user_message,event):
 		result = "【您抽到的是：】\n"
 		result += ten_gacha_BGD()
 		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)'''
+		line_bot_api.reply_message(event.reply_token,message)
+
+	# ------ below are find function ------	 
+	if(user_message.find("母湯") == 0):
+		message = ImageSendMessage(
+			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
+			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
+		)
+		line_bot_api.reply_message(event.reply_token, message)
+	elif(user_message.find("!機率") == 0):
+		probability = random.randint(0,101)
+		reply_message = user_message.lstrip("!機率 ")
+		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
+		message = TextSendMessage(text=reply_message)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!抽數字") == 0):
+		reply_message = user_message.lstrip("!抽數字 ")
+		random_number = random.randint(1,int(reply_message))
+		message = TextSendMessage(text=random_number)
+		line_bot_api.reply_message(event.reply_token,message)		
+	elif(user_message.find("!教育") == 0):
+		teach_result = teach(user_message,0)
+		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!調教") == 0):
+		teach_result = teach(user_message,1)
+		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
+	else:
+		key_message = get_key_response(user_message)
+		if key_message != 0:
+			message = TextSendMessage(text=key_message)
+			line_bot_api.reply_message(event.reply_token,message)
+	#for i in range
+			
+	
 		
 	
 			
