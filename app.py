@@ -275,7 +275,6 @@ def	active_mode(user_message,event):
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in CMD_Matrix[0][0]):
-		# score_str = leaderboard()
 		message = CMD_Matrix[0][1]
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
