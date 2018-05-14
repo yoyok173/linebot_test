@@ -231,6 +231,10 @@ def your_pants():
 	for i in range(1,10):
 		score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
 	return score_str
+	
+def readme():
+	f = open('readme.txt','r')
+	return f.read()
 			
 def slient_mode(user_message,event):
 	global mode
@@ -252,6 +256,10 @@ def	active_mode(user_message,event):
 	elif(user_message == "!說話"):
 		mode = 1
 		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!使用說明書"):
+		readme_text = readme()
+		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["即時排名","即時戰況"]):
 		score_str = leaderboard()
