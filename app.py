@@ -321,7 +321,7 @@ def switch_mode(key):
 
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(0))],
-[["!說話"],TextSendMessage(text = switch_mode())],
+[["!說話"],TextSendMessage(text = switch_mode(1))],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
