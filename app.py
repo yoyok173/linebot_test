@@ -236,7 +236,7 @@ def your_pants():
 def readme():
 	with open('readme.txt', 'r') as f:
 		content = f.read()
-    return content.encode('utf-8') 
+	return content.encode('utf-8')
 			
 def slient_mode(user_message,event):
 	global mode
