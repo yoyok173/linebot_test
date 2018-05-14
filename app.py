@@ -168,18 +168,18 @@ def get_food_sheet(key):
 
 def gacha_BGD():
 	random_number = random.randint(0,999)
-	if random_number <= 30-1:
+	if random_number < 30:
 		return "4★ "+random.choice(BGD_namelist)
-	elif random_number <= 30+85-1:
+	elif random_number < 30+85:
 		return "3★ "+random.choice(BGD_namelist)
-	elif random_number <= 30+85+885-1:
+	elif random_number < 30+85+885:
 		return "2★ "+random.choice(BGD_namelist)
 	
 def gacha_last_BGD():
 	random_number = random.randint(0,99)
-	if random_number <= 3-1:
+	if random_number < 3:
 		return "4★ "+random.choice(BGD_namelist)
-	elif random_number <= 3+97-1:
+	elif random_number < 3+97:
 		return "3★ "+random.choice(BGD_namelist)
 	
 def ten_gacha_BGD():
@@ -192,18 +192,18 @@ def ten_gacha_BGD():
 	
 def gacha_CGSS():
 	random_number = random.randint(0,99)
-	if random_number <= 3-1:
+	if random_number < 3:
 		return "SSR"
-	elif random_number <= 3+12-1:
+	elif random_number < 3+12:
 		return "SR"
-	elif random_number <= 3+12+85-1:
+	elif random_number < 3+12+85:
 		return "R"
 	
 def gacha_last_CGSS():
 	random_number = random.randint(0,99)
-	if random_number <= 3-1:
+	if random_number < 3:
 		return "SSR"
-	elif random_number <= 3+97-1:
+	elif random_number < 3+97:
 		return "SR"
 	
 def ten_gacha_CGSS():	
@@ -323,7 +323,7 @@ CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(0))],
 [["!說話"],TextSendMessage(text = switch_mode(1))],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
-[["!使用說明書"], TextSendMessage(text = readme())],
+[["!使用說明書","!help"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
 [["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(random.randint(140,180)))],
 [["母湯"], VideoSendMessage(
