@@ -233,8 +233,9 @@ def your_pants():
 	return score_str
 	
 def readme():
-	f = open('readme.txt','r')
-	return f.read()
+	with open('readme.txt', 'rb') as f:
+		contents = f.read()
+	return contents
 			
 def slient_mode(user_message,event):
 	global mode
