@@ -99,7 +99,7 @@ def get_key_response(key):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B800'
+	RANGE_NAME = 'Sheet1!A2:B3000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -312,14 +312,16 @@ def slient_mode(user_message,event):
 
 def switch_mode(key):
 	global mode
-	if key == 1:
-		mode = not mode
-	text = '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <' if mode == 0 else '我已經正在說話囉，歡迎來跟我互動 ^_^ '
-	return text
+	if key == 0:
+		mode = 0
+		return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
+	elif key == 1:
+		mode = 1
+		return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
 
 CMD_Matrix = [ # exact cmd
-[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(1))],
-[["!說話"],TextSendMessage(text = switch_mode(0))],
+[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(0))],
+[["!說話"],TextSendMessage(text = switch_mode())],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
