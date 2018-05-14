@@ -20,6 +20,29 @@ https://console.developers.google.com/apis/dashboard?project=inlaid-way-203806&f
 
 https://devcenter.heroku.com/articles/heroku-cli
 
+```javascript
+85  git clone https://github.com/howarder3/linebot_test.git
+86  git remote -v
+92  git remote add heroku https://git.heroku.com/apriltestbot.git
+95  brew install heroku/brew/heroku
+96  heroku login
+97  git push heroku master
+98  git add .
+99  git commit -m "ready to push"
+100  git push heroku master
+101  git remote -v
+102  git push heroku master
+103  git pull heroku
+104  git branch
+105  git push heroku master
+106  git pull
+107  git push heroku master
+108  git push -f heroku master
+109  git add .
+110  git commit -m "fix"
+111  git push -f heroku master
+```
+
 > google sheet API 參考文件
 
 spreadsheetId/sheetId用法 與 取Sheet與範圍
