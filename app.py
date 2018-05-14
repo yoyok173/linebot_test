@@ -100,7 +100,7 @@ def get_key_response(key):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B3000'
+	RANGE_NAME = 'Sheet1!A2:B2000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -340,7 +340,7 @@ def forget(user_message):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B3000'
+	RANGE_NAME = 'Sheet1!A2:B2000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -356,11 +356,11 @@ def forget(user_message):
 		for i in range(0,len(list_key)):
 			if(list_key[i]==key and list_response[i]==response):
 				print (i)
-				clear_range = 'Sheet1!A'+str(i)+':B'+str(i)
-				sheet_request = service.spreadsheets().values().clear(spreadsheetId=SPREADSHEET_ID, range=clear_range).execute()
-				#wks = gss_client.open_by_key()
-				#sheet = wks.sheet1
-				#sheet.delete_row(i)
+				#clear_range = 'Sheet1!A'+str(i)+':B'+str(i)
+				#sheet_request = service.spreadsheets().values().clear(spreadsheetId=SPREADSHEET_ID, range=clear_range).execute()
+				wks = gss_client.open_by_key()
+				sheet = wks.sheet1
+				sheet.deleteRow(i)
 				return "忘記字詞成功 !!!"
 			else:
 				return "忘記字詞失敗 > <"
