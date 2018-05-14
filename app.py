@@ -5,6 +5,7 @@ import gspread
 import re
 import datetime
 import random
+import codecs
 import sys
 
 from apiclient.discovery import build
