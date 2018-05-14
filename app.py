@@ -56,6 +56,7 @@ auth_json_path = "./auth.json"
 now = datetime.datetime.now()
 today = time.strftime("%c")
 mode = 1
+
 # game SSR Prob
 SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
 SC_SSR_S_prob = 30 # SC Support idol SSR_probability
@@ -312,16 +313,16 @@ def slient_mode(user_message,event):
 
 def switch_mode(key):
 	global mode	
-	if key == 0:
+	if(key == 0):
 		mode = 0
 		return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
-	elif key == 1:
+	elif(key == 1):
 		mode = 1
 		return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
 
 CMD_Matrix = [ # exact cmd
-#[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(0))],
-#[["!說話"],TextSendMessage(text = switch_mode(1))],
+[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_mode(0))],
+[["!說話"],TextSendMessage(text = switch_mode(1))],
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
 [["!使用說明書","!help"], TextSendMessage(text = readme())],
 [["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
@@ -354,14 +355,6 @@ CMD_Matrix_2 = [] # find functions add later
 
 def	active_mode(user_message,event):
 	global CMD_Matrix
-	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
-		mode = 0
-		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!說話"):
-		mode = 1
-		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
-		line_bot_api.reply_message(event.reply_token,message)
 	for i in range(len(CMD_Matrix)):
 		if(user_message.lower() in CMD_Matrix[i][0]):
 			message = CMD_Matrix[i][1]
@@ -369,7 +362,14 @@ def	active_mode(user_message,event):
 			return # don't execute the following commands if Matrix 1 is executed.
 	#for i in range
 			
-	'''
+	'''if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+		mode = 0
+		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message == "!說話"):
+		mode = 1
+		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == "!使用說明書"):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
