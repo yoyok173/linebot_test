@@ -499,7 +499,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
 	else:
-		if mode == 0： 
+		if mode == 0:
 			slient_mode(user_message,event) 
 		else: 
 			active_mode(user_message,event)
