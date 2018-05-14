@@ -498,10 +498,10 @@ def handle_message(event):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
-	else：
-		slient_mode(user_message,event) 
+	else:
+	slient_mode(user_message,event) 
 		if mode == 0 else 
-		active_mode(user_message,event)
+	active_mode(user_message,event)
 		
 import os
 if __name__ == "__main__":
