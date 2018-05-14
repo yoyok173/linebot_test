@@ -100,7 +100,7 @@ def get_key_response(key):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:C2000'
+	RANGE_NAME = 'Sheet1!A2:C3000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -369,7 +369,7 @@ def forget(user_message):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B2000'
+	RANGE_NAME = 'Sheet1!A2:B3000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -530,7 +530,7 @@ def active_mode(user_message,event):
 	else:
 		key_message = get_key_response(user_message)
 		if key_message != 0:
-			line_bot_api.reply_message(event.reply_token,message)
+			line_bot_api.reply_message(event.reply_token,key_message)
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
