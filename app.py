@@ -255,6 +255,11 @@ def slient_mode(user_message,event):
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
 
+w, h = 10, 2;
+CMD_Matrix = [
+[["即時排名","即時戰況"], TextSendMessage(text=score_str)]
+]
+		
 def	active_mode(user_message,event):
 	global mode
 	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
@@ -269,9 +274,9 @@ def	active_mode(user_message,event):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["即時排名","即時戰況"]):
+	elif(user_message in CMD_Matrix[0][0]):
 		score_str = leaderboard()
-		message = TextSendMessage(text=score_str)
+		message = CMD_Matrix[0][1]
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(user_message in ["脫褲子","脫內褲"]):
@@ -320,8 +325,8 @@ def	active_mode(user_message,event):
 	# ------ below are find function ------	 
 	elif(user_message.find("母湯") == 0):
 		message = ImageSendMessage(
-		original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
-		preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
+			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
+			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
 		line_bot_api.reply_message(event.reply_token, message)	
 	elif(user_message.find("!機率") == 0):
