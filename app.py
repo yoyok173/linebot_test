@@ -301,11 +301,11 @@ def readme():
 			
 def slient_mode(user_message,event):
 	global mode
-	if(user_message== "!說話"):
+	if(user_message == "!說話"):
 		mode = 1 
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
-	else:
+	elif(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
@@ -487,7 +487,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
 	else:
-		if mode == 0
+		if mode == 0:
 			slient_mode(user_message,event) 
 		else: 
 			active_mode(user_message,event)
