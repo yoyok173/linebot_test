@@ -487,10 +487,10 @@ def	active_mode(user_message,event):
 		teach_result = teach(user_message,1)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
-    elif(user_message.find("!忘記") == 0):
-        forget_result = forget(user_message)
-        message = TextSendMessage(text=forget_result)
-        line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!忘記") == 0):
+		forget_result = forget(user_message)
+		message = TextSendMessage(text=forget_result)
+		line_bot_api.reply_message(event.reply_token,message)
 	else:
 		key_message = get_key_response(user_message)
 		if key_message != 0:
