@@ -254,8 +254,12 @@ def slient_mode(user_message,event):
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
+		
+def switch_mode(user_message,event):
+	global mode
+	
 
-w, h = 10, 2;
+
 CMD_Matrix = [
 [["即時排名","即時戰況"], TextSendMessage(text = leaderboard())]
 ]
@@ -388,13 +392,13 @@ def handle_message(event):
 		elif mode == 1:
 			message = TextSendMessage(text="(active mode)")
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message== "!重新開機"):
+	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
-	elif(mode == 0):
-		slient_mode(user_message,event)
-	elif(mode == 1):
+	else
+		slient_mode(user_message,event) 
+		if mode == 0 else 
 		active_mode(user_message,event)
 		
 import os
