@@ -5,6 +5,7 @@ import gspread
 import re
 import datetime
 import random
+import sys
 
 from apiclient.discovery import build
 from httplib2 import Http
@@ -363,7 +364,9 @@ def handle_message(event):
 			message = TextSendMessage(text="(active mode)")
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "!重新開機"):
-		quit()
+		message = TextSendMessage(text="restarting...")
+		line_bot_api.reply_message(event.reply_token,message)
+		sys.exit("restarting...")
 	elif(mode == 0):
 		slient_mode(user_message,event)
 	elif(mode == 1):
