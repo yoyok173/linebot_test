@@ -493,7 +493,7 @@ def handle_message(event):
 	else:
 		if mode == 0:
 			slient_mode(user_message,event) 
-		else: 
+		elif mode == 1:
 			active_mode(user_message,event)
 		
 import os
