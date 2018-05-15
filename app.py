@@ -328,14 +328,6 @@ def event_progress():
 	return service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 
-	score_str = ""
-	for i in range(0,10):
-		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
-	# print(score_str)
-	score_str += str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S"))
-	# score_str += str(time.strftime("%c"))
-	return score_str
-
 # def your_pants():
 # 	list_top = []
 # 	list_name = []
@@ -477,10 +469,10 @@ def active_mode(user_message,event):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["即時排名","即時戰況","排名","分數"]):
+	elif(user_message in ["即時排名","即時戰況","排名","分數","戰況"]):
 		message = TextSendMessage(text = leaderboard(2))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["%數"]):
+	elif(user_message in ["%數","%"]):
 		message = TextSendMessage(text = leaderboard(3))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["分數差"]):
@@ -489,7 +481,7 @@ def active_mode(user_message,event):
 	elif(user_message in ["場數差"]):
 		message = TextSendMessage(text = leaderboard(6))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["追擊時間","脫褲子","脫內褲"]):
+	elif(user_message in ["追擊時間","脫褲子","脫內褲","內褲","褲子"]):
 		message = TextSendMessage(text = leaderboard(7))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["時速"]):
@@ -511,11 +503,11 @@ def active_mode(user_message,event):
 		preview_image_url='https://i.imgur.com/Upmorh0.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
-	elif(user_message == "!抽食物"):
+	elif(user_message == "!抽食物","!食物"):
 		food = get_food_sheet(1)
 		message = TextSendMessage(text=food)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!抽飲料"):
+	elif(user_message == "!抽飲料","!飲料"):
 		food = get_food_sheet(2)
 		message = TextSendMessage(text=food)
 		line_bot_api.reply_message(event.reply_token,message)
@@ -603,7 +595,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	global mode 
-	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=	pytz.timezone('Asia/Taipei'))))
+	print("now: "+str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")))
 	print("mode: "+str(mode))
 	print("event: " +str(event))		
 	user_message = event.message.text
