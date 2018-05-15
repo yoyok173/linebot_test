@@ -41,6 +41,8 @@ https://devcenter.heroku.com/articles/heroku-cli
 109  git add .
 110  git commit -m "fix"
 111  git push -f heroku master
+
+history > log
 ```
 
 > git branch , merge
@@ -65,6 +67,8 @@ https://devcenter.heroku.com/articles/heroku-cli
 530  git checkout master
 531  git merge april
 532  git push heroku master
+
+history > log
 ```
 
 > google sheet API 參考文件
