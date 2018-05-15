@@ -331,7 +331,8 @@ def event_progress():
 	if not values:
 		print('No data found.')
 	else:
-		return values
+		for row in values:	
+			return row[0]
 
 # def your_pants():
 # 	list_top = []
