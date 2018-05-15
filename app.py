@@ -7,7 +7,6 @@ import datetime
 import random
 import codecs
 import sys
-import pytz
 
 from apiclient.discovery import build
 from httplib2 import Http
