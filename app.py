@@ -45,7 +45,6 @@ SC_nameList = [
 ]
 
 
-time_zone = pytz.timezone('Asia/Taipei')
 app = Flask(__name__)
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -302,7 +301,6 @@ def teach_pic(user_message,key):
 		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
 def leaderboard(key):
-	global timezone
 	list_top = []
 	list_name = []
 	list_score = []
@@ -312,7 +310,7 @@ def leaderboard(key):
 	for i in range(0,10):
 		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
 	# print(score_str)
-	score_str += str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone))
+	score_str += str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=pytz.timezone('Asia/Taipei')))
 	# score_str += str(time.strftime("%c"))
 	return score_str
 
@@ -579,9 +577,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	global timezone
 	global mode 
-	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone)))
+	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=	pytz.timezone('Asia/Taipei'))))
 	print("mode: "+str(mode))
 	print("event: " +str(event))		
 	user_message = event.message.text
