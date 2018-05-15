@@ -302,6 +302,7 @@ def teach_pic(user_message,key):
 		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
 def leaderboard(key):
+	global timezone
 	list_top = []
 	list_name = []
 	list_score = []
@@ -578,6 +579,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+	global timezone
 	global mode 
 	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone)))
 	print("mode: "+str(mode))
