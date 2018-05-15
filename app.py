@@ -610,13 +610,14 @@ CMD_Matrix = [ # exact cmd
 CMD_Matrix_2 = [] # find functions add later
 '''
 
-	'''global CMD_Matrix
-	for i in range(len(CMD_Matrix)):
-		if(user_message.lower() in CMD_Matrix[i][0]):
-			message = CMD_Matrix[i][1]
-			print(mode)
-			line_bot_api.reply_message(event.reply_token,message)
-			# don't execute the following commands if Matrix 1 is executed.'''
+'''
+global CMD_Matrix
+for i in range(len(CMD_Matrix)):
+if(user_message.lower() in CMD_Matrix[i][0]):
+message = CMD_Matrix[i][1]
+print(mode)
+line_bot_api.reply_message(event.reply_token,message)
+# don't execute the following commands if Matrix 1 is executed.'''
 	
 # notes 
 	
