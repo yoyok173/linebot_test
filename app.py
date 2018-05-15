@@ -327,7 +327,6 @@ def event_progress():
 	RANGE_NAME = 'E15'
 	result = str(service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute())
-											 range=RANGE_NAME).execute()
 	values = result.get('values', [])
 	if not values:
 		print('No data found.')
