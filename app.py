@@ -298,6 +298,7 @@ def teach_pic(user_message):
 		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
 def leaderboard(key):
+	global today
 	list_top = []
 	list_name = []
 	list_score = []
