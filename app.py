@@ -348,7 +348,7 @@ def slient_mode(user_message,event):
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
 
-def switch_on():
+def switch_still_on():
 	global mode	
 	mode = 1
 	return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
@@ -410,50 +410,40 @@ def forget(user_message):
 
 def search_cmd(user_message):
 	operations = [
-	[['排名','分數','戰況'],TextSendMessage(text = leaderboard(2))],
-	[['分數差'],TextSendMessage(text = leaderboard(5))],
-	[['場數差'],TextSendMessage(text = leaderboard(6))], 
-	[['時速'],TextSendMessage(text = leaderboard(8))], 
-	[['場速'],TextSendMessage(text = leaderboard(9))]
+	[["!閉嘴","!安靜","!你閉嘴","!你安靜"],switch_off()],
+	[["!說話"],switch_still_on()],
+	[["!使用說明書","!help","!說明書"],readme()],
+	[["即時排名","即時戰況",'排名','分數','戰況'],leaderboard(2)],
+	[["%數","%"],leaderboard(3)],
+	[['分數差'],leaderboard(5)],
+	[['場數差'],leaderboard(6)], 
+	[["追擊時間","脫褲子","脫內褲","內褲","褲子"],leaderboard(7)],
+	[['時速'],leaderboard(8)], 
+	[['場速'],leaderboard(9)],
+	[["活動進度"],event_progress()],
+	[["!抽食物","!食物"],get_food_sheet(1)],
+	[["!抽飲料","!飲料"],get_food_sheet(2)],
+	[["!cgss單抽"],"【CGSS 單抽結果：】\n" + gacha_CGSS()],
+	[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"],"【CGSS 10連結果：】\n" + ten_gacha_CGSS()],
+	[["!bgd單抽","!gbp單抽"],"【BGD 單抽結果：】\n" + gacha_BGD()],
+	[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"],"【BGD 10連結果：】\n" + ten_gacha_BGD()],
+	[["!sc單抽"],"【SC 單抽結果：】\n" + multi_gacha_SC(1)],
+	[["!sc十連","!sc十抽","!sc10連","!sc10抽"],"【SC 10連結果：】\n" + multi_gacha_SC(10)]
 	]
+
 	for i in range(len(operations)):
 		if user_message in operations[i][0]:
 			return operations[i][1] 
-	return 0
+	return "not found in cmd list"
 
 
 def active_mode(user_message,event):
 	global mode
 	message = search_cmd(user_message)
-	if message != 0 :
-		line_bot_api.reply_message(event.reply_token,message)
+	if message != "not found in cmd list" :
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 
-
-	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
-		mode = 0
-		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!說話"):
-		mode = 1
-		message = TextSendMessage(text='我已經正在說話囉，歡迎來跟我互動 ^_^ ')
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!使用說明書","!help","!說明書"]):
-		readme_text = readme()
-		message = TextSendMessage(text=readme_text)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["即時排名","即時戰況"]):
-		message = TextSendMessage(text = leaderboard(2))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["%數","%"]):
-		message = TextSendMessage(text = leaderboard(3))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["追擊時間","脫褲子","脫內褲","內褲","褲子"]):
-		message = TextSendMessage(text = leaderboard(7))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["活動進度"]):
-		message = TextSendMessage(text = event_progress())
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
+	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		randsticker = random.randint(140,180)
 		message = StickerSendMessage(package_id='2',sticker_id=str(randsticker = random.randint(140,180)))
 		line_bot_api.reply_message(event.reply_token,message)
@@ -463,17 +453,9 @@ def active_mode(user_message,event):
 		preview_image_url='https://i.imgur.com/Upmorh0.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
-	elif(user_message in ["!抽食物","!食物"]):
-		food = get_food_sheet(1)
-		message = TextSendMessage(text=food)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!抽飲料","!飲料"]):
-		food = get_food_sheet(2)
-		message = TextSendMessage(text=food)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!CGSS單抽"):
-		result = "【您抽到的是：】\n"
-		result += gacha_CGSS()
+
+	elif(user_message == ):
+		
 		message = TextSendMessage(text=result)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!CGSS十連","!CGSS十抽","!CGSS10連","!CGSS10抽"]):
@@ -582,52 +564,6 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
-'''
-CMD_Matrix = [ # exact cmd
-[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
-[["!說話"],TextSendMessage(text = switch_on())],
-[["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
-[["!使用說明書","!help"], TextSendMessage(text = readme())],
-[["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
-[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(random.randint(140,180)))],
-[["母湯"], VideoSendMessage(
-	original_content_url = 'https://i.imgur.com/Upmorh0.mp4',
-	preview_image_url = 'https://i.imgur.com/Upmorh0.gif'
-	)],
-[["母湯電影版"], ImageSendMessage(
-		original_content_url = "https://i.imgur.com/rUZ4AdD.jpg",
-		preview_image_url = "https://i.imgur.com/rUZ4AdD.jpg"
-	)],
-[["!抽食物"], TextSendMessage(text = get_food_sheet(1))],
-[["!抽飲料"], TextSendMessage(text = get_food_sheet(2))],
-[["!cgss單抽"]
-	, TextSendMessage(text ="【您抽到的是：】\n" + gacha_CGSS())],
-[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]
-	, TextSendMessage(text ="【您抽到的是：】\n" + ten_gacha_CGSS())],
-[["!bgd單抽","!gbp單抽"]
-	, TextSendMessage(text = "【您抽到的是：】\n" + gacha_BGD())],
-[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]
-	, TextSendMessage(text = "【您抽到的是：】\n" + ten_gacha_BGD())],
-[["!sc單抽"]
-	, TextSendMessage(text ="【SC 單抽結果】\n" + multi_gacha_SC(1))],
-[["!sc十連","!sc十抽","!sc10連","!sc10抽"]
-	, TextSendMessage(text ="【SC 10連結果】\n" + multi_gacha_SC(10))]
-]
-
-CMD_Matrix_2 = [] # find functions add later
-'''
-
-'''
-global CMD_Matrix
-for i in range(len(CMD_Matrix)):
-if(user_message.lower() in CMD_Matrix[i][0]):
-message = CMD_Matrix[i][1]
-print(mode)
-line_bot_api.reply_message(event.reply_token,message)
-# don't execute the following commands if Matrix 1 is executed.'''
-	
-# notes 
-	
 #push message to one user
 # line_bot_api.push_message(user_id, 
     # TextSendMessage(text='Hello World!'))
@@ -651,8 +587,3 @@ line_bot_api.reply_message(event.reply_token,message)
 # push message to one user
 # line_bot_api.push_message(user_id, 
 # TextSendMessage(text='Hello World!'))
-
-# line_bot_api.reply_message(
-# event.reply_token,
-# message)
-		
