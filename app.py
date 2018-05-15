@@ -297,15 +297,15 @@ def teach_pic(user_message):
 		update_pic_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
 		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
-def leaderboard():
+def leaderboard(key):
 	list_top = []
 	list_name = []
 	list_score = []
-	get_score_sheet(list_top,list_name,list_score,2)
+	get_score_sheet(list_top,list_name,list_score,key)
 	# print (list_top,list_name,list_score)
 	score_str = ""
 	for i in range(0,10):
-		score_str += (str(list_top[i])+"\t"+list_name[i]+"\t"+list_score[i]+"\n")
+		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
 	# print(score_str)
 	return score_str
 
@@ -450,8 +450,23 @@ def active_mode(user_message,event):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["即時排名","即時戰況"]):
-		message = TextSendMessage(text = leaderboard())
+	elif(user_message in ["即時排名","即時戰況","排名","分數"]):
+		message = TextSendMessage(text = leaderboard(2))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["分數差"]):
+		message = TextSendMessage(text = leaderboard(4))
+		line_bot_api.reply_message(event.reply_token,message)		
+	elif(user_message in ["場數差"]):
+		message = TextSendMessage(text = leaderboard(5))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["追擊時間"]):
+		message = TextSendMessage(text = leaderboard(6))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["時速"]):
+		message = TextSendMessage(text = leaderboard(7))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["場速"]):
+		message = TextSendMessage(text = leaderboard(8))
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(user_message in ["脫褲子","脫內褲"]):
