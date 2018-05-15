@@ -418,7 +418,6 @@ operations = {
 def active_mode(user_message,event):
 	global mode
 	global operations
-	for 
 	message = operations.get(user_message, 0 )
 
 	if message != 0 :
