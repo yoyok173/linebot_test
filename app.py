@@ -56,8 +56,18 @@ service = build('sheets', 'v4', http=creds.authorize(Http()))
 # Call the Sheets API
 SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 RANGE_NAME = 'Sheet1!A2:C1000'
-dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-											 range=RANGE_NAME).execute()
+dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,range=RANGE_NAME).execute()
+values = dictionary_sheet.get('values', [])
+if not values:
+	print('No data found.')
+else:
+	list_key = []
+	list_response = []
+	list_type = []
+	for row in values:	
+		list_key.append(row[0])
+		list_response.append(row[1])
+		list_type.append(row[2])
 
 BGD_namelist = [
 '牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
@@ -98,35 +108,26 @@ def get_score_sheet(list_top,list_name,list_target,target):
 			list_target.append(row[target])
 		
 def get_key_response(key):
-	global dictionary_sheet
-	values = dictionary_sheet.get('values', [])
-	if not values:
-		print('No data found.')
+	global list_key
+	global list_response
+	global list_type
+	if key in list_key:
+		# list_response = list_key.index(key)
+		list_response_index = [i for i,v in enumerate(list_key) if v==key]
+		print (list_response_index)
+		random_reply = random.randint(0,len(list_response_index)-1)
+		response_index = list_response_index[random_reply]
+		if(list_type[response_index]=="str"):
+			message = TextSendMessage(text=list_response[response_index])
+		elif(list_type[response_index]=="pic"):
+			content = list_response[response_index]
+			message = ImageSendMessage(
+			original_content_url= content,
+			preview_image_url= content
+			)
+		return message
 	else:
-		list_key = []
-		list_response = []
-		list_type = []
-		for row in values:	
-			list_key.append(row[0])
-			list_response.append(row[1])
-			list_type.append(row[2])
-		if key in list_key:
-			# list_response = list_key.index(key)
-			list_response_index = [i for i,v in enumerate(list_key) if v==key]
-			print (list_response_index)
-			random_reply = random.randint(0,len(list_response_index)-1)
-			response_index = list_response_index[random_reply]
-			if(list_type[response_index]=="str"):
-				message = TextSendMessage(text=list_response[response_index])
-			elif(list_type[response_index]=="pic"):
-				content = list_response[response_index]
-				message = ImageSendMessage(
-				original_content_url= content,
-				preview_image_url= content
-				)
-			return message
-		else:
-			return 0
+		return 0
 		
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
@@ -135,20 +136,21 @@ def auth_gss_client(path, scopes):
 gss_scopes = ['https://spreadsheets.google.com/feeds']
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
-def update_sheet(gss_client, key, today,messageid,messagetype,text):
-    wks = gss_client.open_by_key(key)
-    sheet = wks.sheet1
-    sheet.insert_row([today,messageid,messagetype,text], 2)
-	
 def update_sheet_key(gss_client, key, input , output):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
     sheet.insert_row([input , output,"str"], 2)
+	list_top.append(input)
+	list_name.append(output)
+	list_target.append("str")
 	
 def update_pic_sheet_key(gss_client, key, input , output):
     wks = gss_client.open_by_key(key)
     sheet = wks.sheet1
     sheet.insert_row([input , output,"pic"], 2)
+    list_top.append(input)
+	list_name.append(output)
+	list_target.append("pic")
 
 def get_food_sheet(key):
 	# Setup the Sheets API
@@ -357,7 +359,7 @@ def switch_off():
 	global mode	
 	mode = 0
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
-
+'''
 def forget(user_message):
 	global dictionary_sheet
 	reply_message = user_message.lstrip("!忘記 ")
@@ -407,6 +409,7 @@ def forget(user_message):
 			return "忘記字詞失敗 > < 你是不是連自己教過的東西都忘了?"
 		else:
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
+'''
 
 
 def search_cmd(user_message):
@@ -488,10 +491,10 @@ def active_mode(user_message,event):
 		teach_result = teach_pic(user_message,1)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message.find("!忘記") == 0):
-		forget_result = forget(user_message)
-		message = TextSendMessage(text=forget_result)
-		line_bot_api.reply_message(event.reply_token,message)
+	# elif(user_message.find("!忘記") == 0):
+	# 	forget_result = forget(user_message)
+	# 	message = TextSendMessage(text=forget_result)
+	# 	line_bot_api.reply_message(event.reply_token,message)
 	else:
 		key_message = get_key_response(user_message)
 		if key_message != 0:
