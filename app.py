@@ -26,8 +26,22 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
-# video_list = ["https://i.imgur.com/Upmorh0.mp4"]
-# image_list = ['https://i.imgur.com/N48r8cd.gif','https://i.imgur.com/iSAnJd4.gif','https://i.imgur.com/8H72aoG.gif','https://i.imgur.com/BTNb7zf.gif','https://i.imgur.com/XO7YFi5.gif','https://i.imgur.com/x0qYhR7.gif']
+something = 'something'
+options = {'this': 1, 'that': 2, 'there': 3}
+
+	elif(user_message in ["分數差"]):
+		message = 
+		line_bot_api.reply_message(event.reply_token,message)		
+	elif(user_message in [""]):
+		message = TextSendMessage(text = leaderboard(6))
+		line_bot_api.reply_message(event.reply_token,message)
+
+operations = {
+'分數差':TextSendMessage(text = leaderboard(5)),
+'場數差':TextSendMessage(text = leaderboard(6)), 
+'時速':TextSendMessage(text = leaderboard(8)), 
+'場速':TextSendMessage(text = leaderboard(9))
+}
 
 BGD_namelist = [
 '牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
@@ -333,18 +347,6 @@ def event_progress():
 	else:
 		for row in values:	
 			return row[0]
-
-# def your_pants():
-# 	list_top = []
-# 	list_name = []
-# 	list_time = []
-# 	get_score_sheet(list_top,list_name,list_time,6)
-# 	# print (list_top,list_name,list_score)
-# 	score_str = ""
-# 	score_str += ("目前" + str(list_top[0])+"為\t"+list_name[0]+"\t\n")
-# 	for i in range(1,10):
-# 		score_str += (list_name[i]+"\t還需要 "+list_time[i]+" 才能脫 "+list_name[i-1]+" 的褲子\n")
-# 	return score_str
 	
 def readme():
 	with open('readme.txt', 'r') as f:
@@ -420,49 +422,15 @@ def forget(user_message):
 			return "忘記字詞失敗 > < 你是不是連自己教過的東西都忘了?"
 		else:
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
-'''
-CMD_Matrix = [ # exact cmd
-[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
-[["!說話"],TextSendMessage(text = switch_on())],
-[["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
-[["!使用說明書","!help"], TextSendMessage(text = readme())],
-[["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
-[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(random.randint(140,180)))],
-[["母湯"], VideoSendMessage(
-	original_content_url = 'https://i.imgur.com/Upmorh0.mp4',
-	preview_image_url = 'https://i.imgur.com/Upmorh0.gif'
-	)],
-[["母湯電影版"], ImageSendMessage(
-		original_content_url = "https://i.imgur.com/rUZ4AdD.jpg",
-		preview_image_url = "https://i.imgur.com/rUZ4AdD.jpg"
-	)],
-[["!抽食物"], TextSendMessage(text = get_food_sheet(1))],
-[["!抽飲料"], TextSendMessage(text = get_food_sheet(2))],
-[["!cgss單抽"]
-	, TextSendMessage(text ="【您抽到的是：】\n" + gacha_CGSS())],
-[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]
-	, TextSendMessage(text ="【您抽到的是：】\n" + ten_gacha_CGSS())],
-[["!bgd單抽","!gbp單抽"]
-	, TextSendMessage(text = "【您抽到的是：】\n" + gacha_BGD())],
-[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]
-	, TextSendMessage(text = "【您抽到的是：】\n" + ten_gacha_BGD())],
-[["!sc單抽"]
-	, TextSendMessage(text ="【SC 單抽結果】\n" + multi_gacha_SC(1))],
-[["!sc十連","!sc十抽","!sc10連","!sc10抽"]
-	, TextSendMessage(text ="【SC 10連結果】\n" + multi_gacha_SC(10))]
-]
 
-CMD_Matrix_2 = [] # find functions add later
-'''
 def active_mode(user_message,event):
-	'''global CMD_Matrix
-	for i in range(len(CMD_Matrix)):
-		if(user_message.lower() in CMD_Matrix[i][0]):
-			message = CMD_Matrix[i][1]
-			print(mode)
-			line_bot_api.reply_message(event.reply_token,message)
-			# don't execute the following commands if Matrix 1 is executed.'''
 	global mode
+	global operations
+	message = operations.get(user_message, 0)
+	
+	if message != 0 :
+		line_bot_api.reply_message(event.reply_token,message)
+
 	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
 		message = TextSendMessage(text='好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <')
@@ -481,20 +449,8 @@ def active_mode(user_message,event):
 	elif(user_message in ["%數","%"]):
 		message = TextSendMessage(text = leaderboard(3))
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["分數差"]):
-		message = TextSendMessage(text = leaderboard(5))
-		line_bot_api.reply_message(event.reply_token,message)		
-	elif(user_message in ["場數差"]):
-		message = TextSendMessage(text = leaderboard(6))
-		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["追擊時間","脫褲子","脫內褲","內褲","褲子"]):
 		message = TextSendMessage(text = leaderboard(7))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["時速"]):
-		message = TextSendMessage(text = leaderboard(8))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["場速"]):
-		message = TextSendMessage(text = leaderboard(9))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["活動進度"]):
 		message = TextSendMessage(text = event_progress())
@@ -627,6 +583,49 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+'''
+CMD_Matrix = [ # exact cmd
+[["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
+[["!說話"],TextSendMessage(text = switch_on())],
+[["即時排名","即時戰況"], TextSendMessage(text = leaderboard())],
+[["!使用說明書","!help"], TextSendMessage(text = readme())],
+[["脫褲子","脫內褲"], TextSendMessage(text = your_pants())],
+[["貼圖辣","貼圖啦","貼圖","貼圖喇"], StickerSendMessage(package_id='2',sticker_id = str(random.randint(140,180)))],
+[["母湯"], VideoSendMessage(
+	original_content_url = 'https://i.imgur.com/Upmorh0.mp4',
+	preview_image_url = 'https://i.imgur.com/Upmorh0.gif'
+	)],
+[["母湯電影版"], ImageSendMessage(
+		original_content_url = "https://i.imgur.com/rUZ4AdD.jpg",
+		preview_image_url = "https://i.imgur.com/rUZ4AdD.jpg"
+	)],
+[["!抽食物"], TextSendMessage(text = get_food_sheet(1))],
+[["!抽飲料"], TextSendMessage(text = get_food_sheet(2))],
+[["!cgss單抽"]
+	, TextSendMessage(text ="【您抽到的是：】\n" + gacha_CGSS())],
+[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]
+	, TextSendMessage(text ="【您抽到的是：】\n" + ten_gacha_CGSS())],
+[["!bgd單抽","!gbp單抽"]
+	, TextSendMessage(text = "【您抽到的是：】\n" + gacha_BGD())],
+[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]
+	, TextSendMessage(text = "【您抽到的是：】\n" + ten_gacha_BGD())],
+[["!sc單抽"]
+	, TextSendMessage(text ="【SC 單抽結果】\n" + multi_gacha_SC(1))],
+[["!sc十連","!sc十抽","!sc10連","!sc10抽"]
+	, TextSendMessage(text ="【SC 10連結果】\n" + multi_gacha_SC(10))]
+]
+
+CMD_Matrix_2 = [] # find functions add later
+'''
+
+	'''global CMD_Matrix
+	for i in range(len(CMD_Matrix)):
+		if(user_message.lower() in CMD_Matrix[i][0]):
+			message = CMD_Matrix[i][1]
+			print(mode)
+			line_bot_api.reply_message(event.reply_token,message)
+			# don't execute the following commands if Matrix 1 is executed.'''
 	
 # notes 
 	
