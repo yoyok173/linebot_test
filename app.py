@@ -450,8 +450,8 @@ def active_mode(user_message,event):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in CMD_Matrix[0][0]):
-		message = CMD_Matrix[0][1]
+	elif(user_message in ["即時排名","即時戰況"]):
+		message = TextSendMessage(text = leaderboard())
 		line_bot_api.reply_message(event.reply_token,message)
 		# line_bot_api.push_message(user_id,TextSendMessage(text=score_str))
 	elif(user_message in ["脫褲子","脫內褲"]):
