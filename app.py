@@ -395,7 +395,7 @@ def forget(user_message):
 			return "忘記字詞失敗 > < 你是不是連自己教過的東西都忘了?"
 		else:
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
-
+'''
 CMD_Matrix = [ # exact cmd
 [["!閉嘴","!安靜","!你閉嘴","!你安靜"],TextSendMessage(text = switch_off())],
 [["!說話"],TextSendMessage(text = switch_on())],
@@ -428,7 +428,7 @@ CMD_Matrix = [ # exact cmd
 ]
 
 CMD_Matrix_2 = [] # find functions add later
-
+'''
 def active_mode(user_message,event):
 	'''global CMD_Matrix
 	for i in range(len(CMD_Matrix)):
