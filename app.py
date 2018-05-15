@@ -325,8 +325,8 @@ def event_progress():
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 	RANGE_NAME = 'E15'
-	return service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
+	return str(service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute())
 
 # def your_pants():
 # 	list_top = []
