@@ -96,7 +96,7 @@ def get_key_response(key):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:C3000'
+	RANGE_NAME = 'Sheet1!A2:C1000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
@@ -380,7 +380,7 @@ def forget(user_message):
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:B3000'
+	RANGE_NAME = 'Sheet1!A2:B1000'
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
