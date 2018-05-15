@@ -26,22 +26,6 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , StickerSendMessage , ImageSendMessage , VideoSendMessage
 )
 
-
-BGD_namelist = [
-'牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
-'上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ',
-'白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜',
-'氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ',
-'北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音']
-
-SC_nameList = [
-'風野灯織','八宮めぐる','櫻木真乃','月岡恋鐘',
-'田中摩美々','幽谷霧子','三峰結華','白瀬咲耶',
-'桑山千雪','大崎甘奈','大崎甜花','小宮果穂',
-'杜野凛世','園田智代子','西城樹里','有栖川夏葉'
-]
-
-
 app = Flask(__name__)
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -59,6 +43,35 @@ SC_SSR_S_prob = 30 # SC Support idol SSR_probability
 SC_SR_P_prob = 60 # SC Produce idol SR_probability
 SC_SR_S_prob = 100 # SC Support idol SR_probability
 SC_R_R_prob = 290 # SC Support idol R_probability
+
+# Setup the Sheets API
+SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+store = file.Storage('credentials.json')
+creds = store.get()
+if not creds or creds.invalid:
+	flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+	creds = tools.run_flow(flow, store)
+service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+# Call the Sheets API
+SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+RANGE_NAME = 'Sheet1!A2:C1000'
+dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+											 range=RANGE_NAME).execute()
+
+BGD_namelist = [
+'牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
+'上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ',
+'白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜',
+'氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ',
+'北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音']
+
+SC_nameList = [
+'風野灯織','八宮めぐる','櫻木真乃','月岡恋鐘',
+'田中摩美々','幽谷霧子','三峰結華','白瀬咲耶',
+'桑山千雪','大崎甘奈','大崎甜花','小宮果穂',
+'杜野凛世','園田智代子','西城樹里','有栖川夏葉'
+]
 
 def get_score_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
@@ -85,21 +98,8 @@ def get_score_sheet(list_top,list_name,list_target,target):
 			list_target.append(row[target])
 		
 def get_key_response(key):
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'Sheet1!A2:C1000'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	values = result.get('values', [])
+	global dictionary_sheet
+	values = dictionary_sheet.get('values', [])
 	if not values:
 		print('No data found.')
 	else:
@@ -359,6 +359,7 @@ def switch_off():
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
 def forget(user_message):
+	global dictionary_sheet
 	reply_message = user_message.lstrip("!忘記 ")
 	split_result = reply_message.split(' ',1)
 	print(split_result)
@@ -381,7 +382,7 @@ def forget(user_message):
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	RANGE_NAME = 'Sheet1!A2:B1000'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+	dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
 	if not values:
