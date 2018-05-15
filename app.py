@@ -409,15 +409,16 @@ def forget(user_message):
 
 operations = {
 ['排名','分數','戰況']:TextSendMessage(text = leaderboard(2)),
-'分數差':TextSendMessage(text = leaderboard(5)),
-'場數差':TextSendMessage(text = leaderboard(6)), 
-'時速':TextSendMessage(text = leaderboard(8)), 
-'場速':TextSendMessage(text = leaderboard(9))
+['分數差']:TextSendMessage(text = leaderboard(5)),
+['場數差']:TextSendMessage(text = leaderboard(6)), 
+['時速']:TextSendMessage(text = leaderboard(8)), 
+['場速']:TextSendMessage(text = leaderboard(9))
 }
 
 def active_mode(user_message,event):
 	global mode
 	global operations
+	for 
 	message = operations.get(user_message, 0 )
 
 	if message != 0 :
