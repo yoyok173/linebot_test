@@ -426,8 +426,8 @@ def forget(user_message):
 def active_mode(user_message,event):
 	global mode
 	global operations
-	message = operations.get(user_message, 0)
-	
+	message = operations.get(user_message, 0 )
+
 	if message != 0 :
 		line_bot_api.reply_message(event.reply_token,message)
 
