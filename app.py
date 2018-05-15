@@ -415,17 +415,20 @@ operations = [
 [['場速'],TextSendMessage(text = leaderboard(9))]
 ]
 
-def active_mode(user_message,event):
-	global mode
+def search_cmd(user_message):
 	global operations
 	for i in range(len(operations)):
 		if user_message in operations[i][0]:
-			message = operations[i][1] 
-		else:
-			message = 0 
+			return operations[i][1] 
+	return 0
 
+
+def active_mode(user_message,event):
+	global mode
+	message = search_cmd(user_message)
 	if message != 0 :
 		line_bot_api.reply_message(event.reply_token,message)
+
 
 	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		mode = 0
