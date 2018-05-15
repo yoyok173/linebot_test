@@ -503,11 +503,11 @@ def active_mode(user_message,event):
 		preview_image_url='https://i.imgur.com/Upmorh0.gif'
 		)
 		line_bot_api.reply_message(event.reply_token, message)
-	elif(user_message == "!抽食物","!食物"):
+	elif(user_message in ["!抽食物","!食物"]):
 		food = get_food_sheet(1)
 		message = TextSendMessage(text=food)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!抽飲料","!飲料"):
+	elif(user_message in ["!抽飲料","!飲料"]):
 		food = get_food_sheet(2)
 		message = TextSendMessage(text=food)
 		line_bot_api.reply_message(event.reply_token,message)
