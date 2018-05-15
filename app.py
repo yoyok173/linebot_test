@@ -407,18 +407,22 @@ def forget(user_message):
 		else:
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
 
-operations = {
-['排名','分數','戰況']:TextSendMessage(text = leaderboard(2)),
-['分數差']:TextSendMessage(text = leaderboard(5)),
-['場數差']:TextSendMessage(text = leaderboard(6)), 
-['時速']:TextSendMessage(text = leaderboard(8)), 
-['場速']:TextSendMessage(text = leaderboard(9))
-}
+operations = [
+[['排名','分數','戰況'],TextSendMessage(text = leaderboard(2))],
+[['分數差'],TextSendMessage(text = leaderboard(5))],
+[['場數差'],TextSendMessage(text = leaderboard(6))], 
+[['時速'],TextSendMessage(text = leaderboard(8))], 
+[['場速'],TextSendMessage(text = leaderboard(9))]
+]
 
 def active_mode(user_message,event):
 	global mode
 	global operations
-	message = operations.get(user_message, 0 )
+	for i in range(len(operations)):
+		if user_message in operations[i][0]:
+			message = operations[i][1] 
+		else:
+			message = 0 
 
 	if message != 0 :
 		line_bot_api.reply_message(event.reply_token,message)
