@@ -313,6 +313,30 @@ def leaderboard(key):
 	# score_str += str(time.strftime("%c"))
 	return score_str
 
+def event_progress():
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
+	RANGE_NAME = 'E15'
+	return service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+
+	score_str = ""
+	for i in range(0,10):
+		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
+	# print(score_str)
+	score_str += str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S"))
+	# score_str += str(time.strftime("%c"))
+	return score_str
+
 # def your_pants():
 # 	list_top = []
 # 	list_name = []
@@ -474,6 +498,9 @@ def active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["場速"]):
 		message = TextSendMessage(text = leaderboard(9))
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["活動進度"]):
+		message = TextSendMessage(text = event_progress())
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		randsticker = random.randint(140,180)

@@ -196,6 +196,15 @@ index = list.index("object")
 3 in [1, 2, 3]
 ```
 
+> python datetime (GMT+8)
+
+
+```javascript
+str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S"))
+```
+
+http://www.wklken.me/posts/2015/03/03/python-base-datetime.html
+
 > python range
 
 > range(10)        # 0-9 (不含10)
