@@ -454,26 +454,6 @@ def active_mode(user_message,event):
 		)
 		line_bot_api.reply_message(event.reply_token, message)
 
-	elif(user_message == ):
-		
-		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!CGSS十連","!CGSS十抽","!CGSS10連","!CGSS10抽"]):
-		result = "【您抽到的是：】\n"
-		result += ten_gacha_CGSS()
-		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!BGD單抽","!bgd單抽"]):
-		result = "【您抽到的是：】\n"
-		result += gacha_BGD()
-		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!BGD十連","!BGD十抽","!BGD10連","!BGD10抽","!bgd十連","!bgd十抽","!bgd10連","!bgd10抽"]):
-		result = "【您抽到的是：】\n"
-		result += ten_gacha_BGD()
-		message = TextSendMessage(text=result)
-		line_bot_api.reply_message(event.reply_token,message)
-
 	# ------ below are find function ------	 
 	if(user_message.find("母湯") >= 0):
 		message = ImageSendMessage(
