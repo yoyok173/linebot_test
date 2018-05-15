@@ -37,6 +37,7 @@ options = {'this': 1, 'that': 2, 'there': 3}
 		line_bot_api.reply_message(event.reply_token,message)
 
 operations = {
+'排名','分數','戰況':TextSendMessage(text = leaderboard(2)),
 '分數差':TextSendMessage(text = leaderboard(5)),
 '場數差':TextSendMessage(text = leaderboard(6)), 
 '時速':TextSendMessage(text = leaderboard(8)), 
@@ -443,7 +444,7 @@ def active_mode(user_message,event):
 		readme_text = readme()
 		message = TextSendMessage(text=readme_text)
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["即時排名","即時戰況","排名","分數","戰況"]):
+	elif(user_message in ["即時排名","即時戰況"]):
 		message = TextSendMessage(text = leaderboard(2))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["%數","%"]):
