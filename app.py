@@ -408,7 +408,7 @@ def forget(user_message):
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
 
 operations = {
-'排名','分數','戰況':TextSendMessage(text = leaderboard(2)),
+'排名'or'分數'or'戰況':TextSendMessage(text = leaderboard(2)),
 '分數差':TextSendMessage(text = leaderboard(5)),
 '場數差':TextSendMessage(text = leaderboard(6)), 
 '時速':TextSendMessage(text = leaderboard(8)), 

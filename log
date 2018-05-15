@@ -1,0 +1,540 @@
+    1  vim ~/.zshrc
+    2  exit
+    3  vim ~/.zshrc
+    4  source ~/.zshrc
+    5  vim ~/.zshrc
+    6  source ~/.zshrc
+    7  ls
+    8  vim ~/.zshrc
+    9  open ~/.zshrc
+   10  vim ~/.zshrc
+   11  open ~/.zshrc
+   12  source ~/.zshrc
+   13  test
+   14  QQ
+   15  open ~/.zshrc
+   16  pwd
+   17  ls
+   18  cd ENV
+   19  pip install powerline-status
+   20  install pip
+   21  pip install powerline-status
+   22  pip3 install powerline-status
+   23  pip install --user git+git://github.com/powerline/powerline
+   24  pip3 install --user git+git://github.com/powerline/powerline
+   25  pip install --user --editable={path_to_powerline}
+   26  pip3 install --user --editable={path_to_powerline}
+   27  pip3 install --user git+git://github.com/powerline/powerline
+   28  pip3 install --user --editable={path_to_powerline}
+   29  pip3 install --user --editable={http:///Users/howard/Library/Python/3.6/lib/python/site-packages}
+   30  sudo apt-get install powerline
+   31  cd
+   32  ls
+   33  cd desktop
+   34  ls
+   35  gcc test.c -o a.out
+   36  ls
+   37  ./a.out
+   38  gcc test.c -o a.out
+   39  ./a.out
+   40  gcc test.c -o a.out
+   41  ./a.out
+   42  gcc test.c -o a.out
+   43  ./a.out
+   44  gcc test.c -o a.out
+   45  ./a.out
+   46  gcc test.c -o a.out
+   47  ./a.out
+   48  tensorflow
+   49  activate tensorflow
+   50  jupyter notebook
+   51  source activate tensorflow
+   52  activate tensorflow
+   53  python
+   54  conda source activate tensorflow
+   55  conda
+   56  python
+   57  conda -all
+   58  source activate tensorflow
+   59  conda
+   60  zsh
+   61  conda
+   62  anaconda
+   63  ls
+   64  python
+   65  defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+   66  pwd
+   67  ls
+   68  ps
+   69  ps -all
+   70  ls
+   71  pwd
+   72  cd ./Download
+   73  cd ./Downloads
+   74  ls
+   75  cd linebot_test-master2
+   76  cd linebot_test-master-22
+   77  cd linebot_test-master-2
+   78  ls
+   79  git push heroku master
+   80  git add .
+   81  cd ../
+   82  pwd
+   83  ls
+   84  pwd
+   85  git clone https://github.com/howarder3/linebot_test.git
+   86  git remote
+   87  pwd
+   88  ls
+   89  cd ./linebot_test
+   90  git remote
+   91  git remote heroku https://git.heroku.com/apriltestbot.git
+   92  git remote add heroku https://git.heroku.com/apriltestbot.git 
+   93  git push heroku master
+   94  heroku login
+   95  brew install heroku/brew/heroku
+   96  heroku login
+   97  git push heroku master
+   98  git add .
+   99  git commit -m "ready to push"
+  100  git push heroku master
+  101  git remote -v
+  102  git push heroku master
+  103  git pull heroku
+  104  git branch
+  105  git push heroku master
+  106  git pull
+  107  git push heroku master
+  108  git push -f heroku master
+  109  git add .
+  110  git commit -m "fix"
+  111  git push -f heroku master
+  112  git add .
+  113  git commit -m "fix"
+  114  git push -f heroku master
+  115  git commit -m "fix"
+  116  git add .
+  117  git commit -m "fix"
+  118  git push -f heroku master
+  119  git add .
+  120  git commit -m "fix"
+  121  git push  heroku master
+  122  git add .
+  123  git commit -m "fix"
+  124  git push  heroku master
+  125  git add .
+  126  git commit -m "fix"
+  127  git push  heroku master
+  128  git add .
+  129  git commit -m "fix"
+  130  git push  heroku master
+  131  git add .
+  132  git commit -m "fix"
+  133  git push  heroku master
+  134  /Users/howard/Desktop/new\ 1.py 
+  135  git add .
+  136  git commit -m "fix"
+  137  git push  heroku master
+  138  git add .
+  139  git commit -m "fix"
+  140  git push  heroku master
+  141  git add .
+  142  git commit -m "fix"
+  143  git push  heroku master
+  144  git commit -m "fix"
+  145  git add .
+  146  git commit -m "fix"
+  147  git push origin  master
+  148  git add .
+  149  git commit -m "fix slient mode"
+  150  git push keroku  master
+  151  git push heroku  master
+  152  git add .
+  153  git commit -m "fix slient mode"
+  154  git push heroku  master
+  155  git add .
+  156  git commit -m "fix slient mode"
+  157  git push heroku  master
+  158  git add .
+  159  git commit -m "fix slient mode"
+  160  git push heroku  master
+  161  git add .
+  162  git commit -m "fix slient mode"
+  163  git push heroku  master
+  164  git add .
+  165  git commit -m "fix slient mode"
+  166  git add .
+  167  git commit -m "fix slient mode"
+  168  git push -f  heroku master
+  169  git add .
+  170  git commit -m "fix slient mode"
+  171  git add .
+  172  git commit -m "fix slient mode"
+  173  git push -f  heroku master
+  174  git add .
+  175  git commit -m "fix slient mode"
+  176  git push -f  heroku master
+  177  git add .
+  178  git commit -m "fix slient mode"
+  179  git push -f  heroku master
+  180  git add .
+  181  git push -f  heroku master
+  182  git add .
+  183  git commit -m "fix slient mode"
+  184  git push -f  heroku master
+  185  git add .
+  186  git commit -m "fix slient mode"
+  187  git push -f  heroku master
+  188  git add .
+  189  git commit -m "fix slient mode"
+  190  git push -f  heroku master
+  191  git add .
+  192  git commit -m "fix slient mode"
+  193  git push -f  heroku master
+  194  git add .
+  195  git commit -m "print mode"
+  196  git push -f  heroku master
+  197  git add .
+  198  git commit -m "print mode"
+  199  git push -f  heroku master
+  200  git add .
+  201  git commit -m "print mode"
+  202  git push -f  heroku master
+  203  git add .
+  204  git commit -m "print mode"
+  205  git push -f  heroku master
+  206  git add .
+  207  git commit -m "print mode"
+  208  git push -f  heroku master
+  209  git add .
+  210  git commit -m "print mode"
+  211  git push -f  heroku master
+  212  git add .
+  213  git commit -m "print mode"
+  214  git push -f  heroku master
+  215  git add .
+  216  git commit -m "global mode"
+  217  git push -f  heroku master
+  218  git add .
+  219  git commit -m "global mode"
+  220  git push origin  master
+  221  git add .
+  222  git commit -m "forget"
+  223  git push  heroku master
+  224  git add .
+  225  git commit -m "forget"
+  226  git push  heroku master
+  227  git add .
+  228  git commit -m "forget update"
+  229  git push  heroku master
+  230  git add .
+  231  git commit -m "forget update"
+  232  git push  heroku master
+  233  git add .
+  234  git commit -m "forget update"
+  235  git push  heroku master
+  236  git add .
+  237  git commit -m "forget update"
+  238  git push  heroku master
+  239  git add .
+  240  git commit -m "forget update"
+  241  git push  heroku master
+  242  git add .
+  243  git commit -m "forget update"
+  244  git push  heroku master
+  245  git add .
+  246  git commit -m "forget update"
+  247  git push  heroku master
+  248  git add .
+  249  git commit -m "forget update"
+  250  git push  heroku master
+  251  git add .
+  252  git commit -m "forget update"
+  253  git push  heroku master
+  254  git add .
+  255  git commit -m "forget update"
+  256  git push  heroku master
+  257  git add .
+  258  git commit -m "forget update"
+  259  git push  heroku master
+  260  git add .
+  261  git commit -m "forget update"
+  262  git push  heroku master
+  263  git add .
+  264  git commit -m "forget update"
+  265  git push  heroku master
+  266  history
+  267  git add .
+  268  git commit -m "forget update"
+  269  git push  heroku master
+  270  ls
+  271  cd ./linebot_test
+  272  git add .
+  273  git commit -m "chino"
+  274  git push heroku master
+  275  git add .
+  276  git commit -m "chino"
+  277  git push heroku master
+  278  git add .
+  279  git commit -m "chino readme"
+  280  git push heroku master
+  281  git commit -m "chino readme"
+  282  git push origin  master
+  283  git add .
+  284  git commit -m "chino see pic"
+  285  git push origin  master
+  286  git push heroku master
+  287  git add .
+  288  git commit -m "chino see pic"
+  289  git push heroku master
+  290  git add .
+  291  git commit -m "chino see pic"
+  292  git push heroku master
+  293  git add .
+  294  git commit -m "chino see pic"
+  295  git push heroku master
+  296  git add .
+  297  git commit -m "chino see pic"
+  298  git push heroku master
+  299  git push origin  master
+  300  git add .
+  301  git commit -m "update leaserboard"
+  302  git push heroku master
+  303  git push origin  master
+  304* ls
+  305* cd ./lzbot
+  306* git init
+  307* git add .
+  308* git commit -m "lzbot"
+  309* git remote add herokulz https://git.heroku.com/lzbot.git
+  310* git push 
+  311* heroku login
+  312* git push herokulz master
+  313* git add .
+  314* git commit -m "lzbot"
+  315* git push herokulz master
+  316* git commit -m "lzbot"
+  317  git add .
+  318  git commit -m "lzbot"
+  319* git add .
+  320* git commit -m "lzbot"
+  321* git push herokulz master
+  322* history
+  323* git add .
+  324* git remote add github https://github.com/howarder3/lzbot.git
+  325* git push github master
+  326* git add .
+  327* git commit -m "readme"
+  328* git push github master
+  329* git push herokulz master
+  330* git add .
+  331* git commit -m "your pants"
+  332* git push herokulz master
+  333* git push github master
+  334  git add .
+  335  git commit -m "hr"
+  336* ls
+  337* cd ./lzbot
+  338* git add .
+  339* git commit -m "hr"
+  340* git push herokulz master
+  341* git add .
+  342* git commit -m "hr"
+  343* git push herokulz master
+  344* git add .
+  345* git commit -m "hr"
+  346* git push herokulz master
+  347* git add .
+  348* git commit -m "hr"
+  349* git push herokulz master
+  350* git add .
+  351* git commit -m "other"
+  352* git push herokulz master
+  353* git add .
+  354* git commit -m "other"
+  355* git add .
+  356* git commit -m "other"
+  357* git push herokulz master
+  358* git add .
+  359* git commit -m "other"
+  360* git add .
+  361* git commit -m "other"
+  362* git push herokulz master
+  363* git add .
+  364* git commit -m "other"
+  365  git add .
+  366  git commit -m "update"
+  367  git push herokulz master
+  368* git add .
+  369* git commit -m "update"
+  370* git push herokulz master
+  371  git push heroku master
+  372  git pull
+  373  git push heroku master
+  374* git add .
+  375* git commit -m "readme"
+  376* git push herokulz master
+  377  git add .
+  378  git commit -m "fix"
+  379  git push heroku master
+  380  git push origin master
+  381* git push github master
+  382  git add .
+  383  git commit -m "fix"
+  384  git push heroku master
+  385  git push origin master
+  386  git add .
+  387  git commit -m "fix"
+  388  git push heroku master
+  389* git add .
+  390* git commit -m "fix"
+  391* git push herokulz master
+  392  git add .
+  393  git commit -m "fix"
+  394  git push heroku master
+  395* git add .
+  396* git commit -m "fix"
+  397* git push herokulz master
+  398  git add .
+  399  git commit -m "fix"
+  400  git push heroku master
+  401  git add .
+  402  git commit -m "fix"
+  403  git push heroku master
+  404* git add .
+  405* git commit -m "fix"
+  406* git push herokulz master
+  407  git add .
+  408  git commit -m "fix"
+  409  git push heroku master
+  410* git add .
+  411* git commit -m "fix"
+  412* git push herokulz master
+  413* git push github master
+  414  git push origin master
+  415* git pull
+  416* git pull github
+  417* git push github master
+  418  git add .
+  419  git commit -m "fix"
+  420  git push heroku master
+  421* git add .
+  422* git commit -m "fix"
+  423* git push herokulz master
+  424  git add .
+  425  git commit -m "fix gmt"
+  426  git push heroku master
+  427* git add .
+  428* git commit -m "fix gmt"
+  429* git push herokulz master
+  430  git add .
+  431  git commit -m "fix gmt"
+  432* git add .
+  433* git commit -m "fix gmt"
+  434* git push herokulz master
+  435  git push heroku master
+  436  git add .
+  437  git commit -m "fix gmt"
+  438  git push heroku master
+  439  git add .
+  440  git commit -m "fix gmt"
+  441  git push heroku master
+  442  git add .
+  443  git commit -m "fix gmt"
+  444  git push heroku master
+  445  git commit -m "fix gmt"
+  446  git add .
+  447  git commit -m "fix gmt"
+  448  git push heroku master
+  449  git add .
+  450  git commit -m "fix gmt"
+  451  git push heroku master
+  452  git add .
+  453  git commit -m "fix gmt"
+  454  git add .
+  455  git commit -m "fix gmt"
+  456  git push heroku master
+  457  git add .
+  458  git commit -m "fix gmt"
+  459  git push heroku master
+  460  git add .
+  461  git commit -m "fix gmt"
+  462  git push heroku master
+  463  git add .
+  464  git commit -m "fix gmt"
+  465  git push heroku master
+  466  git add .
+  467  git commit -m "fix gmt"
+  468  git push heroku master
+  469  git add .
+  470  git commit -m "event progress"
+  471  git push heroku master
+  472  git add .
+  473  git commit -m "event progress"
+  474  git push heroku master
+  475  git add .
+  476  git commit -m "event progress"
+  477  git push heroku master
+  478  git add .
+  479  git commit -m "event progress"
+  480  git push heroku master
+  481  git add .
+  482  git commit -m "event progress"
+  483  git add .
+  484  git commit -m "event progress"
+  485  git push heroku master
+  486  git add .
+  487  git commit -m "event progress"
+  488  git push heroku master
+  489  git add .
+  490  git commit -m "event progress"
+  491  git push heroku master
+  492  git add .
+  493  git commit -m "event progress"
+  494  git push heroku master
+  495  git add .
+  496  git commit -m "event progress"
+  497  git push heroku master
+  498* git add .
+  499* git commit -m "event progress"
+  500* git push herokulz master
+  501* git add .
+  502* git commit -m "event progress"
+  503* git push herokulz master
+  504* git add .
+  505* git commit -m "event progress"
+  506* git push herokulz master
+  507  git push origin  master
+  508  git branch -v
+  509  git branch april
+  510  git branch -v
+  511  git checlout april
+  512  git checkout april
+  513  git branch -v
+  514  git add .
+  515  git commit -m "test cmd matrix""\n\n\ntest\n?\n"
+  516  git commit -m "test cmd matrix"
+  517  git add .
+  518  git commit -m "test cmd matrix"
+  519  git push herokulz master
+  520  git push heroku master
+  521  git push heroku april
+  522  git merge
+  523  git push -u heroku april
+  524  git branch -v
+  525* git add .
+  526* git commit -m "test cmd matrix"
+  527  git add .
+  528  git commit -m "test cmd matrix"
+  529  git push heroku april
+  530  git checkout master
+  531  git merge april
+  532  git push heroku master
+  533  git add .
+  534  git commit -m "test cmd matrix"
+  535  git push heroku master
+  536  git add .
+  537  git commit -m "test cmd matrix"
+  538  git push heroku master
+  539  git add .
+  540  git commit -m "test cmd matrix"

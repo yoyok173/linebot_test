@@ -43,6 +43,30 @@ https://devcenter.heroku.com/articles/heroku-cli
 111  git push -f heroku master
 ```
 
+> git branch , merge
+
+```javascript
+509  git branch april
+510  git branch -v
+512  git checkout april
+513  git branch -v
+514  git add .
+516  git commit -m "test cmd matrix"
+520  git push heroku master
+521  git push heroku april
+522  git merge
+523  git push -u heroku april
+524  git branch -v
+525* git add .
+526* git commit -m "test cmd matrix"
+527  git add .
+528  git commit -m "test cmd matrix"
+529  git push heroku april
+530  git checkout master
+531  git merge april
+532  git push heroku master
+```
+
 > google sheet API 參考文件
 
 spreadsheetId/sheetId用法 與 取Sheet與範圍
