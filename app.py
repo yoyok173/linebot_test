@@ -7,6 +7,7 @@ import datetime
 import random
 import codecs
 import sys
+import pytz
 
 from apiclient.discovery import build
 from httplib2 import Http
@@ -44,7 +45,7 @@ SC_nameList = [
 ]
 
 
-
+time_zone = pytz.timezone('Asia/Taipei')
 app = Flask(__name__)
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -310,7 +311,7 @@ def leaderboard(key):
 	for i in range(0,10):
 		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
 	# print(score_str)
-	score_str += str(datetime.datetime.utcnow() + datetime.timedelta(hours=+8))
+	score_str += str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone))
 	# score_str += str(time.strftime("%c"))
 	return score_str
 
@@ -578,9 +579,9 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	global mode 
-	print("now: "+str(today))
+	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone)))
 	print("mode: "+str(mode))
-	print(event)		
+	print("event": +event)		
 	user_message = event.message.text
 	
 	if(user_message== "test"):
