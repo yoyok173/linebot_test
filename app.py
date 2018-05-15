@@ -581,7 +581,7 @@ def handle_message(event):
 	global mode 
 	print("now: "+str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=timezone)))
 	print("mode: "+str(mode))
-	print("event": +event)		
+	print("event: " +str(event))		
 	user_message = event.message.text
 	
 	if(user_message== "test"):
