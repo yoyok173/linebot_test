@@ -54,7 +54,6 @@ handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
 auth_json_path = "./auth.json"
 
 now = datetime.datetime.now()
-today = time.strftime("%c")
 mode = 1
 
 # game SSR Prob
@@ -310,7 +309,7 @@ def leaderboard(key):
 	for i in range(0,10):
 		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
 	# print(score_str)
-	score_str += str(datetime.datetime.strptime('2015-07-03 20:25', '%Y-%m-%d %H:%M').replace(tzinfo=pytz.timezone('Asia/Taipei')))
+	score_str += str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 	# score_str += str(time.strftime("%c"))
 	return score_str
 
