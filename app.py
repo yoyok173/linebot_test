@@ -325,8 +325,8 @@ def event_progress():
 	# Call the Sheets API
 	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 	RANGE_NAME = 'E15'
-	result = str(service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute())
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
 	if not values:
 		print('No data found.')
