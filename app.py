@@ -132,7 +132,7 @@ gss_client = auth_gss_client(auth_json_path, gss_scopes)
 def update_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
 	wks = gss_client.open_by_key(key)
-	sheet = wks.sheet1
+	sheet = wks.worksheet('dictionary')
 	sheet.insert_row([input , output,"str"], 2)
 	list_key.append(input)
 	list_response.append(output)
@@ -141,7 +141,7 @@ def update_sheet_key(gss_client, key, input , output):
 def update_pic_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
 	wks = gss_client.open_by_key(key)
-	sheet = wks.sheet1
+	sheet = wks.worksheet('dictionary')
 	sheet.insert_row([input , output,"pic"], 2)
 	list_key.append(input)
 	list_response.append(output)
