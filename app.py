@@ -344,23 +344,23 @@ def room_get():
 
 def room_update(user_message):
 	global my_database_sheet_ID
-	room_number = user_message.lstrip("room1 ")
-	print("get new number : "+room_number)
+	room_number = user_message.split(" ",1)
+	print("get new number : "+room_number[1])
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
-	sheet.update_acell('A1', room_number)
-	return "當前房號已更新為："+room_number	
+	sheet.update_acell('A1', room_number[1])
+	return "當前房號已更新為："+room_number[1]	
 
 def room_update2(user_message):
 	global my_database_sheet_ID
-	room_number = user_message.lstrip("room2 ")
-	print("get new number : "+room_number)
+	room_number = user_message.split(" ",1)
+	print("get new number : "+room_number[1])
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
-	sheet.update_acell('A2', room_number)
-	return "當前房號2已更新為："+room_number	
+	sheet.update_acell('A2', room_number[1])
+	return "當前房號2已更新為："+room_number[1]	
 '''
 def forget(user_message):
 	global dictionary_sheet
