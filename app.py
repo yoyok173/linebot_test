@@ -369,21 +369,7 @@ def switch_off():
 
 
 def room_get():
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'room!A1:A1'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	values = result.get('values', [])
+	values = get_value_from_google_sheet('room!A1:A1')
 	if not values:
 		print('No data found.')
 	else:
@@ -398,8 +384,8 @@ def room_update(user_message):
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	wks = gss_client.open_by_key(SPREADSHEET_ID)
-	sheet = wks.sheet5
-	sheet.update_acell('A1', 'test')
+	sheet = wks.room
+	sheet.update_acell('A1', room_number)
 	return "當前房號已更新為："+room_number	
 
 '''
