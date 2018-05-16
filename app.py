@@ -413,7 +413,7 @@ def forget(user_message):
 			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
 '''
 
-
+'''
 def search_cmd(user_message):
 	operations_str = [
 	[["!閉嘴","!安靜","!你閉嘴","!你安靜"],switch_off()],
@@ -443,15 +443,61 @@ def search_cmd(user_message):
 			return TextSendMessage(text= operations_str[i][1])
 	print("key not found in cmd box !")
 	return "not found in cmd list"
-
+'''
 
 def active_mode(user_message,event):
+	'''
 	print("start atcive mode key word serach...")
 	global mode
 	message_get = search_cmd(user_message.lower())
 	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
-	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
+	'''
+	message = "default"
+	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+  		message = switch_off()
+  	elif(user_message in ["!說話"]):
+  		message = switch_still_on()
+  	elif(user_message in ["!使用說明書","!help","!說明書"]):
+  		message = readme()
+  	elif(user_message in ["即時排名","即時戰況",'排名','分數','戰況','score']):
+  		message = leaderboard(2)
+  	elif(user_message in ["%數","%"]):
+  		message = leaderboard(3)
+  	elif(user_message in ['分數差']):
+  		message = leaderboard(5)
+  	elif(user_message in ['場數差']):
+  		message = leaderboard(6)
+  	elif(user_message in ["追擊時間","脫褲子","脫內褲","內褲","褲子"]):
+  		message = leaderboard(7)
+  	elif(user_message in ['時速']):
+  		message = leaderboard(8)
+  	elif(user_message in ['場速']):
+  		message = leaderboard(9)
+  	elif(user_message in ["活動進度",'進度']):
+  		message = event_progress()
+  	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
+  		message = get_food_sheet(1)
+  	elif(user_message.lower()  in ["!抽飲料","!飲料",'!drink']):
+  		message = get_food_sheet(2)
+  	elif(user_message.lower()  in ["!cgss單抽"]):
+  		message = "【CGSS 單抽結果】\n" + gacha_CGSS()
+  	elif(user_message.lower()  in ["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]):
+  		message = "【CGSS 10連結果】\n" + ten_gacha_CGSS()
+	elif(user_message.lower()  in ["!bgd單抽","!gbp單抽"]):
+  		message = "【BGD 單抽結果】\n" + gacha_BGD()
+	elif(user_message.lower()  in ["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]):
+  		message = "【BGD 10連結果】\n" + ten_gacha_BGD()
+	elif(user_message.lower()  in ["!sc單抽"]):
+  		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
+	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
+		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
+ 	
+ 	if str(message) != "default" :
+ 		line_bot_api.reply_message(event.reply_token,message)
+ 		return
+	
+	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == "母湯電影版"):		
@@ -493,7 +539,7 @@ def active_mode(user_message,event):
 	elif(user_message.find("!給智乃看圖") == 0):
 		teach_result = teach_pic(user_message,1)
 		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		line_bot_api.reply_message(event.reply_token,message)åå
 	# elif(user_message.find("!忘記") == 0):
 	# 	forget_result = forget(user_message)
 	# 	message = TextSendMessage(text=forget_result)
@@ -505,7 +551,7 @@ def active_mode(user_message,event):
 			line_bot_api.reply_message(event.reply_token,key_message)
 	
 # 監聽所有來自 /callback 的 Post Request
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods=['POST'])å
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
