@@ -312,7 +312,7 @@ def leaderboard(key):
 	# print(score_str)
 	score_str += str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y/%m/%d %H:%M:%S"))
 	# score_str += str(time.strftime("%c"))
-	return str(score_str)
+	return score_str
 
 def event_progress():
 	# Setup the Sheets API
@@ -494,8 +494,8 @@ def active_mode(user_message,event):
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	
-	if str(message) != "default" :
-		line_bot_api.reply_message(event.reply_token,str(message))
+	if message != "default" :
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 		return
 	print ("key not found in cmd box !")
 
