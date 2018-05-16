@@ -492,11 +492,11 @@ def active_mode(user_message,event):
 	elif(user_message.lower()  in ["!sc單抽"]):
 			message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
-		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
-		
- 	if str(message) != "default" :
- 		line_bot_api.reply_message(event.reply_token,message)
- 		return
+	message = "【SC 10連結果】\n" + multi_gacha_SC(10)
+	
+	if str(message) != "default" :
+		line_bot_api.reply_message(event.reply_token,message)
+		return
 	print ("key not found in cmd box !")
 
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
