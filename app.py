@@ -58,7 +58,10 @@ SC_nameList = [
 '杜野凛世','園田智代子','西城樹里','有栖川夏葉'
 ]
 
-def get_value_from_google_sheet(sheet_range):
+score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
+my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+
+def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -69,13 +72,11 @@ def get_value_from_google_sheet(sheet_range):
 	service = build('sheets', 'v4', http=creds.authorize(Http()))
 
 	# Call the Sheets API
-	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = sheet_range
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	return result.get('values', [])
 
-values = get_value_from_google_sheet('A2:C1000')
+values = get_value_from_google_sheet(my_database_sheet_ID,'A2:C1000')
 
 if not values:
 	print('No data found.')
@@ -89,7 +90,8 @@ else:
 		list_type.append(row[2])
 
 def get_score_sheet(list_top,list_name,list_target,target):
-	values = get_value_from_google_sheet('A2:M11')
+	global score_sheet_ID
+	values = get_value_from_google_sheet(score_sheet_ID,'A2:M11')
 	if not values:
 		print('No data found.')
 	else:
@@ -146,10 +148,11 @@ def update_pic_sheet_key(gss_client, key, input , output):
 	list_type.append("pic")
 
 def get_food_sheet(key):
+	global my_database_sheet_ID
 	if key == 1:
-		values = get_value_from_google_sheet('food!A2:A')
+		values = get_value_from_google_sheet(my_database_sheet_ID,'food!A2:A')
 	elif key == 2:
-		values = get_value_from_google_sheet('food!B2:B')
+		values = get_value_from_google_sheet(my_database_sheet_ID,'food!B2:B')
 	if not values:
 		print('No data found.')
 	else:
@@ -292,7 +295,8 @@ def leaderboard(key):
 	return score_str
 
 def event_progress():
-	values = get_value_from_google_sheet('E15')
+	global score_sheet_ID
+	values = get_value_from_google_sheet(score_sheet_ID,'E15')
 	if not values:
 		print('No data found.')
 	else:
@@ -326,7 +330,8 @@ def switch_off():
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
 def room_get():
-	values = get_value_from_google_sheet('room!A1:A')
+	global my_database_sheet_ID
+	values = get_value_from_google_sheet(my_database_sheet_ID,'room!A1:A')
 	if not values:
 		print('No data found.')
 	else:
