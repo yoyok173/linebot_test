@@ -485,7 +485,7 @@ def other_type_message(user_message):
 			actions=[
 				PostbackTemplateAction(
 					label='機會',
-					text=answer[random_result],
+					text=answer[random_result]
 				),
 				MessageTemplateAction(
 					label='命運',
