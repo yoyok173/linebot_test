@@ -160,24 +160,10 @@ def update_pic_sheet_key(gss_client, key, input , output):
 	list_type.append("pic")
 
 def get_food_sheet(key):
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	if key == 1:
-		RANGE_NAME = 'food!A2:A'
+		values = get_value_from_google_sheet('food!A2:A')
 	elif key == 2:
-		RANGE_NAME = 'food!B2:B'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	values = result.get('values', [])
+		values = get_value_from_google_sheet('food!B2:B')
 	if not values:
 		print('No data found.')
 	else:
@@ -320,21 +306,7 @@ def leaderboard(key):
 	return score_str
 
 def event_progress():
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'E15'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	values = result.get('values', [])
+	values = get_value_from_google_sheet('E15')
 	if not values:
 		print('No data found.')
 	else:
@@ -384,7 +356,7 @@ def room_update(user_message):
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	wks = gss_client.open_by_key(SPREADSHEET_ID)
-	sheet = wks.room
+	sheet = wks.worksheet('room')
 	sheet.update_acell('A1', room_number)
 	return "當前房號已更新為："+room_number	
 
