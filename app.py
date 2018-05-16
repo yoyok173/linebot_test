@@ -515,26 +515,50 @@ def other_type_message(user_message):
 				]
 			)
 		)
-	elif(user_message == "好餓2"):
-		# random_result = random.randint(0,1)
-		# answer = ["幹你娘","恭喜你獲得了空虛！"]
+	elif(user_message == "抽抽"):
 		message = TemplateSendMessage(
-			alt_text='【好餓好餓】',
-			template=ConfirmTemplate(
-				text='【食物、飲料請選擇？】',
-				actions=[
-				PostbackTemplateAction(
-					label='食物',
-					text='!抽食物',
-					data='action=buy&itemid=1'
+			alt_text='【請問你要哪一個抽抽池呢？】',
+			template=CarouselTemplate(
+				columns=[
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/yjBxFo1.jpg',
+						title='ガルパ',
+						text='十抽有保底辣！',
+						actions=[
+							PostbackTemplateAction(
+								label='1回ガチャ',
+								text='!bgd單抽',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='10回ガチャ',
+								text='!bgd10連'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
 					),
-				MessageTemplateAction(
-					label='飲料',
-					text='！抽飲料'
-					),
-				MessageTemplateAction(
-					label='飲料',
-					text='！抽飲料'
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/qpL7l3s.png',
+						title='デレステ',
+						text='十抽有保底辣！',
+						actions=[
+							PostbackTemplateAction(
+								label='1回ガチャ',
+								text='!cgss單抽',
+								data='action=buy&itemid=2'
+							),
+							MessageTemplateAction(
+								label='10回ガチャ',
+								text='!cgss10連'
+							),
+							# URITemplateAction(
+							# label='uri2',
+							# uri='http://example.com/2'
+							# )
+						]
 					)
 				]
 			)
