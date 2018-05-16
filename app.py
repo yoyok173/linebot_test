@@ -475,6 +475,26 @@ def other_type_message(user_message):
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
+	elif(user_message == "!開關"):
+		# random_result = random.randint(0,1)
+		# answer = ["幹你娘","恭喜你獲得了空虛！"]
+		message = TemplateSendMessage(
+			alt_text='【請問您今天要來點靜音嗎？】',
+			template=ConfirmTemplate(
+				text='【請問您今天要來點靜音嗎？】',
+				actions=[
+				PostbackTemplateAction(
+					label='請靜音',
+					text='!閉嘴',
+					data='action=buy&itemid=1'
+					),
+				MessageTemplateAction(
+					label='繼續說話',
+					text='!說話'
+					)
+				]
+			)
+		)
 	elif(user_message == "機會命運"):
 		# random_result = random.randint(0,1)
 		# answer = ["幹你娘","恭喜你獲得了空虛！"]
@@ -515,15 +535,15 @@ def other_type_message(user_message):
 				]
 			)
 		)
-	elif(user_message == "抽抽"):
+	elif(user_message == "!抽抽"):
 		message = TemplateSendMessage(
 			alt_text='【請問你要哪一個抽抽池呢？】',
 			template=CarouselTemplate(
 				columns=[
 					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/yjBxFo1.jpg',
+						thumbnail_image_url='https://i.imgur.com/jaLz5Hk.jpg',
 						title='ガルパ',
-						text='十抽有保底辣！',
+						text='BanK Dream! Girls Bank Party!',
 						actions=[
 							PostbackTemplateAction(
 								label='1回ガチャ',
@@ -543,7 +563,7 @@ def other_type_message(user_message):
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/qpL7l3s.png',
 						title='デレステ',
-						text='十抽有保底辣！',
+						text='我什麼都沒有Q_Q',
 						actions=[
 							PostbackTemplateAction(
 								label='1回ガチャ',
