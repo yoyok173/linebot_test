@@ -495,10 +495,54 @@ def other_type_message(user_message):
 				]
 			)
 		)
+	elif(user_message == "好餓"):
+		# random_result = random.randint(0,1)
+		# answer = ["幹你娘","恭喜你獲得了空虛！"]
+		message = TemplateSendMessage(
+			alt_text='【好餓好餓】',
+			template=ConfirmTemplate(
+				text='【食物、飲料請選擇？】',
+				actions=[
+				PostbackTemplateAction(
+					label='食物',
+					text='!抽食物',
+					data='action=buy&itemid=1'
+					),
+				MessageTemplateAction(
+					label='飲料',
+					text='！抽飲料'
+					)
+				]
+			)
+		)
+	elif(user_message == "好餓"):
+		# random_result = random.randint(0,1)
+		# answer = ["幹你娘","恭喜你獲得了空虛！"]
+		message = TemplateSendMessage(
+			alt_text='【好餓好餓】',
+			template=ConfirmTemplate(
+				text='【食物、飲料請選擇？】',
+				actions=[
+				PostbackTemplateAction(
+					label='食物',
+					text='!抽食物',
+					data='action=buy&itemid=1'
+					),
+				MessageTemplateAction(
+					label='飲料',
+					text='！抽飲料'
+					)
+				MessageTemplateAction(
+					label='飲料',
+					text='！抽飲料'
+					)
+				]
+			)
+		)
 	else:
 		print ("start finding library")
 		message = get_key_response(user_message)
-		
+
 	if message != 0:
 		return message
 	else:
