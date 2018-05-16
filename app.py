@@ -361,6 +361,42 @@ def switch_off():
 	global mode	
 	mode = 0
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
+
+
+def get_room():
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	RANGE_NAME = 'room!A1'
+	dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:	
+			return "當前房號為： "+row[0]
+
+
+def room_update(user_message):
+	room_number = user_message.lstrip("更新房號 ")
+	print(split_result)
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	wks = gss_client.open_by_key(SPREADSHEET_ID)
+	sheet = wks.sheet5
+	sheet.update_acell('A1', 'test')
+	return "當前房號已更新為："+room_number	
+
 '''
 def forget(user_message):
 	global dictionary_sheet
@@ -477,6 +513,10 @@ def active_mode(user_message,event):
 		message = leaderboard(9)
 	elif(user_message in ["活動進度",'進度']):
 		message = event_progress()
+	elif(user_message in ["房號"])
+		message = room_get()
+	elif(user_message in ["更新房號"])
+		message = room_update(user_message)
 	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
 		message = get_food_sheet(1)
 	elif(user_message.lower()  in ["!抽飲料","!飲料",'!drink']):
