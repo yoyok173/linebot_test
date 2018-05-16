@@ -108,9 +108,7 @@ def get_score_sheet(list_top,list_name,list_target,target):
 			list_target.append(row[target])
 		
 def get_key_response(key):
-	global list_key
-	global list_response
-	global list_type
+	global list_top,list_name,list_target
 	if key in list_key:
 		# list_response = list_key.index(key)
 		list_response_index = [i for i,v in enumerate(list_key) if v==key]
@@ -137,6 +135,7 @@ gss_scopes = ['https://spreadsheets.google.com/feeds']
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
+	global list_top,list_name,list_target
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"str"], 2)
@@ -145,6 +144,7 @@ def update_sheet_key(gss_client, key, input , output):
 	list_target.append("str")
 	
 def update_pic_sheet_key(gss_client, key, input , output):
+	global list_top,list_name,list_target
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"pic"], 2)
