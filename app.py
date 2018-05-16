@@ -499,6 +499,7 @@ def active_mode(user_message,event):
 	# 	message = TextSendMessage(text=forget_result)
 	# 	line_bot_api.reply_message(event.reply_token,message)
 	else:
+		print "start finding library"
 		key_message = get_key_response(user_message)
 		if key_message != 0:
 			line_bot_api.reply_message(event.reply_token,key_message)
