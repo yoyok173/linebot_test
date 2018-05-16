@@ -55,7 +55,7 @@ service = build('sheets', 'v4', http=creds.authorize(Http()))
 
 # Call the Sheets API
 SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-RANGE_NAME = 'Sheet1!A2:C1000'
+RANGE_NAME = 'Sheet1!A2:C100'
 dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,range=RANGE_NAME).execute()
 values = dictionary_sheet.get('values', [])
 if not values:
