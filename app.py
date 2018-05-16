@@ -181,7 +181,7 @@ def get_food_sheet(key):
 			list_food.append(row[0])
 			
 		random_food_index = random.randint(0,len(list_food)-1)
-		return list_food[random_food_index]
+		return str(list_food[random_food_index])
 
 def gacha_BGD():
 	random_number = random.randint(0,999)
@@ -312,7 +312,7 @@ def leaderboard(key):
 	# print(score_str)
 	score_str += str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y/%m/%d %H:%M:%S"))
 	# score_str += str(time.strftime("%c"))
-	return score_str
+	return str(score_str)
 
 def event_progress():
 	# Setup the Sheets API
@@ -486,11 +486,11 @@ def active_mode(user_message,event):
 	elif(user_message.lower()  in ["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]):
 		message = "【CGSS 10連結果】\n" + ten_gacha_CGSS()
 	elif(user_message.lower()  in ["!bgd單抽","!gbp單抽"]):
-			message = "【BGD 單抽結果】\n" + gacha_BGD()
+		message = "【BGD 單抽結果】\n" + gacha_BGD()
 	elif(user_message.lower()  in ["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]):
-			message = "【BGD 10連結果】\n" + ten_gacha_BGD()
+		message = "【BGD 10連結果】\n" + ten_gacha_BGD()
 	elif(user_message.lower()  in ["!sc單抽"]):
-			message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
+		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	
