@@ -510,12 +510,12 @@ def other_type_message(user_message):
 					),
 				MessageTemplateAction(
 					label='飲料',
-					text='！抽飲料'
+					text='!抽飲料'
 					)
 				]
 			)
 		)
-	elif(user_message == "好餓"):
+	elif(user_message == "好餓2"):
 		# random_result = random.randint(0,1)
 		# answer = ["幹你娘","恭喜你獲得了空虛！"]
 		message = TemplateSendMessage(
