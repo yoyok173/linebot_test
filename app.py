@@ -251,6 +251,7 @@ def multi_gacha_SC(number):
 	return sc_gacha_result
 
 def teach(user_message,teachmode):
+	global my_database_sheet_ID
 	if teachmode == 0:
 		reply_message = user_message.lstrip("!教育 ")
 	elif teachmode == 1:
@@ -259,8 +260,7 @@ def teach(user_message,teachmode):
 	if(len(split_result) <= 1):
 		return "學習字詞失敗 > <"
 	else:
-		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
-		update_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
+		update_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
 		if teachmode == 0:
 			success_learn ="已學習字詞 「"+split_result[0]+"」 !!!"
 		elif teachmode == 1:
@@ -268,6 +268,7 @@ def teach(user_message,teachmode):
 		return success_learn
 
 def teach_pic(user_message,key):
+	global my_database_sheet_ID
 	if key == 0:
 		reply_message = user_message.lstrip("!智乃看圖片 ")
 	elif key == 1:
@@ -276,8 +277,7 @@ def teach_pic(user_message,key):
 	if(len(split_result) <= 1):
 		return "你給我看這什麼東西????"
 	else:
-		spreadsheet_key = "1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk"
-		update_pic_sheet_key(gss_client,spreadsheet_key,split_result[0],split_result[1])
+		update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
 		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
 
 def leaderboard(key):
@@ -339,12 +339,11 @@ def room_get():
 			return "當前房號為： "+row[0]
 
 def room_update(user_message):
+	global my_database_sheet_ID
 	room_number = user_message.lstrip("更新房號 ")
 	print("get new number : "+room_number)
 
-	# Call the Sheets API
-	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	wks = gss_client.open_by_key(SPREADSHEET_ID)
+	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
 	sheet.update_acell('A1', room_number)
 	return "當前房號已更新為："+room_number	
