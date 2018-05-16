@@ -441,16 +441,16 @@ def search_cmd(user_message):
 	for i in range(len(operations_str)):
 		if user_message in operations_str[i][0]:
 			return TextSendMessage(text= operations_str[i][1])
-
+	print("cmd box not found!")
 	return "not found in cmd list"
 
 
 def active_mode(user_message,event):
+	print("start atcive mode key word serach")
 	global mode
 	message_get = search_cmd(user_message.lower())
 	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
-
 	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
 		line_bot_api.reply_message(event.reply_token,message)
