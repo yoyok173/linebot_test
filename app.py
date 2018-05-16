@@ -273,6 +273,8 @@ def teach_pic(user_message,key):
 		reply_message = user_message.lstrip("!智乃看圖片 ")
 	elif key == 1:
 		reply_message = user_message.lstrip("!給智乃看圖 ") 
+	elif key == 2:
+		reply_message = user_message.lstrip("!智乃看圖圖 ") 	
 	split_result = reply_message.split(' ', 1 )
 	if(len(split_result) <= 1):
 		return "你給我看這什麼東西????"
@@ -529,8 +531,13 @@ def active_mode(user_message,event):
 	elif(user_message.find("!智乃看圖片") == 0):
 		teach_result = teach_pic(user_message,0)
 		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message.find("!給智乃看圖") == 0):
 		teach_result = teach_pic(user_message,1)
+		message = TextSendMessage(text=teach_result)
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message.find("!智乃看圖圖") == 0):
+		teach_result = teach_pic(user_message,2)
 		message = TextSendMessage(text=teach_result)
 		line_bot_api.reply_message(event.reply_token,message)
 	# elif(user_message.find("!忘記") == 0):
