@@ -451,15 +451,29 @@ def search_cmd(user_message):
 	return "not found in cmd list"
 '''
 
-def active_mode(user_message,event):
-	'''
-	print("start atcive mode key word serach...")
-	global mode
-	message_get = search_cmd(user_message.lower())
-	if str(message_get) != "not found in cmd list" :
-		line_bot_api.reply_message(event.reply_token,message_get)
-	'''
-	print ("start seraching key in cmd box ...")
+def other_type_message(user_message):
+	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
+		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
+	elif(user_message == "母湯電影版"):		
+		message = VideoSendMessage(
+		original_content_url='https://i.imgur.com/Upmorh0.mp4',
+		preview_image_url='https://i.imgur.com/Upmorh0.gif'
+		)
+	# ------ below are find function ------	 
+	elif(user_message.find("母湯") >= 0):
+		message = ImageSendMessage(
+			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
+			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
+		)
+	else:
+		print ("start finding library")
+		message = get_key_response(user_message)
+		if message != 0:
+			return message
+		else:
+			return 0
+
+def text_message(user_message):
 	message = "default"
 	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
 		message = switch_off()
@@ -509,69 +523,44 @@ def active_mode(user_message,event):
 		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
-	
-	if message != "default" :
-		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
-		return
-	print ("key not found in cmd box !")
-
-	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
-		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "母湯電影版"):		
-		message = VideoSendMessage(
-		original_content_url='https://i.imgur.com/Upmorh0.mp4',
-		preview_image_url='https://i.imgur.com/Upmorh0.gif'
-		)
-		line_bot_api.reply_message(event.reply_token, message)
-
 	# ------ below are find function ------	 
-	elif(user_message.find("母湯") >= 0):
-		message = ImageSendMessage(
-			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
-			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
-		)
-		line_bot_api.reply_message(event.reply_token, message)
 	elif(user_message.find("!機率") == 0):
-		probability = random.randint(0,101)
-		reply_message = user_message.lstrip("!機率 ")
-		reply_message = "嗯... 我覺得 "+reply_message + " 的機率是 "+ str(probability) + " % !!!"
-		message = TextSendMessage(text=reply_message)
-		line_bot_api.reply_message(event.reply_token,message)
+		reply_message = user_message.split(" ",1)
+		message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
 	elif(user_message.find("!抽數字") == 0):
-		reply_message = user_message.lstrip("!抽數字 ")
-		random_number = random.randint(1,int(reply_message))
-		message = TextSendMessage(text=random_number)
-		line_bot_api.reply_message(event.reply_token,message)		
+		reply_message = user_message.split(" ",1)
+		message = random.randint(1,int(reply_message[1]))
 	elif(user_message.find("!教育") == 0):
-		teach_result = teach(user_message,0)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		message = teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
-		teach_result = teach(user_message,1)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		message = teach(user_message,1)
 	elif(user_message.find("!智乃看圖片") == 0):
-		teach_result = teach_pic(user_message,0)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		message = teach_pic(user_message,0)
 	elif(user_message.find("!給智乃看圖") == 0):
-		teach_result = teach_pic(user_message,1)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		message = teach_pic(user_message,1)
 	elif(user_message.find("!智乃看圖圖") == 0):
-		teach_result = teach_pic(user_message,2)
-		message = TextSendMessage(text=teach_result)
-		line_bot_api.reply_message(event.reply_token,message)
+		message = teach_pic(user_message,2)
 	# elif(user_message.find("!忘記") == 0):
 	# 	forget_result = forget(user_message)
 	# 	message = TextSendMessage(text=forget_result)
 	# 	line_bot_api.reply_message(event.reply_token,message)
+
+	if message != "default" :
+		return TextSendMessage(text=message)
 	else:
-		print ("start finding library")
-		key_message = get_key_response(user_message)
-		if key_message != 0:
-			line_bot_api.reply_message(event.reply_token,key_message)
+		return other_type_message(user_message)
+
+def active_mode(user_message,event):
+	'''
+	print("start atcive mode key word serach...")
+	global mode
+	message_get = search_cmd(user_message.lower())
+	if str(message_get) != "not found in cmd list" :
+		line_bot_api.reply_message(event.reply_token,message_get)
+	'''
+	message = text_message(user_message)
+	if message != 0:
+		line_bot_api.reply_message(event.reply_token,message)
 	
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
