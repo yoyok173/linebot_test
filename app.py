@@ -137,9 +137,9 @@ gss_scopes = ['https://spreadsheets.google.com/feeds']
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
-	global list_key
-	global list_response
-	global list_type
+	global list_top
+	global list_name
+	global list_target
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"str"], 2)
@@ -148,9 +148,9 @@ def update_sheet_key(gss_client, key, input , output):
 	list_target.append("str")
 	
 def update_pic_sheet_key(gss_client, key, input , output):
-	global list_key
-	global list_response
-	global list_type
+	global list_top
+	global list_name
+	global list_target
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"pic"], 2)
