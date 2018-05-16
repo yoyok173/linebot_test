@@ -486,7 +486,7 @@ def other_type_message(user_message):
 				PostbackTemplateAction(
 					label='四月',
 					text='四月',
-					# data='action=buy&itemid=1'
+					data='action=buy&itemid=1'
 					),
 				MessageTemplateAction(
 					label='智乃',
