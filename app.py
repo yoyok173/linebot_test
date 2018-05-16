@@ -333,16 +333,18 @@ def switch_off():
 
 def room_get():
 	global my_database_sheet_ID
+	list_room = []
 	values = get_value_from_google_sheet(my_database_sheet_ID,'room!A1:A')
 	if not values:
 		print('No data found.')
 	else:
 		for row in values:	
-			return "當前房號為： "+row[0]
+			list_room.append(row[0])
+		return "當前房號1為： "+list_room[0]+"\n當前房號2為： "+list_room[1]
 
 def room_update(user_message):
 	global my_database_sheet_ID
-	room_number = user_message.lstrip("更新房號 ")
+	room_number = user_message.lstrip("room1 ")
 	print("get new number : "+room_number)
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
@@ -350,6 +352,15 @@ def room_update(user_message):
 	sheet.update_acell('A1', room_number)
 	return "當前房號已更新為："+room_number	
 
+def room_update2(user_message):
+	global my_database_sheet_ID
+	room_number = user_message.lstrip("room2 ")
+	print("get new number : "+room_number)
+
+	wks = gss_client.open_by_key(my_database_sheet_ID)
+	sheet = wks.worksheet('room')
+	sheet.update_acell('A2', room_number)
+	return "當前房號2已更新為："+room_number	
 '''
 def forget(user_message):
 	global dictionary_sheet
@@ -466,10 +477,12 @@ def active_mode(user_message,event):
 		message = leaderboard(9)
 	elif(user_message in ["活動進度",'進度']):
 		message = event_progress()
-	elif(user_message in ["房號"]):
+	elif(user_message in ["房號","room"]):
 		message = room_get()
-	elif(user_message.find("更新房號") == 0):
+	elif(user_message.find("room1") == 0):
 		message = room_update(user_message)
+	elif(user_message.find("room2") == 0):
+		message = room_update2(user_message)
 	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
 		message = get_food_sheet(1)
 	elif(user_message.lower()  in ["!抽飲料","!飲料",'!drink']):
