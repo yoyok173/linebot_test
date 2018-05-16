@@ -76,7 +76,7 @@ def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 												 range=RANGE_NAME).execute()
 	return result.get('values', [])
 
-values = get_value_from_google_sheet(my_database_sheet_ID,'A2:C1000')
+values = get_value_from_google_sheet(my_database_sheet_ID,'dictionary!A2:C1000')
 
 list_key = []
 list_response = []
