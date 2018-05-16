@@ -44,31 +44,6 @@ SC_SR_P_prob = 60 # SC Produce idol SR_probability
 SC_SR_S_prob = 100 # SC Support idol SR_probability
 SC_R_R_prob = 290 # SC Support idol R_probability
 
-# Setup the Sheets API
-SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-store = file.Storage('credentials.json')
-creds = store.get()
-if not creds or creds.invalid:
-	flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-	creds = tools.run_flow(flow, store)
-service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-# Call the Sheets API
-SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-RANGE_NAME = 'Sheet1!A2:C1000'
-dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,range=RANGE_NAME).execute()
-values = dictionary_sheet.get('values', [])
-if not values:
-	print('No data found.')
-else:
-	list_key = []
-	list_response = []
-	list_type = []
-	for row in values:	
-		list_key.append(row[0])
-		list_response.append(row[1])
-		list_type.append(row[2])
-
 BGD_namelist = [
 '牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
 '上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ',
@@ -100,7 +75,18 @@ def get_value_from_google_sheet(sheet_range):
 												 range=RANGE_NAME).execute()
 	return result.get('values', [])
 
-	pass
+values = get_value_from_google_sheet('Sheet1!A2:C1000')
+
+if not values:
+	print('No data found.')
+else:
+	list_key = []
+	list_response = []
+	list_type = []
+	for row in values:	
+		list_key.append(row[0])
+		list_response.append(row[1])
+		list_type.append(row[2])
 
 def get_score_sheet(list_top,list_name,list_target,target):
 	values = get_value_from_google_sheet('A2:M11')
@@ -340,7 +326,7 @@ def switch_off():
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
 def room_get():
-	values = get_value_from_google_sheet('room!A1:A2')
+	values = get_value_from_google_sheet('room!A1:A')
 	if not values:
 		print('No data found.')
 	else:
