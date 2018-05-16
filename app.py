@@ -339,15 +339,13 @@ def switch_off():
 	mode = 0
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
 
-
 def room_get():
-	values = get_value_from_google_sheet('room!A1')
+	values = get_value_from_google_sheet('room!A1:A2')
 	if not values:
 		print('No data found.')
 	else:
 		for row in values:	
 			return "當前房號為： "+row[0]
-
 
 def room_update(user_message):
 	room_number = user_message.lstrip("更新房號 ")
@@ -602,27 +600,3 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
-#push message to one user
-# line_bot_api.push_message(user_id, 
-    # TextSendMessage(text='Hello World!'))
-# push message to multiple users
-# line_bot_api.multicast(['user_id1', 'user_id2'], 
-    # TextSendMessage(text='Hello World!'))	
-
-# lineuserid = event.source.userId
-# messageid = event.message.id
-# lineuserid = "howard"
-# messagetype = event.message.type
-# text = event.message.text
-# message = TextSendMessage(text)
-
-# spreadsheet_key_path = 'spreadsheet_key'
-# if cheapest_price is not None:
-
-# with open(spreadsheet_key_path) as f:
-#    spreadsheet_key = f.read().strip()
-# update_sheet(gss_client, spreadsheet_key, today, messageid,messagetype,text)
-# push message to one user
-# line_bot_api.push_message(user_id, 
-# TextSendMessage(text='Hello World!'))
