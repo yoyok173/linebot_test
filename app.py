@@ -446,7 +446,7 @@ def search_cmd(user_message):
 def active_mode(user_message,event):
 	global mode
 	message_get = search_cmd(user_message.lower())
-	if message_get != "not found in cmd list" :
+	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
 
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
