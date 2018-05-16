@@ -83,7 +83,22 @@ SC_nameList = [
 '杜野凛世','園田智代子','西城樹里','有栖川夏葉'
 ]
 
-def update_google_sheet():
+def update_google_sheet(sheet_range):
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
+	RANGE_NAME = sheet_range
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+
 	pass
 
 def get_score_sheet(list_top,list_name,list_target,target):
@@ -379,7 +394,7 @@ def room_get():
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 	RANGE_NAME = 'room!A1:A1'
-	dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
 	if not values:
