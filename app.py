@@ -332,7 +332,7 @@ def slient_mode(user_message,event):
 		mode = 1 
 		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
 		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+	elif(user_message == "!閉嘴"):
 		mode = 0
 		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
 		line_bot_api.reply_message(event.reply_token,message)
@@ -547,12 +547,12 @@ def other_type_message(user_message):
 						actions=[
 							PostbackTemplateAction(
 								label='1回ガチャ',
-								text='!bgd單抽',
+								text='!BGD單抽',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
 								label='10回ガチャ',
-								text='!bgd10連'
+								text='!BGD10連'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -567,12 +567,12 @@ def other_type_message(user_message):
 						actions=[
 							PostbackTemplateAction(
 								label='1回ガチャ',
-								text='!cgss單抽',
+								text='!CGSS單抽',
 								data='action=buy&itemid=2'
 							),
 							MessageTemplateAction(
 								label='10回ガチャ',
-								text='!cgss10連'
+								text='!CGSS10連'
 							),
 							# URITemplateAction(
 							# label='uri2',
@@ -626,17 +626,17 @@ def text_message(user_message):
 		message = room_update(user_message)
 	elif(user_message.find("room2") == 0):
 		message = room_update2(user_message)
-	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
+	elif(user_message.lower()  in ["!抽食物"]):
 		message = get_food_sheet(1)
-	elif(user_message.lower()  in ["!抽飲料","!飲料",'!drink']):
+	elif(user_message.lower()  in ["!抽飲料"]):
 		message = get_food_sheet(2)
-	elif(user_message.lower()  in ["!cgss單抽"]):
+	elif(user_message in ["!CGSS單抽"]):
 		message = "【CGSS 單抽結果】\n" + gacha_CGSS()
-	elif(user_message.lower()  in ["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]):
+	elif(user_message in ["!CGSS10連"]):
 		message = "【CGSS 10連結果】\n" + ten_gacha_CGSS()
-	elif(user_message.lower()  in ["!bgd單抽","!gbp單抽"]):
+	elif(user_message in ["!BGD單抽"]):
 		message = "【BGD 單抽結果】\n" + gacha_BGD()
-	elif(user_message.lower()  in ["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]):
+	elif(user_message in ["!BGD10連"]):
 		message = "【BGD 10連結果】\n" + ten_gacha_BGD()
 	elif(user_message.lower()  in ["!sc單抽"]):
 		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
