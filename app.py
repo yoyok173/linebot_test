@@ -451,7 +451,7 @@ def active_mode(user_message,event):
 	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
 
-	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
+	elif(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message == "母湯電影版"):		
@@ -462,7 +462,7 @@ def active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token, message)
 
 	# ------ below are find function ------	 
-	if(user_message.find("母湯") >= 0):
+	elif(user_message.find("母湯") >= 0):
 		message = ImageSendMessage(
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
