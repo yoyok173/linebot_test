@@ -83,6 +83,9 @@ SC_nameList = [
 '杜野凛世','園田智代子','西城樹里','有栖川夏葉'
 ]
 
+def update_google_sheet():
+	pass
+
 def get_score_sheet(list_top,list_name,list_target,target):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -375,7 +378,7 @@ def room_get():
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-	RANGE_NAME = 'room!A1'
+	RANGE_NAME = 'room!A1:A1'
 	dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
 	values = result.get('values', [])
