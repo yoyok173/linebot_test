@@ -437,16 +437,16 @@ def search_cmd(user_message):
 	[["!sc十連","!sc十抽","!sc10連","!sc10抽"],"【SC 10連結果】\n" + multi_gacha_SC(10)]
 	]
 
-
+	print(len(operations_str))
 	for i in range(len(operations_str)):
 		if user_message in operations_str[i][0]:
 			return TextSendMessage(text= operations_str[i][1])
-	print("cmd box not found!")
+	print("key not found in cmd box !")
 	return "not found in cmd list"
 
 
 def active_mode(user_message,event):
-	print("start atcive mode key word serach")
+	print("start atcive mode key word serach...")
 	global mode
 	message_get = search_cmd(user_message.lower())
 	if str(message_get) != "not found in cmd list" :
