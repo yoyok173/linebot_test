@@ -83,7 +83,7 @@ SC_nameList = [
 '杜野凛世','園田智代子','西城樹里','有栖川夏葉'
 ]
 
-def update_google_sheet(sheet_range):
+def get_value_from_google_sheet(sheet_range):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 	store = file.Storage('credentials.json')
@@ -103,21 +103,7 @@ def update_google_sheet(sheet_range):
 	pass
 
 def get_score_sheet(list_top,list_name,list_target,target):
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	SPREADSHEET_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
-	RANGE_NAME = 'A2:M11'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	values = result.get('values', [])
+	values = get_value_from_google_sheet('A2:M11')
 	if not values:
 		print('No data found.')
 	else:
@@ -407,7 +393,7 @@ def room_get():
 
 def room_update(user_message):
 	room_number = user_message.lstrip("更新房號 ")
-	print(split_result)
+	print("get new number : "+room_number)
 
 	# Call the Sheets API
 	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
