@@ -495,7 +495,7 @@ def active_mode(user_message,event):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	
 	if str(message) != "default" :
-		line_bot_api.reply_message(event.reply_token,message)
+		line_bot_api.reply_message(event.reply_token,str(message))
 		return
 	print ("key not found in cmd box !")
 
