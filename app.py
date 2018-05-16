@@ -137,26 +137,22 @@ gss_scopes = ['https://spreadsheets.google.com/feeds']
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
-	global list_top
-	global list_name
-	global list_target
+	global list_key,list_response,list_type
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"str"], 2)
-	list_top.append(input)
-	list_name.append(output)
-	list_target.append("str")
+	list_key.append(input)
+	list_response.append(output)
+	list_type.append("str")
 	
 def update_pic_sheet_key(gss_client, key, input , output):
-	global list_top
-	global list_name
-	global list_target
+	global list_key,list_response,list_type
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	sheet.insert_row([input , output,"pic"], 2)
-	list_top.append(input)
-	list_name.append(output)
-	list_target.append("pic")
+	list_key.append(input)
+	list_response.append(output)
+	list_type.append("pic")
 
 def get_food_sheet(key):
 	# Setup the Sheets API
