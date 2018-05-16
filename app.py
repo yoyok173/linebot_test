@@ -341,7 +341,7 @@ def switch_off():
 
 
 def room_get():
-	values = get_value_from_google_sheet('room!A1:A1')
+	values = get_value_from_google_sheet('room!A1')
 	if not values:
 		print('No data found.')
 	else:
