@@ -476,44 +476,29 @@ def other_type_message(user_message):
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
 	elif(user_message == "機會命運"):
+		# random_result = random.randint(0,1)
+		# answer = ["幹你娘","恭喜你獲得了空虛！"]
 		message = TemplateSendMessage(
-			alt_text='Confirm template',
+			alt_text='【機會命運】',
 			template=ConfirmTemplate(
-				text='Are you sure?',
+				text='【四月、智乃請選擇？】',
 				actions=[
 				PostbackTemplateAction(
-					label='postback',
-					text='postback text',
-					data='action=buy&itemid=1'
+					label='四月',
+					text='四月',
+					# data='action=buy&itemid=1'
 					),
 				MessageTemplateAction(
-					label='message',
-					text='message text'
+					label='智乃',
+					text='智乃'
 					)
 				]
 			)
 		)
-	# 	random_result = random.randint(0,1)
-	# 	answer = ["幹你娘","恭喜你獲得了空虛！"]
-	# 	message = TemplateSendMessage(
-	# 	alt_text='機會命運',
-	# 	template=ConfirmTemplate(
-	# 		text='機會、命運請選擇？',
-	# 		actions=[
-	# 			PostbackTemplateAction(
-	# 				label='機會',
-	# 				text=answer[random_result]
-	# 			),
-	# 			MessageTemplateAction(
-	# 				label='命運',
-	# 				text=answer[1-random_result]
-	# 			)
-	# 		]
-	# 	)
-	# )
 	else:
 		print ("start finding library")
 		message = get_key_response(user_message)
+		
 	if message != 0:
 		return message
 	else:
