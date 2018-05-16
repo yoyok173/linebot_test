@@ -465,6 +465,25 @@ def other_type_message(user_message):
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
+	elif(user_message == "機會命運"):
+		random_result = random.randint(2)
+		answer = ["幹你娘","恭喜你獲得了空虛！"]
+		message = TemplateSendMessage(
+		alt_text='機會命運',
+		template=ConfirmTemplate(
+			text='機會、命運請選擇？',
+			actions=[
+				PostbackTemplateAction(
+					label='機會',
+					text=answer[random_result],
+				),
+				MessageTemplateAction(
+					label='命運',
+					text=answer[1-random_result]
+				)
+			]
+		)
+	)
 	else:
 		print ("start finding library")
 		message = get_key_response(user_message)
