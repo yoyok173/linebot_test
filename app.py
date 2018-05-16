@@ -466,7 +466,7 @@ def other_type_message(user_message):
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
 	elif(user_message == "機會命運"):
-		random_result = random.randint(2)
+		random_result = random.randint(0,1)
 		answer = ["幹你娘","恭喜你獲得了空虛！"]
 		message = TemplateSendMessage(
 		alt_text='機會命運',
