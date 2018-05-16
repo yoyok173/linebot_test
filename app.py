@@ -78,20 +78,13 @@ def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 
 values = get_value_from_google_sheet(my_database_sheet_ID,'A2:C1000')
 
-global list_key
-global list_response
-global list_type
-
-if not values:
-	print('No data found.')
-else:
-	list_key = []
-	list_response = []
-	list_type = []
-	for row in values:	
-		list_key.append(row[0])
-		list_response.append(row[1])
-		list_type.append(row[2])
+list_key = []
+list_response = []
+list_type = []
+for row in values:	
+	list_key.append(row[0])
+	list_response.append(row[1])
+	list_type.append(row[2])
 
 def get_score_sheet(list_top,list_name,list_target,target):
 	global score_sheet_ID
