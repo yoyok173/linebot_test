@@ -588,6 +588,7 @@ def active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message_get)
 	'''
 	message = text_message(user_message)
+	print(message)
 	if str(message) != 0:
 		line_bot_api.reply_message(event.reply_token,message)
 	
