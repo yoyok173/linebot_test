@@ -304,6 +304,15 @@ def event_progress():
 	else:
 		for row in values:	
 			return row[0]
+
+def event_remain_time():
+	global score_sheet_ID
+	values = get_value_from_google_sheet(score_sheet_ID,'E17')
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:	
+			return row[0]
 	
 def readme():
 	with open('readme.txt', 'r') as f:
@@ -465,6 +474,8 @@ def active_mode(user_message,event):
 		message = leaderboard(2)
 	elif(user_message in ["%數","%"]):
 		message = leaderboard(3)
+	elif(user_message in ['一位差']):
+		message = leaderboard(4)
 	elif(user_message in ['分數差']):
 		message = leaderboard(5)
 	elif(user_message in ['場數差']):
@@ -477,6 +488,8 @@ def active_mode(user_message,event):
 		message = leaderboard(9)
 	elif(user_message in ["活動進度",'進度']):
 		message = event_progress()
+	elif(user_message in ["剩餘時間"]):
+		message = event_remain_time()
 	elif(user_message in ["房號","room"]):
 		message = room_get()
 	elif(user_message.find("room1") == 0):
