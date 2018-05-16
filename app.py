@@ -531,7 +531,7 @@ def other_type_message(user_message):
 				MessageTemplateAction(
 					label='飲料',
 					text='！抽飲料'
-					)
+					),
 				MessageTemplateAction(
 					label='飲料',
 					text='！抽飲料'
