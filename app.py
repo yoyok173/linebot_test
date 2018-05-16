@@ -98,6 +98,7 @@ def update_google_sheet(sheet_range):
 	RANGE_NAME = sheet_range
 	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
 												 range=RANGE_NAME).execute()
+	return result.get('values', [])
 
 	pass
 
@@ -533,7 +534,7 @@ def active_mode(user_message,event):
 		message = event_progress()
 	elif(user_message in ["房號"]):
 		message = room_get()
-	elif(user_message in ["更新房號"]):
+	elif(user_message.find("更新房號") == 0):
 		message = room_update(user_message)
 	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
 		message = get_food_sheet(1)
