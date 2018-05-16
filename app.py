@@ -553,7 +553,7 @@ def active_mode(user_message,event):
 			line_bot_api.reply_message(event.reply_token,key_message)
 	
 # 監聽所有來自 /callback 的 Post Request
-@app.route("/callback", methods=['POST'])å
+@app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
