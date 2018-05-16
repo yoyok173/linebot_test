@@ -513,9 +513,9 @@ def active_mode(user_message,event):
 		message = leaderboard(9)
 	elif(user_message in ["活動進度",'進度']):
 		message = event_progress()
-	elif(user_message in ["房號"])
+	elif(user_message in ["房號"]):
 		message = room_get()
-	elif(user_message in ["更新房號"])
+	elif(user_message in ["更新房號"]):
 		message = room_update(user_message)
 	elif(user_message.lower()  in ["!抽食物","!食物",'!food']):
 		message = get_food_sheet(1)
