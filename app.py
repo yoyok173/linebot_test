@@ -588,7 +588,7 @@ def active_mode(user_message,event):
 		line_bot_api.reply_message(event.reply_token,message_get)
 	'''
 	message = text_message(user_message)
-	if message != 0:
+	if str(message) != 0:
 		line_bot_api.reply_message(event.reply_token,message)
 	
 # 監聽所有來自 /callback 的 Post Request
