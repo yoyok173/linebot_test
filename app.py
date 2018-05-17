@@ -505,25 +505,25 @@ def search_cmd(user_message):
 def guess_number_set():
 	global guess_number_mode,target_number
 	guess_number_mode = 1
-	target_number = random.randint(1,100)
-	return "【終極密碼】\n遊戲設定完成！\n請輸入1~100的數字"
+	target_number = random.randint(1,99)
+	return "【終極密碼】\n遊戲設定完成！\n請輸入0~100的數字"
 
 upperbound = 100
-lowerbound = 1
+lowerbound = 0
 def guess_number(user_guess):
 	global upperbound,lowerbound,target_number,guess_number_mode
 	if user_guess == target_number:
 		guess_number_mode = 0
 		upperbound = 100
-		lowerbound = 1
+		lowerbound = 0
 		target_number = 0
-		return "booooooooom !!!!"
+		return "boooooooooooooooooooooom!!!!"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
-		return str(lowerbound)+" ~ "+str(upperbound)+" 之間"
+		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
 	elif (user_guess < target_number and user_guess > lowerbound):
 		lowerbound = user_guess
-		return str(lowerbound)+" ~ "+str(upperbound)+" 之間"
+		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
