@@ -72,21 +72,6 @@ SC_nameList = [
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 
-def get_info(user_message,event):
-	print(type(event))
-	message = (json.dumps(event, separators=(',', ':')))
-		# message = {"event.message.id = " + event.message.id + 
-		# 	"event.message.text = " + event.message.text +
-		# 	"event.message.type = " + event.message.type + 
-			# "event.replyToken = " + event.replyToken +
-			# "event.source.groupId" + event.source.groupId + 
-			# "event.source.tpye" + event.source.tpye + 
-			# "event.source.userId" + event.source.userId + 
-			# "event.timestamp" + str(event.timestamp)+ 
-			# "event.type" + event.type}
-	# except Exception as e:
-	# 	message = "Exception : " +str(e)
-	return message
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
@@ -741,7 +726,7 @@ def handle_message(event):
 		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
-		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=get_info(user_message,event)))
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
