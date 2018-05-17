@@ -47,6 +47,8 @@ auth_json_path = "./auth.json"
 
 now = datetime.datetime.now()
 mode = 1
+guess_number_mode = 0
+target_number = 0
 
 # game SSR Prob
 SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
@@ -492,6 +494,30 @@ def search_cmd(user_message):
 	return "not found in cmd list"
 '''
 
+
+def guess_number_set():
+	global guess_number_mode,target_number
+	guess_number_mode = 1
+	target_number = random.randint(1,100)
+	return "【終極密碼】\n遊戲設定完成！\n請輸入1~100的數字"
+
+upperbound = 100
+lowerbound = 1
+def guess_number(user_guess):
+	global upperbound,lowerbound,target_number,guess_number_mode
+	if user_guess == target_number:
+		guess_number_mode = 0
+		upperbound = 100
+		lowerbound = 1
+		target_number = 0
+		return "booooooooom !!!!"
+	elif (user_guess > target_number and user_guess < upperbound):
+		upperbound = user_guess
+		return str(lowerbound+" ~ "+upperbound+" 之間")
+	elif (user_guess < target_number and user_guess > lowerbound):
+		lowerbound = user_guess
+		return str(lowerbound+" ~ "+upperbound+" 之間")
+
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
@@ -624,6 +650,7 @@ def other_type_message(user_message):
 		return 0
 
 def text_message(user_message):
+	global guess_number_mode
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch_off()
@@ -673,6 +700,10 @@ def text_message(user_message):
 		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
+	elif(user_message == "終極密碼"):
+		message = guess_number_set()
+	elif(guess_number_mode == 1 and isinstance(user_message,int))
+		message = guess_number(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
