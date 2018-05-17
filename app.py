@@ -76,6 +76,13 @@ my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
+
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -703,7 +710,7 @@ def text_message(user_message):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	elif(user_message == "終極密碼"):
 		message = guess_number_set()
-	elif(guess_number_mode == 1 and isinstance(user_message,int)):
+	elif(guess_number_mode == 1 and is_number(user_message)):
 		message = guess_number(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
