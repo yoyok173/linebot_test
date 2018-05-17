@@ -380,7 +380,7 @@ def room_update(user_message):
 		room_number = user_message.split(" ",1)
 		print("get new number : "+room_number[1])
 	except:
-		return "請依照範例輸入：【room1 12345】"
+		return "【請依照範例輸入：】\nroom1 12345"
 
 	try:
 		wks = gss_client.open_by_key(my_database_sheet_ID)
@@ -397,7 +397,7 @@ def room_update2(user_message):
 		room_number = user_message.split(" ",1)
 		print("get new number : "+room_number[1])
 	except:
-		return "請依照範例輸入：【room2 12345】"
+		return "【請依照範例輸入：】\nroom2 12345"
 
 	try:
 		wks = gss_client.open_by_key(my_database_sheet_ID)
