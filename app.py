@@ -702,7 +702,7 @@ def text_message(user_message):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	elif(user_message == "終極密碼"):
 		message = guess_number_set()
-	elif(guess_number_mode == 1 and isinstance(user_message,int))
+	elif(guess_number_mode == 1 and isinstance(user_message,int)):
 		message = guess_number(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
