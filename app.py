@@ -280,9 +280,9 @@ def teach(user_message,teachmode):
 	else:
 		update_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
 		if teachmode == 0:
-			success_learn ="已學習字詞 「"+split_result[0]+"」 !!!"
+			success_learn ="我學會了 「"+split_result[0]+"」 !!!"
 		elif teachmode == 1:
-			success_learn ="我學會 「"+split_result[0]+"」 了 >////< "
+			success_learn ="學會 「"+split_result[0]+"」 了 >////< "
 		return success_learn
 
 def teach_pic(user_message,key):
