@@ -727,6 +727,8 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
+	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(@Howard Weng)))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
