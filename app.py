@@ -78,8 +78,8 @@ def get_info(user_message,event):
 			"event.message.type = " + event.message.type + 
 			# "event.replyToken = " + event.replyToken +
 			# "event.source.groupId" + event.source.groupId + 
-			"event.source.tpye" + event.source.tpye + 
-			"event.source.userId" + event.source.userId + 
+			# "event.source.tpye" + event.source.tpye + 
+			# "event.source.userId" + event.source.userId + 
 			"event.timestamp" + event.timestamp + 
 			"event.type" + event.type}
 	except Exception as e:
