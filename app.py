@@ -141,16 +141,17 @@ gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
-# try:
-	wks = gss_client.open_by_key(key)
-	sheet = wks.worksheet('dictionary')
-	sheet.insert_row([input , output,"str"], 2)
-	list_key.append(input)
-	list_response.append(output)
-	list_type.append("str")
-# except:
-	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-	# return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
+	try:
+		wks = gss_client.open_by_key(key)
+		sheet = wks.worksheet('dictionary')
+		sheet.insert_row([input , output,"str"], 2)
+		list_key.append(input)
+		list_response.append(output)
+		list_type.append("str")
+		return "success"
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
 
 def update_pic_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
@@ -161,6 +162,7 @@ def update_pic_sheet_key(gss_client, key, input , output):
 		list_key.append(input)
 		list_response.append(output)
 		list_type.append("pic")
+		return "success"
 	except:
 		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
@@ -278,12 +280,14 @@ def teach(user_message,teachmode):
 	if(len(split_result) <= 1):
 		return "學習字詞失敗 > <"
 	else:
-		update_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
-		if teachmode == 0:
-			success_learn ="我學會了 「"+split_result[0]+"」 !!!"
-		elif teachmode == 1:
-			success_learn ="學會 「"+split_result[0]+"」 了 >////< "
-		return success_learn
+		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
+		if message == "success":
+			if teachmode == 0:
+				return "我學會了 「"+split_result[0]+"」 !!!"
+			elif teachmode == 1:
+				return "學會 「"+split_result[0]+"」 了 >////< "
+		else:
+			return message 
 
 def teach_pic(user_message,key):
 	global my_database_sheet_ID
@@ -297,8 +301,11 @@ def teach_pic(user_message,key):
 	if(len(split_result) <= 1):
 		return "你給我看這什麼東西????"
 	else:
-		update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
-		return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
+		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
+		if message == "success":
+			return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
+		else:
+			return message
 
 def leaderboard(key):
 	list_top = []
