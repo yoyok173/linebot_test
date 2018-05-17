@@ -517,7 +517,7 @@ def guess_number(user_guess):
 		upperbound = 100
 		lowerbound = 0
 		target_number = 0
-		return "boooooooooooooooooooooom!!!!"
+		return "boooooooooooooom!!!!"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
