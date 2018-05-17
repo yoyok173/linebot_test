@@ -82,7 +82,7 @@ def get_info(user_message,event):
 			"event.source.userId" + event.source.userId + 
 			"event.timestamp" + event.timestamp + 
 			"event.type" + event.type}
-	except exceptions as e:
+	except Exception as e:
 		message = e
 	return message
 
