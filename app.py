@@ -274,13 +274,14 @@ def teach(user_message,teachmode):
 	global my_database_sheet_ID
 	try:
 		split_result = user_message.split(' ', 2 )
+		print(split_result)
 	except:
 		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
 	else:
 		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if teachmode == 0:
-				return "我學會了 「"+split_result[1]+"」 !"
+				return "我學會了 「"+split_result[1]+"」 !!!"
 			elif teachmode == 1:
 				return "學會 「"+split_result[1]+"」 了 >////< "
 		else:
@@ -290,6 +291,7 @@ def teach_pic(user_message,key):
 	global my_database_sheet_ID	
 	try:
 		split_result = user_message.split(' ', 2 )
+		print(split_result)
 	except:
 		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
 	else:
