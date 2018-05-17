@@ -520,10 +520,10 @@ def guess_number(user_guess):
 		return "booooooooom !!!!"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
-		return str(lowerbound+" ~ "+upperbound+" 之間")
+		return str(lowerbound)+" ~ "+str(upperbound)+" 之間"
 	elif (user_guess < target_number and user_guess > lowerbound):
 		lowerbound = user_guess
-		return str(lowerbound+" ~ "+upperbound+" 之間")
+		return str(lowerbound)+" ~ "+str(upperbound)+" 之間"
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
