@@ -536,12 +536,12 @@ def other_type_message(user_message):
 				actions=[
 				PostbackTemplateAction(
 					label='機會',
-					text='「我選擇機會」: '+answer[random_result],
+					text='「我選擇機會」：'+answer[random_result],
 					data='action=buy&itemid=1'
 					),
 				MessageTemplateAction(
 					label='命運',
-					text="「我選擇命運」: "+answer[1-random_result]
+					text="「我選擇命運」："+answer[1-random_result]
 					)
 				]
 			)
