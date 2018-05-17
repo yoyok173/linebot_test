@@ -72,15 +72,18 @@ score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 
 def get_info(user_message,event):
-	message = {"event.message.id = " + event.message.id + 
-		"event.message.text = " + event.message.text +
-		"event.message.type = " + event.message.type + 
-		"event.replyToken = " + event.replyToken +
-		"event.source.groupId" + event.source.groupId + 
-		"event.source.tpye" + event.source.tpye + 
-		"event.source.userId" + event.source.userId + 
-		"event.timestamp" + event.timestamp + 
-		"event.type" + event.type}
+	try:
+		message = {"event.message.id = " + event.message.id + 
+			"event.message.text = " + event.message.text +
+			"event.message.type = " + event.message.type + 
+			# "event.replyToken = " + event.replyToken +
+			"event.source.groupId" + event.source.groupId + 
+			"event.source.tpye" + event.source.tpye + 
+			"event.source.userId" + event.source.userId + 
+			"event.timestamp" + event.timestamp + 
+			"event.type" + event.type}
+	except exceptions as e:
+		message = e
 	return message
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
