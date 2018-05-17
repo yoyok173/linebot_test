@@ -71,6 +71,18 @@ SC_nameList = [
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 
+def get_info(user_message,event):
+	message = "event.message.id = " + event.message.id +
+		"event.message.text = " + event.message.text +
+		"event.message.type = " + event.message.type +
+		"event.replyToken = " + event.replyToken +
+		"event.source.groupId" + event.source.groupId + 
+		"event.source.tpye" + event.source.tpye + 
+		"event.source.userId" + event.source.userId + 
+		"event.timestamp" + event.timestamp + 
+		"event.type" + event.type
+	return message
+
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
 	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -364,7 +376,7 @@ def room_update(user_message):
 	try:
 		print("get new number : "+room_number[1])
 	except:
-		return "請依照範例輸入：「room1 12345」"
+		return "請依照範例輸入：【room1 12345】"
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
@@ -374,7 +386,11 @@ def room_update(user_message):
 def room_update2(user_message):
 	global my_database_sheet_ID
 	room_number = user_message.split(" ",1)
-	print("get new number : "+room_number[1])
+	try:
+		print("get new number : "+room_number[1])
+	except:
+		return "請依照範例輸入：【room1 12345】"
+
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
@@ -597,7 +613,7 @@ def other_type_message(user_message):
 
 def text_message(user_message):
 	message = "default"
-	if(user_message in ["!閉嘴","!安靜","!你閉嘴","!你安靜"]):
+	if(user_message in ["!閉嘴"]):
 		message = switch_off()
 	elif(user_message in ["!說話"]):
 		message = switch_still_on()
@@ -719,6 +735,8 @@ def handle_message(event):
 			text="(silent mode)" if mode == 0 else "(active mode)"
 		)
 		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["!getinfo"]):
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=get_info(user_message,event)))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
