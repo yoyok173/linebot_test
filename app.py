@@ -273,7 +273,7 @@ def multi_gacha_SC(number):
 def teach(user_message,teachmode):
 	global my_database_sheet_ID
 	try:
-		split_result = reply_message.split(' ', 2 )
+		split_result = user_message.split(' ', 2 )
 	except:
 		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
 	else:
@@ -289,7 +289,7 @@ def teach(user_message,teachmode):
 def teach_pic(user_message,key):
 	global my_database_sheet_ID	
 	try:
-		split_result = reply_message.split(' ', 2 )
+		split_result = user_message.split(' ', 2 )
 	except:
 		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
 	else:
@@ -684,7 +684,7 @@ def text_message(user_message):
 			reply_message = user_message.split(" ",1)		
 			message = random.randint(1,int(reply_message[1]))
 		except:
-			message = "【請依照範例輸入：】\n!抽數字 (你的數字)\n(從「1~你的數字」抽一個數字)"
+			message = "【請依照範例輸入：】\n!抽數字 (你的數字)\n(「1~你的數字」抽一個數字)"
 	elif(user_message.find("!教育") == 0):
 		message = teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
