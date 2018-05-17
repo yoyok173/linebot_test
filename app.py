@@ -83,7 +83,7 @@ def get_info(user_message,event):
 			"event.timestamp" + event.timestamp + 
 			"event.type" + event.type}
 	except Exception as e:
-		message = e
+		message = str(e)
 	return message
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
