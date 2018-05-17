@@ -506,7 +506,7 @@ def guess_number_set():
 	global guess_number_mode,target_number
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
-	return "【終極密碼】\n遊戲設定完成！\n請輸入0~100的數字"
+	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
 upperbound = 100
 lowerbound = 0
@@ -517,7 +517,7 @@ def guess_number(user_guess):
 		upperbound = 100
 		lowerbound = 0
 		target_number = 0
-		return "boooooooooooooom!!!!"
+		return "恭喜！答案就是【"+str(user_guess)+"】！"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
