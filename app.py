@@ -71,6 +71,7 @@ SC_nameList = [
 
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
@@ -728,7 +729,8 @@ def handle_message(event):
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):
-		line_bot_api.reply_message(event.reply_token,TextSendMessage(text="@Howard Weng"))
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉'))
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text="已經幫您通知四月拔拔了! 請稍等~~"))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
@@ -742,3 +744,13 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+
+# notes 
+	
+#push message to one user
+# line_bot_api.push_message(user_id, 
+    # TextSendMessage(text='Hello World!'))
+# push message to multiple users
+# line_bot_api.multicast(['user_id1', 'user_id2'], 
+    # TextSendMessage(text='Hello World!'))	
