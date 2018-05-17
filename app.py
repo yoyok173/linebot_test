@@ -678,13 +678,13 @@ def text_message(user_message):
 			reply_message = user_message.split(" ",1)
 			message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
 		except:
-			return "【請依照範例輸入：】\n!機率 (想預測的事情)"
+			message = "【請依照範例輸入：】\n!機率 (想預測的事情)"
 	elif(user_message.find("!抽數字") == 0):
 		try:
 			reply_message = user_message.split(" ",1)		
 			message = random.randint(1,int(reply_message[1]))
 		except:
-			return "【請依照範例輸入：】\n!抽數字 (你的數字)\n(從「1~你的數字」抽一個數字)"
+			message = "【請依照範例輸入：】\n!抽數字 (你的數字)\n(從「1~你的數字」抽一個數字)"
 	elif(user_message.find("!教育") == 0):
 		message = teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
