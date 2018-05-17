@@ -148,7 +148,7 @@ def update_sheet_key(gss_client, key, input , output):
 		list_key.append(input)
 		list_response.append(output)
 		list_type.append("str")
-	except:
+	# except:
 		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
 
