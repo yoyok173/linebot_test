@@ -73,7 +73,8 @@ score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 
 def get_info(user_message,event):
-	message = (json.dumps(event, sort_keys=True, indent=4))
+	print(type(event))
+	message = (json.dumps(event, separators=(',', ':')))
 		# message = {"event.message.id = " + event.message.id + 
 		# 	"event.message.text = " + event.message.text +
 		# 	"event.message.type = " + event.message.type + 
