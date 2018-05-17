@@ -280,9 +280,9 @@ def teach(user_message,teachmode):
 		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if teachmode == 0:
-				return "我學會了 「"+split_result[0]+"」 !"
+				return "我學會了 「"+split_result[1]+"」 !"
 			elif teachmode == 1:
-				return "學會 「"+split_result[0]+"」 了 >////< "
+				return "學會 「"+split_result[1]+"」 了 >////< "
 		else:
 			return message 
 
@@ -296,11 +296,11 @@ def teach_pic(user_message,key):
 		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if key == 0:
-				return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
+				return "哇嗚~ 好好看的「"+split_result[1]+"」 圖 >////< "
 			elif key == 1:
-				return "哇嗚~ 這「"+split_result[0]+"」 圖 >////< "
+				return "哇嗚~ 這「"+split_result[1]+"」 圖 >////< "
 			elif key == 2:
-				return "「"+split_result[0]+"」 圖圖怎麼這麼好看 >////< "
+				return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
 		else:
 			return message
 
