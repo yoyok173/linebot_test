@@ -77,13 +77,13 @@ def get_info(user_message,event):
 			"event.message.text = " + event.message.text +
 			"event.message.type = " + event.message.type + 
 			# "event.replyToken = " + event.replyToken +
-			"event.source.groupId" + event.source.groupId + 
+			# "event.source.groupId" + event.source.groupId + 
 			"event.source.tpye" + event.source.tpye + 
 			"event.source.userId" + event.source.userId + 
 			"event.timestamp" + event.timestamp + 
 			"event.type" + event.type}
 	except Exception as e:
-		message = str(e)
+		message = "Exception : " +str(e)
 	return message
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
