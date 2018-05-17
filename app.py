@@ -361,9 +361,9 @@ def room_get():
 def room_update(user_message):
 	global my_database_sheet_ID
 	room_number = user_message.split(" ",1)
-	try
+	try:
 		print("get new number : "+room_number[1])
-	except
+	except:
 		return "請依照範例輸入：「room1 12345」"
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
