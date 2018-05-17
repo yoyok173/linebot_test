@@ -527,21 +527,21 @@ def other_type_message(user_message):
 			)
 		)
 	elif(user_message == "機會命運"):
-		# random_result = random.randint(0,1)
-		# answer = ["幹你娘","恭喜你獲得了空虛！"]
+		random_result = random.randint(0,1)
+		answer = ["我死了","我贏了"]
 		message = TemplateSendMessage(
 			alt_text='【機會命運】',
 			template=ConfirmTemplate(
-				text='【四月、智乃請選擇？】',
+				text='【機會、命運請選擇？】',
 				actions=[
 				PostbackTemplateAction(
-					label='四月',
-					text='四月',
+					label='機會',
+					text=answer[random_result]
 					data='action=buy&itemid=1'
 					),
 				MessageTemplateAction(
-					label='智乃',
-					text='智乃'
+					label='命運',
+					text=answer[1-random_result]
 					)
 				]
 			)
