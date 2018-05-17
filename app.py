@@ -141,21 +141,29 @@ gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
-	wks = gss_client.open_by_key(key)
-	sheet = wks.worksheet('dictionary')
-	sheet.insert_row([input , output,"str"], 2)
-	list_key.append(input)
-	list_response.append(output)
-	list_type.append("str")
-	
+	try:
+		wks = gss_client.open_by_key(key)
+		sheet = wks.worksheet('dictionary')
+		sheet.insert_row([input , output,"str"], 2)
+		list_key.append(input)
+		list_response.append(output)
+		list_type.append("str")
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
+
 def update_pic_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
-	wks = gss_client.open_by_key(key)
-	sheet = wks.worksheet('dictionary')
-	sheet.insert_row([input , output,"pic"], 2)
-	list_key.append(input)
-	list_response.append(output)
-	list_type.append("pic")
+	try:
+		wks = gss_client.open_by_key(key)
+		sheet = wks.worksheet('dictionary')
+		sheet.insert_row([input , output,"pic"], 2)
+		list_key.append(input)
+		list_response.append(output)
+		list_type.append("pic")
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
 
 def get_food_sheet(key):
 	global my_database_sheet_ID
@@ -369,10 +377,14 @@ def room_update(user_message):
 	except:
 		return "請依照範例輸入：【room1 12345】"
 
-	wks = gss_client.open_by_key(my_database_sheet_ID)
-	sheet = wks.worksheet('room')
-	sheet.update_acell('A1', room_number[1])
-	return "當前房號1已更新為："+room_number[1]	
+	try:
+		wks = gss_client.open_by_key(my_database_sheet_ID)
+		sheet = wks.worksheet('room')
+		sheet.update_acell('A1', room_number[1])
+		return "當前房號1已更新為："+room_number[1]	
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
 
 def room_update2(user_message):
 	global my_database_sheet_ID
@@ -380,13 +392,17 @@ def room_update2(user_message):
 	try:
 		print("get new number : "+room_number[1])
 	except:
-		return "請依照範例輸入：【room1 12345】"
+		return "請依照範例輸入：【room2 12345】"
 
+	try:
+		wks = gss_client.open_by_key(my_database_sheet_ID)
+		sheet = wks.worksheet('room')
+		sheet.update_acell('A2', room_number[1])
+		return "當前房號1已更新為："+room_number[1]	
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
 
-	wks = gss_client.open_by_key(my_database_sheet_ID)
-	sheet = wks.worksheet('room')
-	sheet.update_acell('A2', room_number[1])
-	return "當前房號2已更新為："+room_number[1]	
 '''
 def forget(user_message):
 	global dictionary_sheet
@@ -729,7 +745,7 @@ def handle_message(event):
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉'))
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text="已經幫您通知四月拔拔了! 請稍等~~"))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
