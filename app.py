@@ -275,9 +275,6 @@ def teach(user_message,teachmode):
 	try:
 		split_result = user_message.split(' ', 2 )
 		print(split_result)
-	except:
-		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
-	else:
 		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if teachmode == 0:
@@ -286,15 +283,14 @@ def teach(user_message,teachmode):
 				return "學會 「"+split_result[1]+"」 了 >////< "
 		else:
 			return message 
-
+	except:
+		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
+	
 def teach_pic(user_message,key):
 	global my_database_sheet_ID	
 	try:
 		split_result = user_message.split(' ', 2 )
 		print(split_result)
-	except:
-		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
-	else:
 		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if key == 0:
@@ -305,6 +301,9 @@ def teach_pic(user_message,key):
 				return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
 		else:
 			return message
+	except:
+		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
+
 
 def leaderboard(key):
 	list_top = []
