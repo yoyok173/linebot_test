@@ -272,38 +272,35 @@ def multi_gacha_SC(number):
 
 def teach(user_message,teachmode):
 	global my_database_sheet_ID
-	if teachmode == 0:
-		reply_message = user_message.lstrip("!教育 ")
-	elif teachmode == 1:
-		reply_message = user_message.lstrip("!調教 ")
-	split_result = reply_message.split(' ', 1 )
-	if(len(split_result) <= 1):
-		return "學習字詞失敗 > <"
+	try:
+		split_result = reply_message.split(' ', 2 )
+	except:
+		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
 	else:
-		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
+		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
 			if teachmode == 0:
-				return "我學會了 「"+split_result[0]+"」 !!!"
+				return "我學會了 「"+split_result[0]+"」 !"
 			elif teachmode == 1:
 				return "學會 「"+split_result[0]+"」 了 >////< "
 		else:
 			return message 
 
 def teach_pic(user_message,key):
-	global my_database_sheet_ID
-	if key == 0:
-		reply_message = user_message.lstrip("!智乃看圖片 ")
-	elif key == 1:
-		reply_message = user_message.lstrip("!給智乃看圖 ") 
-	elif key == 2:
-		reply_message = user_message.lstrip("!智乃看圖圖 ") 	
-	split_result = reply_message.split(' ', 1 )
-	if(len(split_result) <= 1):
-		return "你給我看這什麼東西????"
+	global my_database_sheet_ID	
+	try:
+		split_result = reply_message.split(' ', 2 )
+	except:
+		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
 	else:
-		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[0],split_result[1])
+		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
 		if message == "success":
-			return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
+			if key == 0:
+				return "哇嗚~ 好好看的「"+split_result[0]+"」 圖 >////< "
+			elif key == 1:
+				return "哇嗚~ 這「"+split_result[0]+"」 圖 >////< "
+			elif key == 2:
+				return "「"+split_result[0]+"」 圖圖怎麼這麼好看 >////< "
 		else:
 			return message
 
@@ -378,8 +375,8 @@ def room_get():
 
 def room_update(user_message):
 	global my_database_sheet_ID
-	room_number = user_message.split(" ",1)
 	try:
+		room_number = user_message.split(" ",1)
 		print("get new number : "+room_number[1])
 	except:
 		return "請依照範例輸入：【room1 12345】"
@@ -395,8 +392,8 @@ def room_update(user_message):
 
 def room_update2(user_message):
 	global my_database_sheet_ID
-	room_number = user_message.split(" ",1)
 	try:
+		room_number = user_message.split(" ",1)
 		print("get new number : "+room_number[1])
 	except:
 		return "請依照範例輸入：【room2 12345】"
@@ -677,11 +674,17 @@ def text_message(user_message):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
-		reply_message = user_message.split(" ",1)
-		message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
+		try:
+			reply_message = user_message.split(" ",1)
+			message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
+		except:
+			return "【請依照範例輸入：】\n!機率 (想預測的事情)"
 	elif(user_message.find("!抽數字") == 0):
-		reply_message = user_message.split(" ",1)
-		message = random.randint(1,int(reply_message[1]))
+		try:
+			reply_message = user_message.split(" ",1)		
+			message = random.randint(1,int(reply_message[1]))
+		except:
+			return "【請依照範例輸入：】\n!抽數字 (你的數字)\n(從「1~你的數字」抽一個數字)"
 	elif(user_message.find("!教育") == 0):
 		message = teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
