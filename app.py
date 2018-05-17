@@ -651,6 +651,7 @@ def other_type_message(user_message):
 
 def text_message(user_message):
 	global guess_number_mode
+	print (isinstance(user_message,int))
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch_off()
