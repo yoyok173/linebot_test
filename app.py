@@ -541,7 +541,7 @@ def other_type_message(user_message):
 					),
 				MessageTemplateAction(
 					label='命運',
-					text="「我選擇命運」: "＋answer[1-random_result]
+					text="「我選擇命運」: "+answer[1-random_result]
 					)
 				]
 			)
