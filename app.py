@@ -361,7 +361,10 @@ def room_get():
 def room_update(user_message):
 	global my_database_sheet_ID
 	room_number = user_message.split(" ",1)
-	print("get new number : "+room_number[1])
+	try
+		print("get new number : "+room_number[1])
+	except
+		return "請依照範例輸入：「room1 12345」"
 
 	wks = gss_client.open_by_key(my_database_sheet_ID)
 	sheet = wks.worksheet('room')
@@ -610,7 +613,7 @@ def text_message(user_message):
 		message = leaderboard(5)
 	elif(user_message in ['場數差']):
 		message = leaderboard(6)
-	elif(user_message in ["追擊時間","脫褲子","脫內褲","內褲","褲子"]):
+	elif(user_message in ["追擊時間","脫褲子"]):
 		message = leaderboard(7)
 	elif(user_message in ['時速']):
 		message = leaderboard(8)
@@ -679,7 +682,7 @@ def active_mode(user_message,event):
 	'''
 	message = text_message(user_message)
 	print(message)
-	if str(message) != 0:
+	if message != 0:
 		line_bot_api.reply_message(event.reply_token,message)
 	
 # 監聽所有來自 /callback 的 Post Request
