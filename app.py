@@ -7,6 +7,7 @@ import datetime
 import random
 import codecs
 import sys
+import json
 
 from apiclient.discovery import build
 from httplib2 import Http
@@ -72,18 +73,18 @@ score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 
 def get_info(user_message,event):
-	try:
-		message = {"event.message.id = " + event.message.id + 
-			"event.message.text = " + event.message.text +
-			"event.message.type = " + event.message.type + 
+	message = (json.dumps(event, sort_keys=True, indent=4))
+		# message = {"event.message.id = " + event.message.id + 
+		# 	"event.message.text = " + event.message.text +
+		# 	"event.message.type = " + event.message.type + 
 			# "event.replyToken = " + event.replyToken +
 			# "event.source.groupId" + event.source.groupId + 
 			# "event.source.tpye" + event.source.tpye + 
 			# "event.source.userId" + event.source.userId + 
-			"event.timestamp" + str(event.timestamp)+ 
-			"event.type" + event.type}
-	except Exception as e:
-		message = "Exception : " +str(e)
+			# "event.timestamp" + str(event.timestamp)+ 
+			# "event.type" + event.type}
+	# except Exception as e:
+	# 	message = "Exception : " +str(e)
 	return message
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
