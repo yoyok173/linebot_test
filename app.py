@@ -534,7 +534,7 @@ def guess_number(user_guess):
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
 
 guess_AB_mode=0
-target_AB = [-1,-1,-1,-1]
+target_AB = ["a","a","a","a"]		
 def guess_AB_set():
 	global guess_AB_mode,target_AB
 	guess_AB_mode = 1
@@ -557,11 +557,11 @@ def guess_AB(user_guess):
 	user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
 	if user_guess_numberlist == target_AB:
 		guess_number_mode = 0
-		target_AB = [-1,-1,-1,-1]
+		target_AB = ["a","a","a","a"]
 		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
 	for i in range(4):
 		if user_guess[i] == target_AB[i]:
-			user_guess[i] = -1
+			user_guess[i] = "a"
 			cntA+=1
 		if user_guess[i] in target_AB:
 			cntB+=1
