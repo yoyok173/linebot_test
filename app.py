@@ -570,9 +570,9 @@ def guess_AB(user_guess):
 		if user_guess_numberlist[i] in target_AB:
 			cntB+=1
 	if guess_AB_counter >= 10:
-		return str(cntA)+" A "+str(cntB) + " B\n你們已經猜了【 "+str(guess_AB_counter)+" 】次"
+		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"+"\n不覺得有點太多了嗎？"
 	else:
-		return str(cntA)+" A "+str(cntB) + " B\n你們已經猜了【 "+str(guess_AB_counter)+" 】次\n不覺得有點太多了嗎？"
+		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
