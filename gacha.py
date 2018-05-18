@@ -93,3 +93,11 @@ def gacha_SC_Last():
 		return "[P] SR"
 	else:
 		return "[S] SR"
+
+def multi_gacha_SC(number):
+	sc_gacha_result = ""
+	for i in range(number-1):
+		sc_gacha_result += str(gacha_SC())
+		sc_gacha_result += "\n"
+	sc_gacha_result += str(gacha_SC_Last())
+	return sc_gacha_result

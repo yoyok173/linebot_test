@@ -40,6 +40,7 @@ from linebot.models import (
 # ------ below are self define function ------	
 import gacha as gacha
 import game_set as game
+import event as event
 
 
 
@@ -109,17 +110,6 @@ for row in values:
 	list_key.append(row[0])
 	list_response.append(row[1])
 	list_type.append(row[2])
-
-def get_score_sheet(list_top,list_name,list_target,target):
-	global score_sheet_ID
-	values = get_value_from_google_sheet(score_sheet_ID,'A2:M11')
-	if not values:
-		print('No data found.')
-	else:
-		for row in values:	
-			list_top.append(row[0])
-			list_name.append(row[1])
-			list_target.append(row[target])
 		
 def get_key_response(key):
 	global list_key
@@ -194,13 +184,6 @@ def get_food_sheet(key):
 		random_food_index = random.randint(0,len(list_food)-1)
 		return str(list_food[random_food_index])
 	
-def multi_gacha_SC(number):
-	sc_gacha_result = ""
-	for i in range(number-1):
-		sc_gacha_result += str(gacha_SC())
-		sc_gacha_result += "\n"
-	sc_gacha_result += str(gacha_SC_Last())
-	return sc_gacha_result
 
 def teach(user_message,teachmode):
 	global my_database_sheet_ID
@@ -235,39 +218,6 @@ def teach_pic(user_message,key):
 			return message
 	except:
 		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
-
-
-def leaderboard(key):
-	list_top = []
-	list_name = []
-	list_score = []
-	get_score_sheet(list_top,list_name,list_score,key)
-	# print (list_top,list_name,list_score)
-	score_str = ""
-	for i in range(0,10):
-		score_str += (str(list_top[i])+" --- "+list_score[i]+"\n【"+list_name[i]+"】\n")
-	# print(score_str)
-	score_str += str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y/%m/%d %H:%M:%S"))
-	# score_str += str(time.strftime("%c"))
-	return score_str
-
-def event_progress():
-	global score_sheet_ID
-	values = get_value_from_google_sheet(score_sheet_ID,'E15')
-	if not values:
-		print('No data found.')
-	else:
-		for row in values:	
-			return row[0]
-
-def event_remain_time():
-	global score_sheet_ID
-	values = get_value_from_google_sheet(score_sheet_ID,'E17')
-	if not values:
-		print('No data found.')
-	else:
-		for row in values:	
-			return row[0]
 	
 def readme():
 	with open('readme.txt', 'r') as f:
@@ -398,13 +348,13 @@ def search_cmd(user_message):
 	[["!閉嘴","!安靜","!你閉嘴","!你安靜"],switch_off()],
 	[["!說話"],switch_still_on()],
 	[["!使用說明書","!help","!說明書"],readme()],
-	[["即時排名","即時戰況",'排名','分數','戰況','score'],leaderboard(2)],
-	[["%數","%"],leaderboard(3)],
-	[['分數差'],leaderboard(5)],
-	[['場數差'],leaderboard(6)], 
-	[["追擊時間","脫褲子","脫內褲","內褲","褲子"],leaderboard(7)],
-	[['時速'],leaderboard(8)], 
-	[['場速'],leaderboard(9)],
+	[["即時排名","即時戰況",'排名','分數','戰況','score'],event_board(2)],
+	[["%數","%"],event_board(3)],
+	[['分數差'],event_board(5)],
+	[['場數差'],event_board(6)], 
+	[["追擊時間","脫褲子","脫內褲","內褲","褲子"],event_board(7)],
+	[['時速'],event_board(8)], 
+	[['場速'],event_board(9)],
 	[["活動進度",'進度'],event_progress()],
 	[["!抽食物","!食物",'!food'],get_food_sheet(1)],
 	[["!抽飲料","!飲料",'!drink'],get_food_sheet(2)],
@@ -423,72 +373,6 @@ def search_cmd(user_message):
 	print("key not found in cmd box !")
 	return "not found in cmd list"
 '''
-# upperbound = 100
-# lowerbound = 0
-# target_number = 0
-# guess_number_mode = 0
-# def guess_number_set():
-# 	global target_number,guess_number_mode
-# 	guess_number_mode = 1
-# 	target_number = random.randint(1,99)
-# 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
-
-# def guess_number(user_guess):
-# 	global upperbound,lowerbound,target_number,guess_number_mode
-# 	if user_guess == target_number:
-# 		guess_number_mode = 0
-# 		upperbound = 100
-# 		lowerbound = 0
-# 		target_number = 0
-# 		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
-# 	elif (user_guess > target_number and user_guess < upperbound):
-# 		upperbound = user_guess
-# 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
-# 	elif (user_guess < target_number and user_guess > lowerbound):
-# 		lowerbound = user_guess
-# 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
-
-# guess_AB_counter=0
-# guess_AB_mode=0
-# target_AB = ["a","a","a","a"]		
-# def guess_AB_set():
-# 	global guess_AB_mode,target_AB,guess_AB_counter 
-# 	guess_AB_mode = 1
-# 	guess_AB_counter = 0
-# 	for i in range(4):
-# 		target_AB[i] = str(random.randint(0,9))
-# 		j=0
-# 		while(j < i and i > 0):
-# 			if target_AB[i] == target_AB[j]:
-# 				target_AB[i] = str(random.randint(0,9))
-# 				j=0
-# 			else:
-# 				j+=1
-# 	print(target_AB)
-# 	return " 【 幾A幾B 】 \n遊戲設定完成！\n請輸入您的四位數字\n(0~9不重複數字)"
-
-# def guess_AB(user_guess):
-# 	global guess_AB_mode,target_AB,guess_AB_counter
-# 	guess_AB_counter += 1
-# 	cntA = 0
-# 	cntB = 0
-# 	user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
-# 	if user_guess_numberlist == target_AB:
-# 		guess_AB_mode = 0
-# 		guess_AB_counter = 0
-# 		target_AB = ["a","a","a","a"]
-# 		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
-# 	for i in range(4):
-# 		if user_guess_numberlist[i] == target_AB[i]:
-# 			user_guess_numberlist[i] = "a"
-# 			cntA+=1
-# 		if user_guess_numberlist[i] in target_AB:
-# 			cntB+=1
-# 	if guess_AB_counter >= 10:
-# 		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"+"\n不覺得有點太多了嗎？"
-# 	else:
-# 		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"
-
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -656,6 +540,66 @@ def other_type_message(user_message):
 						# 	uri='http://example.com/1'
 						# )
 					]
+				),
+				CarouselColumn(
+					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+					title='小遊戲',
+					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					actions=[
+						PostbackTemplateAction(
+							label='終極密碼',
+							text='!終極密碼',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='幾Ａ幾Ｂ',
+							text='!幾A幾B'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				),
+				CarouselColumn(
+					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+					title='小遊戲',
+					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					actions=[
+						PostbackTemplateAction(
+							label='終極密碼',
+							text='!終極密碼',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='幾Ａ幾Ｂ',
+							text='!幾A幾B'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				),
+				CarouselColumn(
+					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+					title='小遊戲',
+					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					actions=[
+						PostbackTemplateAction(
+							label='終極密碼',
+							text='!終極密碼',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='幾Ａ幾Ｂ',
+							text='!幾A幾B'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
 				)
 			]
 		)
@@ -680,25 +624,25 @@ def text_message(user_message):
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
 		message = readme()
 	elif(user_message in ["即時排名","即時戰況",'排名','分數','戰況','score']):
-		message = leaderboard(2)
+		message = event.event_board(2)
 	elif(user_message in ["%數","%"]):
-		message = leaderboard(3)
+		message = event.event_board(3)
 	elif(user_message in ['一位差']):
-		message = leaderboard(4)
+		message = event.event_board(4)
 	elif(user_message in ['分數差']):
-		message = leaderboard(5)
+		message = event.event_board(5)
 	elif(user_message in ['場數差']):
-		message = leaderboard(6)
+		message = event.event_board(6)
 	elif(user_message in ["追擊時間","脫褲子"]):
-		message = leaderboard(7)
+		message = event.event_board(7)
 	elif(user_message in ['時速']):
-		message = leaderboard(8)
+		message = event.event_board(8)
 	elif(user_message in ['場速']):
-		message = leaderboard(9)
+		message = event.event_board(9)
 	elif(user_message in ["活動進度",'進度']):
-		message = event_progress()
+		message = event.event_progress()
 	elif(user_message in ["剩餘時間"]):
-		message = event_remain_time()
+		message = event.event_remain_time()
 	elif(user_message in ["房號","room"]):
 		message = room_get()
 	elif(user_message.find("room1") == 0):
