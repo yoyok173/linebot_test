@@ -757,7 +757,7 @@ def text_message(user_message):
 	elif(user_message == "test2"):
 		message = guess_AB_set()
 	elif(guess_AB_mode == 1 and is_numberAB(user_message)):
-		message = guess_AB(int(user_message))
+		message = guess_AB(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
