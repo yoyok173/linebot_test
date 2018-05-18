@@ -37,9 +37,6 @@ from linebot.models import (
 	UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
 )
 
-# ------ below are self define function ------	
-import game_setting as game 
-
 app = Flask(__name__)
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -511,8 +508,13 @@ def search_cmd(user_message):
 	print("key not found in cmd box !")
 	return "not found in cmd list"
 '''
+upperbound = 100
+lowerbound = 0
+target_number = 0
 guess_number_mode = 0
+guess_AB_counter=0
 guess_AB_mode=0
+target_AB = ["a","a","a","a"]
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -694,8 +696,8 @@ def other_type_message(user_message):
 		return 0
 
 def text_message(user_message):
-	global guess_number_mode,guess_AB_mode
-	print (guess_number_mode,guess_AB_mode)
+	global guess_number_mode
+	print (isinstance(user_message,int))
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch_off()
@@ -746,13 +748,13 @@ def text_message(user_message):
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
 	elif(user_message == "!終極密碼"):
-		message = game.guess_number_set(guess_number_mode)
+		message = guess_number_set()
 	elif(guess_number_mode == 1 and is_number(user_message)):
-		message = game.guess_number(int(user_message),guess_number_mode)
+		message = guess_number(int(user_message))
 	elif(user_message == "!幾A幾B"):
-		message = game.guess_AB_set()
+		message = guess_AB_set()
 	elif(guess_AB_mode == 1 and is_numberAB(user_message)):
-		message = game.guess_AB(user_message)
+		message = guess_AB(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
