@@ -700,7 +700,7 @@ def other_type_message(user_message):
 
 def text_message(user_message):
 	global guess_number_mode
-	print (isinstance(user_message,int))
+	print (guess_number_mode,guess_AB_mode)
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch_off()
@@ -756,7 +756,7 @@ def text_message(user_message):
 		message = game.guess_number(int(user_message))
 	elif(user_message == "!幾A幾B"):
 		message = game.guess_AB_set()
-	elif(guess_AB_mode == 1 and game.is_numberAB(user_message)):
+	elif(guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
