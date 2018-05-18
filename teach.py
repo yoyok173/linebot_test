@@ -58,43 +58,6 @@ def get_key_response(key):
 		return message
 	else:
 		return 0
-'''		
-def auth_gss_client(path, scopes):
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
-    return gspread.authorize(credentials)
-
-gss_scopes = ['https://spreadsheets.google.com/feeds']
-gss_client = auth_gss_client(auth_json_path, gss_scopes)
-
-def update_sheet_key(gss_client, key, input , output):
-	global list_key,list_response,list_type
-	# try:
-	wks = gss_client.open_by_key(key)
-	sheet = wks.worksheet('dictionary')
-	sheet.insert_row([input , output,"str"], 2)
-	list_key.append(input)
-	list_response.append(output)
-	list_type.append("str")
-	return "success"
-	# except:
-	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-	# 	return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
-
-def update_pic_sheet_key(gss_client, key, input , output):
-	global list_key,list_response,list_type
-	try:
-		wks = gss_client.open_by_key(key)
-		sheet = wks.worksheet('dictionary')
-		sheet.insert_row([input , output,"pic"], 2)
-		list_key.append(input)
-		list_response.append(output)
-		list_type.append("pic")
-		return "success"
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
-'''
-
 
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
@@ -166,3 +129,56 @@ def teach_pic(user_message,key):
 			return message
 	except:
 		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
+
+
+'''
+def forget(user_message):
+	global dictionary_sheet
+	reply_message = user_message.lstrip("!忘記 ")
+	split_result = reply_message.split(' ',1)
+	print(split_result)
+	if(len(split_result) <= 1):
+		return "忘記字詞失敗 > < 你好歹也告訴我要忘記的內容是什麼吧?"
+	elif(split_result[0]=="智乃"):
+		return "oh~ 抱歉~ 我學過的東西是不會忘記的 =) "
+	else:
+		key = split_result[0]
+		response = split_result[1]
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	# Call the Sheets API
+	SPREADSHEET_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+	RANGE_NAME = 'Sheet1!A2:B1000'
+	dictionary_sheet = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+												 range=RANGE_NAME).execute()
+	values = result.get('values', [])
+	if not values:
+		print('No data found.')
+	else:
+		list_key = []
+		list_response = []
+		for row in values:	
+			list_key.append(row[0])
+			list_response.append(row[1])
+		print (len(list_key),len(list_response))
+		if key in list_key:	
+			for i in range(0,len(list_key)):
+				if(list_key[i]==key and list_response[i]==response):
+					print (i)
+					wks = gss_client.open_by_key(SPREADSHEET_ID)
+					sheet = wks.sheet1
+					#sheet.delete_row(i)
+					sheet.update_acell('A'+str(i+2), 'test')
+					sheet.update_acell('B'+str(i+2), 'test')
+					return "忘記字詞 「"+key+"」 成功 !!!"
+			return "忘記字詞失敗 > < 你是不是連自己教過的東西都忘了?"
+		else:
+			return "忘記字詞失敗 > < 你確定有教過我這個詞?"
+'''
