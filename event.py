@@ -30,6 +30,10 @@ my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 auth_json_path = "./auth.json"
 
+def auth_gss_client(path, scopes):
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
+    return gspread.authorize(credentials)
+
 gss_scopes = ['https://spreadsheets.google.com/feeds']
 gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
