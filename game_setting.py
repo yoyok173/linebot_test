@@ -1,3 +1,5 @@
+import random
+
 def guess_number_set():
 	global guess_number_mode,target_number
 	guess_number_mode = 1
