@@ -714,7 +714,27 @@ def other_type_message(user_message):
 						MessageTemplateAction(
 							label='幾Ａ幾Ｂ',
 							text='!幾A幾B'
-						)
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				),
+				CarouselColumn(
+					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+					title='小遊戲',
+					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					actions=[
+						PostbackTemplateAction(
+							label='終極密碼',
+							text='!終極密碼',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='幾Ａ幾Ｂ',
+							text='!幾A幾B'
+						),
 						# URITemplateAction(
 						# 	label='uri1',
 						# 	uri='http://example.com/1'
