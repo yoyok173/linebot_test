@@ -106,7 +106,6 @@ def get_food_sheet(key):
 		random_food_index = random.randint(0,len(list_food)-1)
 		return str(list_food[random_food_index])
 	
-	
 def readme():
 	with open('readme.txt', 'r') as f:
 		content = f.read()
@@ -132,51 +131,6 @@ def switch_off():
 	global mode	
 	mode = 0
 	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
-
-def room_get():
-	global my_database_sheet_ID
-	list_room = []
-	values = get_value_from_google_sheet(my_database_sheet_ID,'room!A1:A')
-	if not values:
-		print('No data found.')
-	else:
-		for row in values:	
-			list_room.append(row[0])
-		return "當前房號1為： "+list_room[0]+"\n當前房號2為： "+list_room[1]
-
-def room_update(user_message):
-	global my_database_sheet_ID
-	try:
-		room_number = user_message.split(" ",1)
-		print("get new number : "+room_number[1])
-	except:
-		return "【請依照範例輸入：】\nroom1 12345"
-
-	try:
-		wks = gss_client.open_by_key(my_database_sheet_ID)
-		sheet = wks.worksheet('room')
-		sheet.update_acell('A1', room_number[1])
-		return "當前房號1已更新為："+room_number[1]	
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
-
-def room_update2(user_message):
-	global my_database_sheet_ID
-	try:
-		room_number = user_message.split(" ",1)
-		print("get new number : "+room_number[1])
-	except:
-		return "【請依照範例輸入：】\nroom2 12345"
-
-	try:
-		wks = gss_client.open_by_key(my_database_sheet_ID)
-		sheet = wks.worksheet('room')
-		sheet.update_acell('A2', room_number[1])
-		return "當前房號2已更新為："+room_number[1]	
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
 
 '''
 def search_cmd(user_message):
@@ -480,11 +434,11 @@ def text_message(user_message):
 	elif(user_message in ["剩餘時間"]):
 		message = event.event_remain_time()
 	elif(user_message in ["房號","room"]):
-		message = room_get()
+		message = event.room_get()
 	elif(user_message.find("room1") == 0):
-		message = room_update(user_message)
+		message = event.room_update(user_message)
 	elif(user_message.find("room2") == 0):
-		message = room_update2(user_message)
+		message = event.room_update2(user_message)
 	elif(user_message.lower()  in ["!抽食物"]):
 		message = get_food_sheet(1)
 	elif(user_message.lower()  in ["!抽飲料"]):

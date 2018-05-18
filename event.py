@@ -9,6 +9,10 @@ from oauth2client import file, client, tools
 from urllib.request import urlopen
 from oauth2client.service_account import ServiceAccountCredentials
 
+from linebot.models import (
+	MessageEvent, TextMessage, TextSendMessage,
+)
+
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
@@ -68,3 +72,48 @@ def event_remain_time():
 	else:
 		for row in values:	
 			return row[0]
+
+def room_get():
+	global my_database_sheet_ID
+	list_room = []
+	values = get_value_from_google_sheet(my_database_sheet_ID,'room!A1:A')
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:	
+			list_room.append(row[0])
+		return "當前房號1為： "+list_room[0]+"\n當前房號2為： "+list_room[1]
+
+def room_update(user_message):
+	global my_database_sheet_ID
+	try:
+		room_number = user_message.split(" ",1)
+		print("get new number : "+room_number[1])
+	except:
+		return "【請依照範例輸入：】\nroom1 12345"
+
+	try:
+		wks = gss_client.open_by_key(my_database_sheet_ID)
+		sheet = wks.worksheet('room')
+		sheet.update_acell('A1', room_number[1])
+		return "當前房號1已更新為："+room_number[1]	
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
+
+def room_update2(user_message):
+	global my_database_sheet_ID
+	try:
+		room_number = user_message.split(" ",1)
+		print("get new number : "+room_number[1])
+	except:
+		return "【請依照範例輸入：】\nroom2 12345"
+
+	try:
+		wks = gss_client.open_by_key(my_database_sheet_ID)
+		sheet = wks.worksheet('room')
+		sheet.update_acell('A2', room_number[1])
+		return "當前房號2已更新為："+room_number[1]	
+	except:
+		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
