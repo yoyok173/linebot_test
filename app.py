@@ -525,7 +525,7 @@ def guess_number(user_guess):
 		upperbound = 100
 		lowerbound = 0
 		target_number = 0
-		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！！！"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
@@ -533,11 +533,13 @@ def guess_number(user_guess):
 		lowerbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
 
+guess_AB_counter=0
 guess_AB_mode=0
 target_AB = ["a","a","a","a"]		
 def guess_AB_set():
 	global guess_AB_mode,target_AB
 	guess_AB_mode = 1
+	guess_AB_counter = 0
 	for i in range(4):
 		target_AB[i] = str(random.randint(0,9))
 		j=0
@@ -551,21 +553,26 @@ def guess_AB_set():
 	return " 【 幾A幾B 】 \n遊戲設定完成！\n請輸入您的四位數字\n(0~9不重複數字)"
 
 def guess_AB(user_guess):
-	global guess_AB_mode,target_AB
+	global guess_AB_mode,target_AB,guess_AB_counter
+	guess_AB_counter += 1
 	cntA = 0
 	cntB = 0
 	user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
 	if user_guess_numberlist == target_AB:
-		guess_number_mode = 0
+		guess_AB_mode = 0
+		guess_AB_counter = 0
 		target_AB = ["a","a","a","a"]
-		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！！！"
 	for i in range(4):
 		if user_guess_numberlist[i] == target_AB[i]:
 			user_guess_numberlist[i] = "a"
 			cntA+=1
 		if user_guess_numberlist[i] in target_AB:
 			cntB+=1
-	return str(cntA)+" A "+str(cntB) + " B"
+	if guess_AB_counter >= 10:
+		return str(cntA)+" A "+str(cntB) + " B\n你們已經猜了【 "+guess_AB_counter+" 】次"
+	else:
+		return str(cntA)+" A "+str(cntB) + " B\n你們已經猜了【 "+guess_AB_counter+" 】次\n不覺得有點太多了嗎？"
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -689,6 +696,34 @@ def other_type_message(user_message):
 				]
 			)
 		)
+	elif(user_message == "小遊戲"):
+	message = TemplateSendMessage(
+		alt_text='【請問您要哪一種小遊戲呢？】',
+		template=CarouselTemplate(
+			columns=[
+				CarouselColumn(
+					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+					title='小遊戲',
+					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					actions=[
+						PostbackTemplateAction(
+							label='終極密碼',
+							text='!終極密碼',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='幾Ａ幾Ｂ',
+							text='!幾A幾B'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				)
+			]
+		)
+	)
 	else:
 		print ("start finding library")
 		message = get_key_response(user_message)
@@ -750,11 +785,11 @@ def text_message(user_message):
 		message = "【SC 單抽結果】\n" + multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + multi_gacha_SC(10)
-	elif(user_message == "終極密碼"):
+	elif(user_message == "!終極密碼"):
 		message = guess_number_set()
 	elif(guess_number_mode == 1 and is_number(user_message)):
 		message = guess_number(int(user_message))
-	elif(user_message == "test2"):
+	elif(user_message == "!幾A幾B"):
 		message = guess_AB_set()
 	elif(guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = guess_AB(user_message)
