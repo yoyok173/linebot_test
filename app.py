@@ -211,7 +211,7 @@ def teach(user_message,teachmode):
 		else:
 			return message 
 	except:
-		return "【請依照範例輸入：】\n!教育 (關鍵字) (網址)\n!調教 (關鍵字) (網址)"
+		return "【請依照範例輸入：】\n!教育 (關鍵字) (反應)\n!調教 (關鍵字) (反應)"
 	
 def teach_pic(user_message,key):
 	global my_database_sheet_ID	
