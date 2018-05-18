@@ -47,8 +47,6 @@ auth_json_path = "./auth.json"
 
 now = datetime.datetime.now()
 mode = 1
-guess_number_mode = 0
-target_number = 0
 
 # game SSR Prob
 SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
@@ -150,17 +148,17 @@ gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def update_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
-	try:
-		wks = gss_client.open_by_key(key)
-		sheet = wks.worksheet('dictionary')
-		sheet.insert_row([input , output,"str"], 2)
-		list_key.append(input)
-		list_response.append(output)
-		list_type.append("str")
-		return "success"
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
+	# try:
+	wks = gss_client.open_by_key(key)
+	sheet = wks.worksheet('dictionary')
+	sheet.insert_row([input , output,"str"], 2)
+	list_key.append(input)
+	list_response.append(output)
+	list_type.append("str")
+	return "success"
+	# except:
+	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+	# 	return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
 
 def update_pic_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
@@ -500,16 +498,16 @@ def search_cmd(user_message):
 	print("key not found in cmd box !")
 	return "not found in cmd list"
 '''
-
-
+upperbound = 100
+lowerbound = 0
+target_number = 0
+guess_number_mode = 0
 def guess_number_set():
 	global guess_number_mode,target_number
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
-upperbound = 100
-lowerbound = 0
 def guess_number(user_guess):
 	global upperbound,lowerbound,target_number,guess_number_mode
 	if user_guess == target_number:
@@ -524,6 +522,39 @@ def guess_number(user_guess):
 	elif (user_guess < target_number and user_guess > lowerbound):
 		lowerbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
+
+guess_AB_mode=0
+target_AB = []
+def guess_AB_set():
+	global guess_AB_mode,target_AB
+	guess_AB_mode = 1
+	for i in range(4):
+		target_AB[i] = str(random.randint(0,9))
+		j=0
+		while(j < i and i > 0):
+			if target_AB[i] == target_AB[j]:
+				target_AB[i] = str(random.randint(0,9))
+				j=0
+			else:
+				j+=1
+	print(target_AB)
+	return "【 幾A幾B 】 \n遊戲設定完成！\n請輸入您的四位數字\n(0~9不重複數字)"
+
+def guess_AB(user_guess):
+	global upperbound,lowerbound,target_number,guess_number_mode
+	if user_guess == target_number:
+		guess_number_mode = 0
+		upperbound = 100
+		lowerbound = 0
+		target_number = 0
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
+	elif (user_guess > target_number and user_guess < upperbound):
+		upperbound = user_guess
+		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
+	elif (user_guess < target_number and user_guess > lowerbound):
+		lowerbound = user_guess
+		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
+
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -712,6 +743,8 @@ def text_message(user_message):
 		message = guess_number_set()
 	elif(guess_number_mode == 1 and is_number(user_message)):
 		message = guess_number(int(user_message))
+	elif(user_message == "test2"):
+		message = guess_AB()
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
