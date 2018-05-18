@@ -1,5 +1,14 @@
 import random
 
+
+upperbound = 100
+lowerbound = 0
+target_number = 0
+guess_number_mode = 0
+guess_AB_counter=0
+guess_AB_mode=0
+target_AB = ["a","a","a","a"]
+
 def guess_number_set():
 	global guess_number_mode,target_number
 	guess_number_mode = 1
