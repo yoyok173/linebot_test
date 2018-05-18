@@ -28,6 +28,10 @@ handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
+auth_json_path = "./auth.json"
+
+gss_scopes = ['https://spreadsheets.google.com/feeds']
+gss_client = auth_gss_client(auth_json_path, gss_scopes)
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
