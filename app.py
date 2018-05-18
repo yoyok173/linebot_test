@@ -524,7 +524,7 @@ def guess_number(user_guess):
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
 
 guess_AB_mode=0
-target_AB = []
+target_AB = [-1,-1,-1,-1]
 def guess_AB_set():
 	global guess_AB_mode,target_AB
 	guess_AB_mode = 1
