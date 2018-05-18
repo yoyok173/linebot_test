@@ -41,10 +41,7 @@ from linebot.models import (
 import gacha as gacha
 import game_set as game
 import event as event
-
-
-
-
+import teach as teach
 
 app = Flask(__name__)
 # Channel Access Token
@@ -56,13 +53,6 @@ auth_json_path = "./auth.json"
 
 now = datetime.datetime.now()
 mode = 1
-
-# game SSR Prob
-SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
-SC_SSR_S_prob = 30 # SC Support idol SSR_probability
-SC_SR_P_prob = 60 # SC Produce idol SR_probability
-SC_SR_S_prob = 100 # SC Support idol SR_probability
-SC_R_R_prob = 290 # SC Support idol R_probability
 
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
@@ -132,7 +122,7 @@ def get_key_response(key):
 		return message
 	else:
 		return 0
-		
+'''		
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
     return gspread.authorize(credentials)
@@ -167,6 +157,7 @@ def update_pic_sheet_key(gss_client, key, input , output):
 	except:
 		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
+'''
 
 def get_food_sheet(key):
 	global my_database_sheet_ID
@@ -184,40 +175,6 @@ def get_food_sheet(key):
 		random_food_index = random.randint(0,len(list_food)-1)
 		return str(list_food[random_food_index])
 	
-
-def teach(user_message,teachmode):
-	global my_database_sheet_ID
-	# try:
-	split_result = user_message.split(' ', 2 )
-	print(split_result)
-	message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
-	if message == "success":
-		if teachmode == 0:
-			return "我學會了 「"+split_result[1]+"」 !!!"
-		elif teachmode == 1:
-			return "學會 「"+split_result[1]+"」 了 >////< "
-	else:
-		return message 
-	# except:
-	# 	return "【請依照範例輸入：】\n!教育 (關鍵字) (反應)\n!調教 (關鍵字) (反應)"
-	
-def teach_pic(user_message,key):
-	global my_database_sheet_ID	
-	try:
-		split_result = user_message.split(' ', 2 )
-		print(split_result)
-		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
-		if message == "success":
-			if key == 0:
-				return "哇嗚~ 好好看的「"+split_result[1]+"」 圖 >////< "
-			elif key == 1:
-				return "哇嗚~ 這「"+split_result[1]+"」 圖 >////< "
-			elif key == 2:
-				return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
-		else:
-			return message
-	except:
-		return "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
 	
 def readme():
 	with open('readme.txt', 'r') as f:
@@ -687,15 +644,15 @@ def text_message(user_message):
 		except:
 			message = "【請依照範例輸入：】\n!抽數字 (你的數字)\n(「1~你的數字」抽一個數字)"
 	elif(user_message.find("!教育") == 0):
-		message = teach(user_message,0)
+		message = teach.teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
-		message = teach(user_message,1)
+		message = teach.teach(user_message,1)
 	elif(user_message.find("!智乃看圖片") == 0):
-		message = teach_pic(user_message,0)
+		message = teach.teach_pic(user_message,0)
 	elif(user_message.find("!給智乃看圖") == 0):
-		message = teach_pic(user_message,1)
+		message = teach.teach_pic(user_message,1)
 	elif(user_message.find("!智乃看圖圖") == 0):
-		message = teach_pic(user_message,2)
+		message = teach.teach_pic(user_message,2)
 	# elif(user_message.find("!忘記") == 0):
 	# 	forget_result = forget(user_message)
 	# 	message = TextSendMessage(text=forget_result)

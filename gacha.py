@@ -15,6 +15,13 @@ SC_nameList = [
 '杜野凛世','園田智代子','西城樹里','有栖川夏葉'
 ]
 
+# game SSR Prob
+SC_SSR_P_prob = 20 # SC Produce idol SSR_probability
+SC_SSR_S_prob = 30 # SC Support idol SSR_probability
+SC_SR_P_prob = 60 # SC Produce idol SR_probability
+SC_SR_S_prob = 100 # SC Support idol SR_probability
+SC_R_R_prob = 290 # SC Support idol R_probability
+
 def gacha_BGD():
 	random_number = random.randint(0,999)
 	if random_number < 30:
