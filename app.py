@@ -560,10 +560,10 @@ def guess_AB(user_guess):
 		target_AB = ["a","a","a","a"]
 		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
 	for i in range(4):
-		if user_guess[i] == target_AB[i]:
-			user_guess[i] = "a"
+		if user_guess_numberlist[i] == target_AB[i]:
+			user_guess_numberlist[i] = "a"
 			cntA+=1
-		if user_guess[i] in target_AB:
+		if user_guess_numberlist[i] in target_AB:
 			cntB+=1
 	return str(cntA)+" A "+str(cntB) + " B"
 
