@@ -513,13 +513,13 @@ lowerbound = 0
 target_number = 0
 guess_number_mode = 0
 def guess_number_set():
-	global target_number
+	global target_number,guess_number_mode
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
 def guess_number(user_guess):
-	global upperbound,lowerbound,target_number
+	global upperbound,lowerbound,target_number,guess_number_mode
 	if user_guess == target_number:
 		guess_number_mode = 0
 		upperbound = 100
@@ -537,7 +537,7 @@ guess_AB_counter=0
 guess_AB_mode=0
 target_AB = ["a","a","a","a"]		
 def guess_AB_set():
-	global guess_AB_mode,target_AB
+	global guess_AB_mode,target_AB,guess_AB_counter 
 	guess_AB_mode = 1
 	guess_AB_counter = 0
 	for i in range(4):
@@ -755,8 +755,8 @@ def other_type_message(user_message):
 		return 0
 
 def text_message(user_message):
-	global guess_number_mode
-	print (isinstance(user_message,int))
+	global guess_number_mode,guess_AB_mode
+	# print (isinstance(user_message,int))
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch_off()
