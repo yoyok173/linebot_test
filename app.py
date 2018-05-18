@@ -695,9 +695,9 @@ def other_type_message(user_message):
 					)
 				]
 			)
-		)
+	)
 	elif(user_message == "小遊戲"):
-	message = TemplateSendMessage(
+		message = TemplateSendMessage(
 		alt_text='【請問您要哪一種小遊戲呢？】',
 		template=CarouselTemplate(
 			columns=[
