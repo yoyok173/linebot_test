@@ -442,7 +442,7 @@ def other_type_message(user_message):
 	)
 	else:
 		print ("start finding library")
-		message = get_key_response(user_message)
+		message = teach.get_key_response(user_message)
 
 	if message != 0:
 		return message
