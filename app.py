@@ -714,7 +714,7 @@ def other_type_message(user_message):
 						MessageTemplateAction(
 							label='幾Ａ幾Ｂ',
 							text='!幾A幾B'
-						),
+						)
 						# URITemplateAction(
 						# 	label='uri1',
 						# 	uri='http://example.com/1'
