@@ -84,17 +84,17 @@ def update_sheet_key(gss_client, key, input , output):
 
 def update_pic_sheet_key(gss_client, key, input , output):
 	global list_key,list_response,list_type
-	try:
-		wks = gss_client.open_by_key(key)
-		sheet = wks.worksheet('dictionary')
-		sheet.insert_row([input , output,"pic"], 2)
-		list_key.append(input)
-		list_response.append(output)
-		list_type.append("pic")
-		return "success"
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
+	# try:
+	wks = gss_client.open_by_key(key)
+	sheet = wks.worksheet('dictionary')
+	sheet.insert_row([input , output,"pic"], 2)
+	list_key.append(input)
+	list_response.append(output)
+	list_type.append("pic")
+	return "success"
+	# except:
+	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+	# 	return "看來是google又壞掉了QQ，我已經幫忙通知拔拔了! 請稍等~~"
 
 
 def teach(user_message,teachmode):
