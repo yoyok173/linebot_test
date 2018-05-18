@@ -1,20 +1,17 @@
 import random
 
-
 upperbound = 100
 lowerbound = 0
 target_number = 0
-guess_AB_counter=0
-target_AB = ["a","a","a","a"]
-
-def guess_number_set(guess_number_mode):
-	global target_number
+guess_number_mode = 0
+def guess_number_set():
+	global target_number,guess_number_mode
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
-def guess_number(user_guess,guess_number_mode):
-	global upperbound,lowerbound,target_number
+def guess_number(user_guess):
+	global upperbound,lowerbound,target_number,guess_number_mode
 	if user_guess == target_number:
 		guess_number_mode = 0
 		upperbound = 100
@@ -27,9 +24,12 @@ def guess_number(user_guess,guess_number_mode):
 	elif (user_guess < target_number and user_guess > lowerbound):
 		lowerbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
-		
+
+guess_AB_counter=0
+guess_AB_mode=0
+target_AB = ["a","a","a","a"]		
 def guess_AB_set():
-	global guess_AB_mode,target_AB
+	global guess_AB_mode,target_AB,guess_AB_counter 
 	guess_AB_mode = 1
 	guess_AB_counter = 0
 	for i in range(4):
