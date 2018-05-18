@@ -58,20 +58,6 @@ SC_SR_P_prob = 60 # SC Produce idol SR_probability
 SC_SR_S_prob = 100 # SC Support idol SR_probability
 SC_R_R_prob = 290 # SC Support idol R_probability
 
-BGD_namelist = [
-'牛込りみ','山吹沙綾','戸山香澄','市ヶ谷有咲','花園たえ',
-'上原ひまり','羽沢つぐみ','美竹蘭','宇田川巴','青葉モカ',
-'白鷺千聖','若宮イヴ','丸山彩','大和麻弥','氷川日菜',
-'氷川紗夜','宇田川あこ','湊友希那','白金燐子','今井リサ',
-'北沢はぐみ','奥沢美咲','弦巻こころ','瀬田薫','松原花音']
-
-SC_nameList = [
-'風野灯織','八宮めぐる','櫻木真乃','月岡恋鐘',
-'田中摩美々','幽谷霧子','三峰結華','白瀬咲耶',
-'桑山千雪','大崎甘奈','大崎甜花','小宮果穂',
-'杜野凛世','園田智代子','西城樹里','有栖川夏葉'
-]
-
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
