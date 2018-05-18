@@ -20,6 +20,11 @@ from linebot.models import (
 	MessageEvent, TextMessage, TextSendMessage,
 )
 
+# Channel Access Token
+line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
+
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
@@ -101,14 +106,14 @@ def room_update(user_message):
 	except:
 		return "【請依照範例輸入：】\nroom1 12345"
 
-	try:
-		wks = gss_client.open_by_key(my_database_sheet_ID)
-		sheet = wks.worksheet('room')
-		sheet.update_acell('A1', room_number[1])
-		return "當前房號1已更新為："+room_number[1]	
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
+	# try:
+	wks = gss_client.open_by_key(my_database_sheet_ID)
+	sheet = wks.worksheet('room')
+	sheet.update_acell('A1', room_number[1])
+	return "當前房號1已更新為："+room_number[1]	
+	# except:
+	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+	# 	return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
 
 def room_update2(user_message):
 	global my_database_sheet_ID
@@ -118,11 +123,11 @@ def room_update2(user_message):
 	except:
 		return "【請依照範例輸入：】\nroom2 12345"
 
-	try:
-		wks = gss_client.open_by_key(my_database_sheet_ID)
-		sheet = wks.worksheet('room')
-		sheet.update_acell('A2', room_number[1])
-		return "當前房號2已更新為："+room_number[1]	
-	except:
-		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
+	# try:
+	wks = gss_client.open_by_key(my_database_sheet_ID)
+	sheet = wks.worksheet('room')
+	sheet.update_acell('A2', room_number[1])
+	return "當前房號2已更新為："+room_number[1]	
+	# except:
+	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+	# 	return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
