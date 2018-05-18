@@ -525,7 +525,7 @@ def guess_number(user_guess):
 		upperbound = 100
 		lowerbound = 0
 		target_number = 0
-		return "恭喜！！！答案就是【"+str(user_guess)+"】！！！"
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
 	elif (user_guess > target_number and user_guess < upperbound):
 		upperbound = user_guess
 		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
@@ -562,7 +562,7 @@ def guess_AB(user_guess):
 		guess_AB_mode = 0
 		guess_AB_counter = 0
 		target_AB = ["a","a","a","a"]
-		return "恭喜！！！答案就是【"+str(user_guess)+"】！！！"
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
 	for i in range(4):
 		if user_guess_numberlist[i] == target_AB[i]:
 			user_guess_numberlist[i] = "a"
