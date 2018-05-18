@@ -512,13 +512,13 @@ upperbound = 100
 lowerbound = 0
 target_number = 0
 guess_number_mode = 0
-def guess_number_set(guess_number_mode):
+def guess_number_set():
 	global target_number
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
-def guess_number(user_guess,guess_number_mode):
+def guess_number(user_guess):
 	global upperbound,lowerbound,target_number
 	if user_guess == target_number:
 		guess_number_mode = 0
