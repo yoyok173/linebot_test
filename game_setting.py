@@ -4,19 +4,17 @@ import random
 upperbound = 100
 lowerbound = 0
 target_number = 0
-guess_number_mode = 0
 guess_AB_counter=0
-guess_AB_mode=0
 target_AB = ["a","a","a","a"]
 
-def guess_number_set():
-	global guess_number_mode,target_number
+def guess_number_set(guess_number_mode):
+	global target_number
 	guess_number_mode = 1
 	target_number = random.randint(1,99)
 	return " 【 終極密碼 】 \n遊戲設定完成！\n請輸入0~100的數字"
 
-def guess_number(user_guess):
-	global upperbound,lowerbound,target_number,guess_number_mode
+def guess_number(user_guess,guess_number_mode):
+	global upperbound,lowerbound,target_number
 	if user_guess == target_number:
 		guess_number_mode = 0
 		upperbound = 100
