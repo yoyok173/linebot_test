@@ -10,7 +10,7 @@ from urllib.request import urlopen
 from oauth2client.service_account import ServiceAccountCredentials
 
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
-
+auth_json_path = "./auth.json"
 
 def auth_gss_client(path, scopes):
     credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)

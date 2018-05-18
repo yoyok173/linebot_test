@@ -49,7 +49,6 @@ line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mM
 # Channel Secret
 handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
 # user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
-auth_json_path = "./auth.json"
 
 now = datetime.datetime.now()
 mode = 1
