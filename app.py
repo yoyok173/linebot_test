@@ -79,7 +79,7 @@ def is_number(s):
 		float(s)
 		return True
 	except ValueError:
-	pass
+		pass
 
 def is_numberAB(s):
 	try:
@@ -89,7 +89,7 @@ def is_numberAB(s):
 		else:
 			return False
 	except ValueError:
-	pass
+		pass
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
