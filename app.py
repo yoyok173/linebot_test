@@ -75,11 +75,21 @@ april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 
 
 def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        pass
+	try:
+		float(s)
+		return True
+	except ValueError:
+	pass
+
+def is_numberAB(s):
+	try:
+		float(s)
+		if(int(s)>=0 and int(s)<=9999):
+			return True
+		else:
+			return False
+	except ValueError:
+	pass
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
@@ -538,23 +548,24 @@ def guess_AB_set():
 			else:
 				j+=1
 	print(target_AB)
-	return "【 幾A幾B 】 \n遊戲設定完成！\n請輸入您的四位數字\n(0~9不重複數字)"
+	return " 【 幾A幾B 】 \n遊戲設定完成！\n請輸入您的四位數字\n(0~9不重複數字)"
 
 def guess_AB(user_guess):
-	global upperbound,lowerbound,target_number,guess_number_mode
-	if user_guess == target_number:
+	global guess_AB_mode,target_AB
+	cntA = 0
+	cntB = 0
+	user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
+	if user_guess_numberlist == target_AB:
 		guess_number_mode = 0
-		upperbound = 100
-		lowerbound = 0
-		target_number = 0
+		target_AB = [-1,-1,-1,-1]
 		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
-	elif (user_guess > target_number and user_guess < upperbound):
-		upperbound = user_guess
-		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
-	elif (user_guess < target_number and user_guess > lowerbound):
-		lowerbound = user_guess
-		return str(lowerbound)+" ~ "+str(upperbound) + " 之間"
-
+	for i in range(4):
+		if user_guess[i] == target_AB[i]:
+			user_guess[i] = -1
+			cntA+=1
+		if user_guess[i] in target_AB:
+			cntB+=1
+	return str(cntA)+" A "+str(cntB) + " B"
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -745,6 +756,8 @@ def text_message(user_message):
 		message = guess_number(int(user_message))
 	elif(user_message == "test2"):
 		message = guess_AB_set()
+	elif(guess_AB_mode == 1 and is_numberAB(user_message)):
+		message = guess_AB(int(user_message))
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
