@@ -1,17 +1,15 @@
-import time
+
 import gspread
-import re
 import datetime
-import random
 
 from apiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 
-from flask import Flask, request, abort
 from urllib.request import urlopen
 from oauth2client.service_account import ServiceAccountCredentials
 
+score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
