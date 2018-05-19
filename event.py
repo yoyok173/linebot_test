@@ -165,7 +165,7 @@ def stone_calculator(user_message):
 		print('No data found.')
 	else:
 		for row in values:	
-			time = 120-round(row[0],2)
+			time = 120-round(float(row[0]),2)
 	message = "活動剩餘時間:"+str(time)+"\n目前所剩石頭量:"+str(stone)+"\n全速到結束所需石頭:"+str(int(time*25*3*100/10))+"\n仍缺少石頭:"+str(int(time*25*3*100/10)-stone)+"\n剩餘石頭可轉換分數:"+str(int(stone/100*10/3*3900*(1+((percent)/100))))
 	return message
 
