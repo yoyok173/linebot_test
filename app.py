@@ -243,6 +243,7 @@ def handle_message(event):
 							# )
 						]
 					),
+					'''
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 1】 - ',
@@ -283,6 +284,7 @@ def handle_message(event):
 							# )
 						]
 					),
+					'''
 					CarouselColumn(
 						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 3】 - ',
