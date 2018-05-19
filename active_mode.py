@@ -309,17 +309,17 @@ def text_message(user_message):
 		message = event.event_remain_time()
 	elif(user_message.lower() in ["房號","room","rm","r"]):
 		message = event.room_get()
-	elif(user_message.find("room1") == 0):
+	elif(user_message.lower().find("room1") == 0):
 		message = event.room_update(user_message)
-	elif(user_message.find("room2") == 0):
+	elif(user_message.lower().find("room2") == 0):
 		message = event.room_update2(user_message)
 	elif(user_message.lower().find("r1") == 0):
 		message = event.room_update(user_message)
 	elif(user_message.lower().find("r2") == 0):
 		message = event.room_update2(user_message)
-	elif(user_message.find("!fire") == 0):
+	elif(user_message.lower().find("!fire") == 0):
 		message = event.fire_calculator(user_message)
-	elif(user_message.find("!stone") == 0):
+	elif(user_message.lower().find("!stone") == 0):
 		message = event.stone_calculator(user_message)
 	elif(user_message in ["!抽食物"]):
 		message = food.get_food_sheet(1)
@@ -381,15 +381,15 @@ def text_message(user_message):
 	# 	message = TextSendMessage(text=forget_result)
 	# 	line_bot_api.reply_message(event.reply_token,message)
 
-	elif(user_message.find("!addnote") == 0):
+	elif(user_message.lower().find("!addnote") == 0):
 		message = note.add_note(user_message)
-	elif(user_message.find("!delnote") == 0):
+	elif(user_message.lower().find("!delnote") == 0):
 		message = note.del_note(user_message)
-	elif(user_message == "!shownote"):
+	elif(user_message.lower() == "!shownote"):
 		message = note.show_note()
-	elif(user_message.find("!restorenote") == 0):
+	elif(user_message.lower().find("!restorenote") == 0):
 		message = note.restore_note(user_message)
-	elif(user_message == "!backupnote"):
+	elif(user_message.lower() == "!backupnote"):
 		message = note.backup_note()
 
 	if message != "default" :

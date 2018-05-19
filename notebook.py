@@ -34,7 +34,7 @@ def del_note(user_message):
 		del notebook_content[content_key]
 		return "刪除筆記成功！"
 	except:
-		return "刪除筆記失敗！請確定有該欄位！"
+		return "刪除筆記失敗！請確定有該則筆記！"
 
 def restore_note(user_message):
 	try:
@@ -55,7 +55,7 @@ def backup_note():
 	message = ""
 	for i in range(len(notebook_content)):
 		message += notebook_content[i]
-		if i < len(notebook_content):
+		if i < len(notebook_content)-1:
 			message += ","
 	return "筆記備份成功！\n【請妥善保存以下內容：】\n"+message
 
