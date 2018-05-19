@@ -15,7 +15,7 @@ def show_note():
 	message = ""
 	for i in range(len(notebook_content)):
 		message += str(i+1)
-		message += " ) "
+		message += ")  "
 		message += notebook_content[i]
 		if i < len(notebook_content):
 			message += "\n"
@@ -51,7 +51,7 @@ def restore_note(user_message):
 
 def backup_note():
 	message = ""
-	for i in range(notebook_content):
+	for i in range(len(notebook_content)):
 		message += notebook_content[i]
 		if i < len(notebook_content):
 			message += ","

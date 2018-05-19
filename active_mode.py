@@ -313,9 +313,9 @@ def text_message(user_message):
 		message = event.room_update(user_message)
 	elif(user_message.find("room2") == 0):
 		message = event.room_update2(user_message)
-	elif(user_message.find("r1") == 0):
+	elif(user_message.lower().find("r1") == 0):
 		message = event.room_update(user_message)
-	elif(user_message.find("r2") == 0):
+	elif(user_message.lower().find("r2") == 0):
 		message = event.room_update2(user_message)
 	elif(user_message.find("!fire") == 0):
 		message = event.fire_calculator(user_message)
