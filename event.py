@@ -150,7 +150,7 @@ def fire_calculator(user_message):
 	except:
 		return "【請依照範例輸入：】\n!fire (剩餘火量) (活動％數,不用打％)"
 
-	message = "目前所剩石頭量:"+fire+"\n可轉換分數:"+fire/3*(1+((score)/100))
+	message = "目前所剩石頭量:"+str(fire)+"\n可轉換分數:"+str(int(fire/3*(1+((score)/100))))
 	return message
 
 def stone_calculator(user_message):
@@ -159,7 +159,6 @@ def stone_calculator(user_message):
 		split = user_message.split(" ",2)
 		stone = split[1]
 		score = split[2]
-		print("get new number : "+stone[1])
 	except:
 		return "【請依照範例輸入：】\n!stone (剩餘石頭) (活動％數,不用打％)"
 
@@ -169,6 +168,6 @@ def stone_calculator(user_message):
 	else:
 		for row in values:	
 			time = 120-row[0]
-	message = "活動剩餘時間:"+time+"\n目前所剩石頭量:"+stone+"\n全速到結束所需石頭:"+int(time*25*3*100/10)+"\n仍缺少石頭:"+int(time*25*3*100/10)-stone+"\n剩餘石頭可轉換分數:"+stone/100*10/3*(1+((score)/100))
+	message = "活動剩餘時間:"+str(time)+"\n目前所剩石頭量:"+str(stone)+"\n全速到結束所需石頭:"+str(int(time*25*3*100/10))+"\n仍缺少石頭:"+str(int(time*25*3*100/10)-stone)+"\n剩餘石頭可轉換分數:"+str(int(stone/100*10/3*(1+((score)/100)))
 	return message
 
