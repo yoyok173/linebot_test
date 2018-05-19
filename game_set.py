@@ -1,22 +1,27 @@
 import random
-
+import re
 
 def is_number(s):
 	try:
 		float(s)
-		return True
+		if 0 <= int(s) and int(s) <= 100 :
+			return True
+		else:
+			return False
 	except ValueError:
 		pass
 
 def is_numberAB(user_guess):
 	try:
 		float(user_guess)
-		try:
-			user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
-		except:
-			pass
+		pattern = '[0-9]+{4}'
+		if pattern.match(user_guess):
+			return True
+		else:
+			return False
 	except ValueError:
 		pass
+
 
 upperbound = 100
 lowerbound = 0
