@@ -296,7 +296,7 @@ def text_message(user_message):
 		message = switch.switch_off()
 	elif(user_message in ["!說話"]):
 		message = switch.switch_still_on()
-	elif(user_message in ["即時排名","即時戰況",'排名','分數','戰況','score']):
+	elif(user_message in ["即時排名","即時戰況",'排名','排行','分數','戰況','score']):
 		message = event.event_board(2)
 	elif(user_message in ["%數","%"]):
 		message = event.event_board(3)
@@ -316,11 +316,15 @@ def text_message(user_message):
 		message = event.event_progress()
 	elif(user_message in ["剩餘時間"]):
 		message = event.event_remain_time()
-	elif(user_message in ["房號","room"]):
+	elif(user_message in ["房號","room","rm","R","r"]):
 		message = event.room_get()
 	elif(user_message.find("room1") == 0):
 		message = event.room_update(user_message)
 	elif(user_message.find("room2") == 0):
+		message = event.room_update2(user_message)
+	elif(user_message.find("r1") == 0):
+		message = event.room_update(user_message)
+	elif(user_message.find("r2") == 0):
 		message = event.room_update2(user_message)
 	elif(user_message.lower()  in ["!抽食物"]):
 		message = get_food_sheet(1)
