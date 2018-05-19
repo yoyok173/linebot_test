@@ -269,8 +269,6 @@ if __name__ == "__main__":
 
 
    '''
-
-   ,
 					CarouselColumn(
 						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 3】 - ',
@@ -296,7 +294,7 @@ if __name__ == "__main__":
 
 
 
-					
+
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 1】 - ',
