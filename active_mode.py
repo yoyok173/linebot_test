@@ -413,7 +413,10 @@ def text_message(user_message):
 	elif(user_message.find("!機率") == 0):
 		try:
 			reply_message = user_message.split(" ",1)
-			message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
+			if reply_message[1] == "?":
+				message = "【請依照範例輸入：】\n!機率 (想預測的事情)"
+			else:
+				message = "嗯... 我覺得 "+reply_message[1] + " 的機率是 "+ str(random.randint(0,101)) + " % !!!"
 		except:
 			message = "【請依照範例輸入：】\n!機率 (想預測的事情)"
 	elif(user_message.find("!抽數字") == 0):
