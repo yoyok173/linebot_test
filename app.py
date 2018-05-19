@@ -99,207 +99,207 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 	elif(user_message == "!help2"):
 		message = TemplateSendMessage(
-		alt_text=' - 【使用說明書】 - ',
-		template=CarouselTemplate(
-			columns=[
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【使用說明書】 - ',
-					text='!使用說明書、!help、!說明書',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='終極密碼',
-							text='!終極密碼'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【維修智乃類】 - ',
-					text='!壞掉啦、呼叫四月、呼叫工程師',
-					actions=[
-						PostbackTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【主要開關類】 -',
-					text='!開關',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【健康教育類】 - ',
-					text='!教育/調教、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【算命抽籤類】 - ',
-					text='!機率、!抽數字',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【遊戲抽抽類】 - ',
-					text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【不知幹嘛類】 - ',
-					text='貼圖辣、母湯、母湯電影版',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title=' - 【散步打排名】 - ',
-					text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差、場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、房號/room/rm/R/r、、r1/room1 (新房號1)、r2/room2 (新房號2)',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='text',
-					text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='text',
-					text='!機率、!抽數字',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
+			alt_text=' - 【使用說明書】 - ',
+			template=CarouselTemplate(
+				columns=[
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【使用說明書】 - ',
+						text='!使用說明書、!help、!說明書',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='終極密碼',
+								text='!終極密碼'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【維修智乃類】 - ',
+						text='!壞掉啦、呼叫四月、呼叫工程師',
+						actions=[
+							PostbackTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【主要開關類】 -',
+						text='!開關',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【健康教育類】 - ',
+						text='!教育/調教、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【算命抽籤類】 - ',
+						text='!機率、!抽數字',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【遊戲抽抽類】 - ',
+						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【不知幹嘛類】 - ',
+						text='貼圖辣、母湯、母湯電影版',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名】 - ',
+						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差、場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、房號/room/rm/R/r、、r1/room1 (新房號1)、r2/room2 (新房號2)',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title='text',
+						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title='text',
+						text='!機率、!抽數字',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
 						]
 					)
 				]
