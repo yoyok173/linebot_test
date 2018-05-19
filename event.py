@@ -139,3 +139,36 @@ def room_update2(user_message):
 	# except:
 	# 	line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 	# 	return "看來是google又壞掉了QQ，我已經幫忙通知四月拔拔了! 請稍等~~"
+
+def fire_calculator(user_message):
+	try:
+		split = user_message.split(" ",1)
+		if(split=="?"):
+			return "【請依照範例輸入：】\n!fire (剩餘火量) (活動％數不用打％)"
+		else:
+			fire = split[1]
+	except:
+		return "【請依照範例輸入：】\n!fire (剩餘火量) (活動％數,不用打％)"
+
+	message = "目前所剩石頭量:"+fire+"\n可轉換分數:"+fire/3*(1+((score)/100))
+	return message
+
+def stone_calculator(user_message):
+	global score_sheet_ID
+	try:
+		split = user_message.split(" ",2)
+		stone = split[1]
+		score = split[2]
+		print("get new number : "+stone[1])
+	except:
+		return "【請依照範例輸入：】\n!stone (剩餘石頭) (活動％數,不用打％)"
+
+	values = get_value_from_google_sheet(score_sheet_ID,'E14')
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:	
+			time = 120-row[0]
+	message = "活動剩餘時間:"+time+"\n目前所剩石頭量:"+stone+"\n全速到結束所需石頭:"+int(time*25*3*100/10)+"\n仍缺少石頭:"+int(time*25*3*100/10)-stone+"\n剩餘石頭可轉換分數:"+stone/100*10/3*(1+((score)/100))
+	return message
+

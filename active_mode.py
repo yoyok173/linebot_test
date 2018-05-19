@@ -316,6 +316,10 @@ def text_message(user_message):
 		message = event.room_update(user_message)
 	elif(user_message.find("r2") == 0):
 		message = event.room_update2(user_message)
+	elif(user_message.find("!fire") == 0):
+		message = event.fire_calculator(user_message)
+	elif(user_message.find("!stone") == 0):
+		message = event.stone_calculator(user_message)
 	elif(user_message in ["!抽食物"]):
 		message = food.get_food_sheet(1)
 	elif(user_message in ["!抽飲料"]):
