@@ -86,4 +86,4 @@ def guess_AB_reset():
 	guess_AB_mode=0
 	target_AB = ["a","a","a","a"]
 	someone_playing_AB = 0	
-	return "the game has been terminated, please restart the game."
+	return "The AB game has been terminated, please restart the game."

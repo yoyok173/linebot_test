@@ -127,52 +127,52 @@ def other_type_message(user_message):
 		)
 	elif(user_message == "好餓"):
 		message = TemplateSendMessage(
-		alt_text='【要吃食物、還是喝飲料呢？】',
-		template=CarouselTemplate(
-			columns=[
-				CarouselColumn(
-					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/240px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
-					title='【今天要吃什麼呢～？】',
-					text='【今天要吃什麼呢～？】',
-					actions=[
-						PostbackTemplateAction(
-							label='抽食物',
-							text='!抽食物',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='抽食物',
-							text='!抽食物'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='http://cw1.tw/CH/images/channel_master/4ffc9718-2c5b-4c38-bba3-3e1d13cbdb0f.jpg',
-					title='【今天要喝什麼呢～？】',
-					text='【今天要喝什麼呢～？】',
-					actions=[
-						PostbackTemplateAction(
-							label='抽飲料',
-							text='!抽飲料',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='抽飲料',
-							text='!抽飲料'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				)
-			]
+			alt_text='【要吃食物、還是喝飲料呢？】',
+			template=CarouselTemplate(
+				columns=[
+					CarouselColumn(
+						thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/240px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
+						title='【今天要吃什麼呢～？】',
+						text='【今天要吃什麼呢～？】',
+						actions=[
+							PostbackTemplateAction(
+								label='抽食物',
+								text='!抽食物',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='抽食物',
+								text='!抽食物'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='http://cw1.tw/CH/images/channel_master/4ffc9718-2c5b-4c38-bba3-3e1d13cbdb0f.jpg',
+						title='【今天要喝什麼呢～？】',
+						text='【今天要喝什麼呢～？】',
+						actions=[
+							PostbackTemplateAction(
+								label='抽飲料',
+								text='!抽飲料',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='抽飲料',
+								text='!抽飲料'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					)
+				]
+			)
 		)
-	)
 	elif(user_message == "!抽抽"):
 		message = TemplateSendMessage(
 			alt_text='【請問你要哪一個抽抽池呢？】',
@@ -360,7 +360,7 @@ def text_message(user_message):
 		message = game.guess_AB_set()
 	elif(game.guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
-	elif(user_message == "abreset"):
+	elif(user_message.lower() == "abreset"):
 		message = game.guess_AB_reset()
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
