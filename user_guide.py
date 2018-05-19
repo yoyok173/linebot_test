@@ -88,8 +88,8 @@ def user_guide():
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
-							label='終極密碼',
-							text='!終極密碼'
+							label='小遊戲',
+							text='小遊戲'
 						),
 						# URITemplateAction(
 						# 	label='uri1',
