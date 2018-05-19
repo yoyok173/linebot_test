@@ -1,5 +1,4 @@
 
-
 from linebot.models import (
 	MessageEvent, TextMessage, TextSendMessage, ImageSendMessage , 
 	StickerSendMessage , ImageSendMessage , VideoSendMessage , TemplateSendMessage,
