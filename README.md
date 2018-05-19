@@ -265,6 +265,12 @@ https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E4%BD%95%E8%AC%82%E5%8
 
 https://ithelp.ithome.com.tw/m/articles/10194954
 http://zwindr.blogspot.tw/2016/01/python-regular-expression.html?m=1
+https://teamtreehouse.com/community/boolean-with-re
+https://note.artchiu.org/2015/01/23/比較詳細-python-正則表達式操作指南-re使用/
+
+>regular expression 判斷網站
+
+https://regex101.com
 
 >Python 判断字串是否為數字
 
@@ -281,4 +287,5 @@ https://github.com/robbyrussell/oh-my-zsh
 >python strategy pattern
 
 https://www.google.com/search?client=safari&rls=en&q=python+strategy+pattern&ie=UTF-8&oe=UTF-8
+
 
