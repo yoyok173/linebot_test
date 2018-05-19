@@ -143,7 +143,7 @@ def teach_pic(user_message,key):
 					return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
 			else:
 				return message
-		else:
+		except:
 			line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
 			return "嗯.....看起來是google壞掉了，已幫您通知拔拔了！"
 	except:
