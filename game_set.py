@@ -14,7 +14,7 @@ def is_number(s):
 def is_numberAB(user_guess):
 	try:
 		float(user_guess)
-		pattern = {[0-9]+{4}}
+		pattern = '[0-9]+{4}'
 		if re.match(patterm,user_guess):
 			return True
 		else:
