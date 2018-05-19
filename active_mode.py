@@ -46,6 +46,7 @@ import teach as teach
 import slient_mode as slient
 import switch as switch
 import food as food 
+import notebook as note
 
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
@@ -346,6 +347,7 @@ def text_message(user_message):
 		message = game.guess_AB(user_message)
 	elif(user_message.lower() == "abreset"):
 		message = game.guess_AB_reset()
+
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:
@@ -378,6 +380,17 @@ def text_message(user_message):
 	# 	forget_result = forget(user_message)
 	# 	message = TextSendMessage(text=forget_result)
 	# 	line_bot_api.reply_message(event.reply_token,message)
+
+	elif(user_message.find("!addnote") == 0):
+		message = note.add_note(user_message)
+	elif(user_message.find("!delnote") == 0):
+		message = note.del_note(user_message)
+	elif(user_message == "!shownote"):
+		message = note.show_note()
+	elif(user_message.find("!restorenote") == 0):
+		message = note.restore_note(user_message)
+	elif(user_message == "!backupnote"):
+		message = note.back_upnote()
 
 	if message != "default" :
 		return TextSendMessage(text=message)
