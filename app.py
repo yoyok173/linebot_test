@@ -242,26 +242,6 @@ def handle_message(event):
 							# 	uri='http://example.com/1'
 							# )
 						]
-					),
-					CarouselColumn(
-						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' - 【散步打排名 3】 - ',
-						text='房號/room/rm/R/r、、r1/room1 (新房號1)、r2/room2 (新房號2)',
-						actions=[
-							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
-							# )
-						]
 					)
 				]
 			)
@@ -289,6 +269,34 @@ if __name__ == "__main__":
 
 
    '''
+
+   ,
+					CarouselColumn(
+						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名 3】 - ',
+						text='房號/room/rm/R/r、r1/room1 (新房號1)、r2/room2 (新房號2)',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					)
+
+
+
+
+
+					
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 1】 - ',
