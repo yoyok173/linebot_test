@@ -110,7 +110,7 @@ def handle_message(event):
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label=' ',
+								label='test',
 								text='!使用說明書'
 							),
 							# URITemplateAction(
@@ -165,13 +165,13 @@ def handle_message(event):
 						text='!教育/調教、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
 						actions=[
 							PostbackTemplateAction(
-								label=' ',
-								text='',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='',
-								text=''
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -184,14 +184,14 @@ def handle_message(event):
 						title=' - 【算命抽籤類】 - ',
 						text='!機率、!抽數字',
 						actions=[
-							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+							PPostbackTemplateAction(
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -205,13 +205,13 @@ def handle_message(event):
 						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -225,13 +225,13 @@ def handle_message(event):
 						text='貼圖辣、母湯、母湯電影版',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -245,13 +245,13 @@ def handle_message(event):
 						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -265,13 +265,13 @@ def handle_message(event):
 						text='場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -285,13 +285,13 @@ def handle_message(event):
 						text='房號/room/rm/R/r、r1/room1、r2/room2',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='test',
+								text='test',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='test',
+								text='test'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
