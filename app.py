@@ -95,12 +95,8 @@ def handle_message(event):
 		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
-		message = readme()
-		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
-	# elif(user_message == "!help2"):
-	elif(user_message == "!help2"):
 		message = TemplateSendMessage(
-			alt_text='【請問你要哪一個抽抽池呢？】',
+			alt_text=' - 【使用說明書 ver 2.0】 - ',
 			template=CarouselTemplate(
 				columns=[
 					CarouselColumn(
@@ -109,13 +105,13 @@ def handle_message(event):
 						text='!使用說明書、!help、!說明書',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='說明書',
+								text='!使用說明書',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='終極密碼',
-								text='!終極密碼'
+								label=' ',
+								text='!使用說明書'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -129,13 +125,13 @@ def handle_message(event):
 						text='!壞掉啦、呼叫四月、呼叫工程師',
 						actions=[
 							PostbackTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B',
+								label='呼叫四月',
+								text='呼叫四月',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='呼叫工程師',
+								text='呼叫工程師'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -149,13 +145,13 @@ def handle_message(event):
 						text='!開關',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label='讓智乃說話',
+								text='!說話',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='請智乃閉嘴',
+								text='!閉嘴'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -169,13 +165,13 @@ def handle_message(event):
 						text='!教育/調教、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
 						actions=[
 							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
+								label=' ',
+								text='',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
+								label='',
+								text=''
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -286,7 +282,7 @@ def handle_message(event):
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【散步打排名 3】 - ',
-						text='房號/room/rm/R/r、r1/room1(新房號1)、r2/room2(新房號2)',
+						text='房號/room/rm/R/r、r1/room1、r2/room2',
 						actions=[
 							PostbackTemplateAction(
 								label='終極密碼',
