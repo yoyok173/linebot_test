@@ -105,7 +105,7 @@ def handle_message(event):
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 					title=' - 【使用說明書】 - ',
-					text='!使用說明書、!help、!說明書'
+					text='!使用說明書、!help、!說明書',
 					actions=[
 						PostbackTemplateAction(
 							label='終極密碼',
