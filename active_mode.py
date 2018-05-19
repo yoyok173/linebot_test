@@ -111,7 +111,7 @@ def other_type_message(user_message):
 			template=CarouselTemplate(
 				columns=[
 					CarouselColumn(
-						thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/240px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
+						thumbnail_image_url='https://i.imgur.com/yrY5mkt.jpg',
 						title='【今天要吃什麼呢～？】',
 						text='【今天要吃什麼呢～？】',
 						actions=[
@@ -131,7 +131,7 @@ def other_type_message(user_message):
 						]
 					),
 					CarouselColumn(
-						thumbnail_image_url='http://cw1.tw/CH/images/channel_master/4ffc9718-2c5b-4c38-bba3-3e1d13cbdb0f.jpg',
+						thumbnail_image_url='https://i.imgur.com/YAyNSub.jpg',
 						title='【今天要喝什麼呢～？】',
 						text='【今天要喝什麼呢～？】',
 						actions=[
