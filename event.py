@@ -180,7 +180,7 @@ def percent_table():
 	for i in range(15):
 		message += str(i)
 		message += "0% "
-		message =+ str(3900*(1+(i*10/100)))
+		message += str(3900*(1+(i*10/100)))
 		if i < 15-1:
 			message += "\n"
 	return message
@@ -188,9 +188,9 @@ def percent_table():
 def total_calculator(user_message):
 	global score_sheet_ID
 	try:
-		split = user_message.split(" ",2)
+		split = user_message.split(" ",3)
 		stone = int(split[1])
-		fire = inr(split[2])
+		fire = int(split[2])
 		percent = int(split[3])
 	except:
 		return "【請依照範例輸入：】\n!lz (當前石頭) (當前火) (活動％,不用打％)"
