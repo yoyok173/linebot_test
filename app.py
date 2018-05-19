@@ -97,7 +97,7 @@ def handle_message(event):
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
 		message = readme()
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
-	elif(user_message == "！help2"):
+	elif(user_message == "!help2"):
 		message = TemplateSendMessage(
 		alt_text=' - 【使用說明書】 - ',
 		template=CarouselTemplate(
