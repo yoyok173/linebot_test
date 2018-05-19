@@ -51,26 +51,6 @@ import food as food
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
 
 
-
-
-
-def is_number(s):
-	try:
-		float(s)
-		return True
-	except ValueError:
-		pass
-
-def is_numberAB(s):
-	try:
-		float(s)
-		if(int(s)>=0 and int(s)<=9999):
-			return True
-		else:
-			return False
-	except ValueError:
-		pass
-
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
 		message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
@@ -354,11 +334,11 @@ def text_message(user_message):
 		message = "【SC 10連結果】\n" + gacha.multi_gacha_SC(10)
 	elif(user_message == "!終極密碼"):
 		message = game.guess_number_set()
-	elif(game.guess_number_mode == 1 and is_number(user_message)):
+	elif(game.guess_number_mode == 1 and game.is_number(user_message)):
 		message = game.guess_number(int(user_message))
 	elif(user_message == "!幾A幾B"):
 		message = game.guess_AB_set()
-	elif(game.guess_AB_mode == 1 and is_numberAB(user_message)):
+	elif(game.guess_AB_mode == 1 and game.is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
 	elif(user_message.lower() == "abreset"):
 		message = game.guess_AB_reset()
