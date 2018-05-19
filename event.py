@@ -166,5 +166,47 @@ def stone_calculator(user_message):
 	else:
 		for row in values:	
 			time = 126-round(float(row[0]),2)
-	message = "活動剩餘時間:"+str(round(time,2))+"\n目前所剩石頭量:"+str(stone)+"\n全速到結束所需石頭:"+str(int(time*25*3*100/10))+"\n仍缺少石頭:"+str(int(time*25*3*100/10)-stone)+"\n您的％數:"+str(percent)+" %\n剩餘石頭可轉換分數:"+str(int(stone/100*10/3*3900*(1+((percent)/100))))
+	message = ("活動剩餘時間:"+str(round(time,2))+
+		"\n目前所剩石頭量:"+str(stone)+
+		"\n全速到結束所需石頭:"+str(int(time*25*3*100/10))+
+		"\n仍缺少石頭:"+str(int(time*25*3*100/10)-stone)+
+		"\n您的％數:"+str(percent)+
+		"%\n剩餘石頭可轉換分數:"+str(int(stone/100*10/3*3900*(1+((percent)/100)))))
+
+	return message
+
+def percent_table():
+	message = ""
+	for i in range(15):
+		message += str(i)
+		message += "0% "
+		message =+ 3900*(1+(i*10/100))
+		if i < 15-1:
+			message += "\n"
+	return message
+
+def total_calculator(user_message):
+	global score_sheet_ID
+	try:
+		split = user_message.split(" ",2)
+		stone = int(split[1])
+		fire = inr(split[2])
+		percent = int(split[3])
+	except:
+		return "【請依照範例輸入：】\n!lz (當前石頭) (當前火) (活動％,不用打％)"
+
+	values = get_value_from_google_sheet(score_sheet_ID,'E14')
+	if not values:
+		print('No data found.')
+	else:
+		for row in values:	
+			time = 126-round(float(row[0]),2)
+	message = ("活動剩餘時間:"+str(round(time,2))+
+		"\n目前所剩石頭量:"+str(stone)+
+		"\n全速到結束所需石頭:"+str(int(time*25*3*100/10))+
+		"\n仍缺少石頭:"+str(int(time*25*3*100/10)-stone)+
+		"\n您還有多少火:"+str(fire)+
+		"\n您的％數:"+str(percent)+
+		"%\n火+石頭可轉換分數:"+str(int(fire*3900/3*(1+(percent/100)))+int(stone/100*10/3*3900*(1+((percent)/100)))))
+
 	return message

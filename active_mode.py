@@ -321,6 +321,14 @@ def text_message(user_message):
 		message = event.fire_calculator(user_message)
 	elif(user_message.lower().find("!stone") == 0):
 		message = event.stone_calculator(user_message)
+	elif(user_message.lower() == "!pt"):
+		message = event.percent_table()
+	elif(user_message.lower().find("!lz") == 0):
+		message = event.total_calculator(user_message)
+
+
+
+
 	elif(user_message in ["!抽食物"]):
 		message = food.get_food_sheet(1)
 	elif(user_message in ["!抽飲料"]):
