@@ -284,9 +284,9 @@ def handle_message(event):
 						]
 					),
 					CarouselColumn(
-						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' - 【散步打排名 3】 - ',
-						text='房號/room/rm/R/r、r1/room1 (新房號1)、r2/room2 (新房號2)',
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名 2】 - ',
+						text='場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間',
 						actions=[
 							PostbackTemplateAction(
 								label='終極密碼',
