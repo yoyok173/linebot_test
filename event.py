@@ -180,7 +180,7 @@ def percent_table():
 	for i in range(15):
 		message += str(i)
 		message += "0% "
-		message =+ 3900*(1+(i*10/100))
+		message =+ str(3900*(1+(i*10/100)))
 		if i < 15-1:
 			message += "\n"
 	return message
