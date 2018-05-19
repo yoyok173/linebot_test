@@ -184,7 +184,7 @@ def handle_message(event):
 						title=' - 【算命抽籤類】 - ',
 						text='!機率、!抽數字',
 						actions=[
-							PPostbackTemplateAction(
+							PostbackTemplateAction(
 								label='test',
 								text='test',
 								data='action=buy&itemid=1'
