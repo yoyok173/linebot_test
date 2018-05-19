@@ -1,5 +1,22 @@
 
+import gspread
+import json
+import random
 
+from apiclient.discovery import build
+from httplib2 import Http
+from oauth2client import file, client, tools
+
+from urllib.request import urlopen
+from oauth2client.service_account import ServiceAccountCredentials
+
+from linebot.models import (
+	MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
+)
+
+
+my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
+auth_json_path = "./auth.json"
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
