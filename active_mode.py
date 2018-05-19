@@ -250,7 +250,7 @@ def other_type_message(user_message):
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title='機會命運',
-						text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
+						text='【機會、命運請選擇？】\n(一個會死、一個會活下來)',
 						actions=[
 							PostbackTemplateAction(
 								label='機會命運',
