@@ -41,7 +41,7 @@ from linebot.models import (
 import slient_mode as slient
 import switch as switch
 import active_mode as active
-import readme as readme
+import user_guide as user_guide
 
 app = Flask(__name__)
 # Channel Access Token
@@ -96,7 +96,7 @@ def handle_message(event):
 		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
-		message = readme.readme()
+		message = user_guide.user_guide()
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
