@@ -218,7 +218,7 @@ def other_type_message(user_message):
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 					title='幾Ａ幾Ｂ',
-					text='猜一個四位不重複的數字，A表示數字對位置對，B表示數字錯位置錯，透過已知的線索，來看看你能多快愛操到數字吧！',
+					text='猜一個四位不重複的數字，A表示數字對位置對，B表示數字錯位置錯，透過已知的線索，來看看你能多快猜到數字吧！',
 					actions=[
 						PostbackTemplateAction(
 							label='幾Ａ幾Ｂ',
@@ -351,11 +351,11 @@ def text_message(user_message):
 		message = food.get_food_sheet(2)
 	elif(user_message.lower()  in ["!cgss單抽"]):
 		message = "【CGSS 單抽結果】\n" + gacha.gacha_CGSS()
-	elif(user_message.lower()  in ["!cgss10連"]):
+	elif(user_message.lower()  in ["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]):
 		message = "【CGSS 10連結果】\n" + gacha.ten_gacha_CGSS()
 	elif(user_message.lower()  in ["!bgd單抽"]):
 		message = "【BGD 單抽結果】\n" + gacha.gacha_BGD()
-	elif(user_message.lower()  in ["!bgd10連"]):
+	elif(user_message.lower()  in ["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"]):
 		message = "【BGD 10連結果】\n" + gacha.ten_gacha_BGD()
 	elif(user_message.lower()   in ["!sc單抽"]):
 		message = "【SC 單抽結果】\n" + gacha.multi_gacha_SC(1)
