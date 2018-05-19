@@ -203,72 +203,72 @@ def other_type_message(user_message):
 	)
 	elif(user_message == "小遊戲"):
 		message = TemplateSendMessage(
-		alt_text='【請問您要哪一種小遊戲呢？】',
-		template=CarouselTemplate(
-			columns=[
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='終極密碼',
-					text='猜數字1~99，比誰反應的快',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='終極密碼',
-							text='!終極密碼'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='幾Ａ幾Ｂ',
-					text='猜一個四位不重複的數字，A表示數字對位置對，B表示數字錯位置錯，透過已知的線索，來看看你能多快猜到數字吧！',
-					actions=[
-						PostbackTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='機會命運',
-					text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
-					actions=[
-						PostbackTemplateAction(
-							label='機會命運',
-							text='機會命運',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='機會命運',
-							text='機會命運'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				)
-			]
+			alt_text='【請問您要哪一種小遊戲呢？】',
+			template=CarouselTemplate(
+				columns=[
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title='終極密碼',
+						text='猜數字1~99，比誰反應的快',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='終極密碼',
+								text='!終極密碼'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title='幾Ａ幾Ｂ',
+						text='猜一個四位不重複的數字，A表示數字對位置對，B表示數字錯位置錯，透過已知的線索，來看看你能多快猜到數字吧！',
+						actions=[
+							PostbackTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title='機會命運',
+						text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
+						actions=[
+							PostbackTemplateAction(
+								label='機會命運',
+								text='機會命運',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='機會命運',
+								text='機會命運'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					)
+				]
+			)
 		)
-	)
 	else:
 		print ("start finding library...")
 		message = teach.get_key_response(user_message)
