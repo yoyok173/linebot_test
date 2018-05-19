@@ -288,4 +288,6 @@ https://github.com/robbyrussell/oh-my-zsh
 
 https://www.google.com/search?client=safari&rls=en&q=python+strategy+pattern&ie=UTF-8&oe=UTF-8
 
+>python 程式碼太長
 
+http://nadypan.blogspot.tw/2015/11/python3_23.html
