@@ -51,6 +51,9 @@ import food as food
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
 
 
+
+
+
 def is_number(s):
 	try:
 		float(s)
@@ -429,6 +432,8 @@ def text_message(user_message):
 		message = teach.teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
 		message = teach.teach(user_message,1)
+	elif(user_message.find("!學圖") == 0):
+		message = teach.teach_pic(user_message,0)
 	elif(user_message.find("!智乃看圖片") == 0):
 		message = teach.teach_pic(user_message,0)
 	elif(user_message.find("!給智乃看圖") == 0):

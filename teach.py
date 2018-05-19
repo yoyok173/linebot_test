@@ -17,6 +17,7 @@ from linebot.models import (
 
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 auth_json_path = "./auth.json"
+april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 
 def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
 	# Setup the Sheets API
@@ -104,20 +105,23 @@ def update_pic_sheet_key(gss_client, key, input , output):
 
 def teach(user_message,teachmode):
 	global my_database_sheet_ID
-	# try:
-	split_result = user_message.split(' ', 2 )
-	print(split_result)
-	if split_result[2] == "?":
-		return "【請依照範例輸入：】\n!教育 (關鍵字) (反應)"
 	try:
-		message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
-		if message == "success":
-			if teachmode == 0:
-				return "我學會了 「"+split_result[1]+"」 !!!"
-			elif teachmode == 1:
-				return "學會 「"+split_result[1]+"」 了 >////< "
-		else:
-			return message 
+		split_result = user_message.split(' ', 2 )
+		print(split_result)
+		if split_result[2] == "?":
+			return "【請依照範例輸入：】\n!教育 (關鍵字) (反應)"
+		try:
+			message = update_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
+			if message == "success":
+				if teachmode == 0:
+					return "我學會了 「"+split_result[1]+"」 !!!"
+				elif teachmode == 1:
+					return "學會 「"+split_result[1]+"」 了 >////< "
+			else:
+				return message 
+		except:
+			line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+			return "嗯.....看起來是google壞掉了，已幫您通知拔拔了！"
 	except:
 		return "【請依照範例輸入：】\n!教育 (關鍵字) (反應)"
 	
@@ -128,16 +132,20 @@ def teach_pic(user_message,key):
 		if split_result[2] == "?":
 			return "【請依照範例輸入：】\n!學圖 (關鍵字) (網址)"
 		print(split_result)
-		message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
-		if message == "success":
-			if key == 0:
-				return "哇嗚~ 好好看的「"+split_result[1]+"」 圖 >////< "
-			elif key == 1:
-				return "哇嗚~ 這「"+split_result[1]+"」 圖 >////< "
-			elif key == 2:
-				return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
+		try:
+			message = update_pic_sheet_key(gss_client,my_database_sheet_ID,split_result[1],split_result[2])
+			if message == "success":
+				if key == 0:
+					return "哇嗚~ 好好看的「"+split_result[1]+"」 圖 >////< "
+				elif key == 1:
+					return "哇嗚~ 這「"+split_result[1]+"」 圖 >////< "
+				elif key == 2:
+					return "「"+split_result[1]+"」 圖圖怎麼這麼好看 >////< "
+			else:
+				return message
 		else:
-			return message
+			line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
+			return "嗯.....看起來是google壞掉了，已幫您通知拔拔了！"
 	except:
 		return "【請依照範例輸入：】\n!學圖 (關鍵字) (網址)"
 # "【請依照範例輸入：】\n!給智乃看圖 (關鍵字) (網址)\n!智乃看圖片 (關鍵字) (網址)\n!智乃看圖圖 (關鍵字) (網址)"
