@@ -222,7 +222,7 @@ def other_type_message(user_message):
 					actions=[
 						PostbackTemplateAction(
 							label='幾Ａ幾Ｂ',
-							text='!幾Ａ幾Ｂ',
+							text='!幾A幾B',
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
