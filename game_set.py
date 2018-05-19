@@ -13,9 +13,8 @@ def is_numberAB(user_guess):
 		float(user_guess)
 		try:
 			user_guess_numberlist = [user_guess[0],user_guess[1],user_guess[2],user_guess[3]]
-		except
+		except:
 			pass
-
 	except ValueError:
 		pass
 
