@@ -98,57 +98,9 @@ def handle_message(event):
 		message = readme()
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 	# elif(user_message == "!help2"):
-	elif(user_message == "!抽抽"):
+	elif(user_message == "!help"):
 		message = TemplateSendMessage(
 			alt_text='【請問你要哪一個抽抽池呢？】',
-			template=CarouselTemplate(
-				columns=[
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/jaLz5Hk.jpg',
-						title='ガルパ',
-						text='BanK Dream! Girls Bank Party!',
-						actions=[
-							PostbackTemplateAction(
-								label='1回ガチャ',
-								text='!BGD單抽',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='10回ガチャ',
-								text='!BGD10連'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
-							# )
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/qpL7l3s.png',
-						title='デレステ',
-						text='我什麼都沒有Q_Q',
-						actions=[
-							PostbackTemplateAction(
-								label='1回ガチャ',
-								text='!CGSS單抽',
-								data='action=buy&itemid=2'
-							),
-							MessageTemplateAction(
-								label='10回ガチャ',
-								text='!CGSS10連'
-							),
-							# URITemplateAction(
-							# label='uri2',
-							# uri='http://example.com/2'
-							# )
-						]
-					)
-				]
-			)
-		)
-		'''
-		message = TemplateSendMessage(
-			alt_text=' - 【使用說明書】 - ',
 			template=CarouselTemplate(
 				columns=[
 					CarouselColumn(
@@ -231,6 +183,55 @@ def handle_message(event):
 							# )
 						]
 					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/jaLz5Hk.jpg',
+						title='ガルパ',
+						text='BanK Dream! Girls Bank Party!',
+						actions=[
+							PostbackTemplateAction(
+								label='1回ガチャ',
+								text='!BGD單抽',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='10回ガチャ',
+								text='!BGD10連'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/qpL7l3s.png',
+						title='デレステ',
+						text='我什麼都沒有Q_Q',
+						actions=[
+							PostbackTemplateAction(
+								label='1回ガチャ',
+								text='!CGSS單抽',
+								data='action=buy&itemid=2'
+							),
+							MessageTemplateAction(
+								label='10回ガチャ',
+								text='!CGSS10連'
+							),
+							# URITemplateAction(
+							# label='uri2',
+							# uri='http://example.com/2'
+							# )
+						]
+					)
+				]
+			)
+		)
+		'''
+		message = TemplateSendMessage(
+			alt_text=' - 【使用說明書】 - ',
+			template=CarouselTemplate(
+				columns=[
+					
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【算命抽籤類】 - ',
