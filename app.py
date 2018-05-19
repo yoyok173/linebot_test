@@ -300,11 +300,11 @@ def handle_message(event):
 						# 	label='uri1',
 						# 	uri='http://example.com/1'
 						# )
-					]
-				)
-			]
-		)
-	)	
+						]
+					)
+				]
+			)
+		)	
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
