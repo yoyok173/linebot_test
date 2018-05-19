@@ -13,8 +13,8 @@ def is_number(s):
 
 def is_numberAB(user_guess):
 	try:
-		# float(user_guess)
-		if re.match('[0-9]{4}',user_guess):
+		float(user_guess)
+		if re.match('[0-9]{4}',user_guess) and int(user_guess)<=10000 and int(user_guess) >= 0:
 			return True
 		else:
 			return False
