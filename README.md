@@ -260,3 +260,9 @@ http://tech-marsw.logdown.com/blog/2013/08/17/git-notes-github-n-person-cooperat
 
 https://ihower.tw/blog/archives/2620
 https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E4%BD%95%E8%AC%82%E5%88%86%E6%94%AF
+
+> regular expression
+
+https://ithelp.ithome.com.tw/m/articles/10194954
+http://zwindr.blogspot.tw/2016/01/python-regular-expression.html?m=1
+
