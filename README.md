@@ -291,3 +291,12 @@ https://www.google.com/search?client=safari&rls=en&q=python+strategy+pattern&ie=
 >python 程式碼太長
 
 http://nadypan.blogspot.tw/2015/11/python3_23.html
+
+>remove element from list
+
+https://stackoverflow.com/questions/627435/how-to-remove-an-element-from-a-list-by-index-in-python
+
+>浮點數位數處理
+
+https://www.cnblogs.com/herbert/p/3402245.html
+https://stackoverflow.com/questions/4518641/how-to-round-a-floating-point-number-up-to-certain-decimal-place

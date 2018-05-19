@@ -24,12 +24,12 @@ def show_note():
 def del_note(user_message):
 	try:
 		split = user_message.split(" ",1)
-		content_key = split[1]
+		content_key = int(split[1])-1
 	except:
 		return "【請依照範例輸入：】\n!delnote (第幾則筆記)\n請先用!show查看筆記內容】"
 	
 	try:
-		del notebook_content[content_key-1]
+		del notebook_content[content_key]
 		return "刪除筆記成功！"
 	except:
 		return "刪除筆記失敗！"

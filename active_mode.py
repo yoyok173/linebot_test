@@ -390,7 +390,7 @@ def text_message(user_message):
 	elif(user_message.find("!restorenote") == 0):
 		message = note.restore_note(user_message)
 	elif(user_message == "!backupnote"):
-		message = note.back_upnote()
+		message = note.backup_note()
 
 	if message != "default" :
 		return TextSendMessage(text=message)
