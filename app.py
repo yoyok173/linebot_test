@@ -295,7 +295,7 @@ def handle_message(event):
 							MessageTemplateAction(
 								label='幾Ａ幾Ｂ',
 								text='!幾A幾B'
-							)
+							),
 							# URITemplateAction(
 							# 	label='uri1',
 							# 	uri='http://example.com/1'
