@@ -243,6 +243,46 @@ def handle_message(event):
 							# )
 						]
 					)
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名 1】 - ',
+						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名 2】 - ',
+						text='場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					)
 				]
 			)
 		)
