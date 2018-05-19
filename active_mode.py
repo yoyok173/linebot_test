@@ -126,25 +126,53 @@ def other_type_message(user_message):
 			)
 		)
 	elif(user_message == "好餓"):
-		# random_result = random.randint(0,1)
-		# answer = ["幹你娘","恭喜你獲得了空虛！"]
 		message = TemplateSendMessage(
-			alt_text='【好餓好餓】',
-			template=ConfirmTemplate(
-				text='【食物、飲料請選擇？】',
-				actions=[
-				PostbackTemplateAction(
-					label='食物',
-					text='!抽食物',
-					data='action=buy&itemid=1'
-					),
-				MessageTemplateAction(
-					label='飲料',
-					text='!抽飲料'
-					)
-				]
-			)
+		alt_text='【要吃食物、還是喝飲料呢？】',
+		template=CarouselTemplate(
+			columns=[
+				CarouselColumn(
+					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/240px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
+					title='【今天要吃什麼呢～？】',
+					text='【今天要吃什麼呢～？】',
+					actions=[
+						PostbackTemplateAction(
+							label='抽食物',
+							text='!抽食物',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='抽食物',
+							text='!抽食物'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				),
+				CarouselColumn(
+					thumbnail_image_url='http://cw1.tw/CH/images/channel_master/4ffc9718-2c5b-4c38-bba3-3e1d13cbdb0f.jpg',
+					title='【今天要喝什麼呢～？】',
+					text='【今天要喝什麼呢～？】',
+					actions=[
+						PostbackTemplateAction(
+							label='抽飲料',
+							text='!抽飲料',
+							data='action=buy&itemid=1'
+						),
+						MessageTemplateAction(
+							label='抽飲料',
+							text='!抽飲料'
+						),
+						# URITemplateAction(
+						# 	label='uri1',
+						# 	uri='http://example.com/1'
+						# )
+					]
+				)
+			]
 		)
+	)
 	elif(user_message == "!抽抽"):
 		message = TemplateSendMessage(
 			alt_text='【請問你要哪一個抽抽池呢？】',
@@ -187,46 +215,6 @@ def other_type_message(user_message):
 							# URITemplateAction(
 							# label='uri2',
 							# uri='http://example.com/2'
-							# )
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' - 【散步打排名 1】 - ',
-						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差',
-						actions=[
-							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
-							# )
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' - 【散步打排名 2】 - ',
-						text='場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、',
-						actions=[
-							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
 							# )
 						]
 					)
@@ -280,57 +268,17 @@ def other_type_message(user_message):
 				),
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='小遊戲',
-					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					title='機會命運',
+					text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
 					actions=[
 						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
+							label='機會命運',
+							text='機會命運',
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='小遊戲',
-					text='我也不知道該說什麼，總之無聊就來玩吧XD',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
-						),
-						# URITemplateAction(
-						# 	label='uri1',
-						# 	uri='http://example.com/1'
-						# )
-					]
-				),
-				CarouselColumn(
-					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='小遊戲',
-					text='我也不知道該說什麼，總之無聊就來玩吧XD',
-					actions=[
-						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
-							data='action=buy&itemid=1'
-						),
-						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
+							label='機會命運',
+							text='機會命運'
 						),
 						# URITemplateAction(
 						# 	label='uri1',
@@ -412,6 +360,8 @@ def text_message(user_message):
 		message = game.guess_AB_set()
 	elif(game.guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
+	elif(user_message == "abreset"):
+		message = game.guess_AB_reset()
 	# ------ below are find function ------	 
 	elif(user_message.find("!機率") == 0):
 		try:

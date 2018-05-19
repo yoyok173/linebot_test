@@ -79,3 +79,11 @@ def guess_AB(user_guess):
 		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"+"\n不覺得有點太多了嗎？"
 	else:
 		return "【你們已經猜了 "+str(guess_AB_counter)+" 次】\n"+str(cntA)+" A "+str(cntB) + " B"
+
+def guess_AB_reset():
+	global guess_AB_counter,guess_AB_mode,target_AB,someone_playing_AB
+	guess_AB_counter=0
+	guess_AB_mode=0
+	target_AB = ["a","a","a","a"]
+	someone_playing_AB = 0	
+	return "the game has been terminated, please restart the game."

@@ -83,13 +83,13 @@ def user_guide():
 					text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
 					actions=[
 						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
+							label='小遊戲',
+							text='小遊戲',
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
-							label='幾A幾B',
-							text='!幾A幾B'
+							label='終極密碼',
+							text='!終極密碼'
 						),
 						# URITemplateAction(
 						# 	label='uri1',
