@@ -98,7 +98,7 @@ def handle_message(event):
 		message = readme()
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 	# elif(user_message == "!help2"):
-	elif(user_message == "!help"):
+	elif(user_message == "!help2"):
 		message = TemplateSendMessage(
 			alt_text='【請問你要哪一個抽抽池呢？】',
 			template=CarouselTemplate(
