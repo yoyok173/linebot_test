@@ -264,7 +264,7 @@ def handle_message(event):
 					),
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title='  ',
+						title='text',
 						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
 						actions=[
 							PostbackTemplateAction(
@@ -284,7 +284,7 @@ def handle_message(event):
 					),
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' ',
+						title='text',
 						text='!機率、!抽數字',
 						actions=[
 							PostbackTemplateAction(
