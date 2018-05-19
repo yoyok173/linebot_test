@@ -42,6 +42,8 @@ import gacha as gacha
 import game_set as game
 import event as event
 import teach as teach
+import slient_mode as slient
+import switch as switch
 
 app = Flask(__name__)
 # Channel Access Token
@@ -51,7 +53,6 @@ handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
 # user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
 
 now = datetime.datetime.now()
-mode = 1
 
 score_sheet_ID = '1F0aMMBcADRSXm07IT2Bxb_h22cIjNXlsCfBYRk53PHA'
 my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
@@ -110,59 +111,6 @@ def readme():
 	with open('readme.txt', 'r') as f:
 		content = f.read()
 	return content
-			
-def slient_mode(user_message,event):
-	global mode
-	if(user_message == "!說話"):
-		mode = 1 
-		message = TextSendMessage(text='沒問題 ^_^，我來陪大家聊天惹，但如果覺得我太吵的話，請跟我說 「!閉嘴」 > <')
-		line_bot_api.reply_message(event.reply_token,message)
-	elif(user_message == "!閉嘴"):
-		mode = 0
-		message = TextSendMessage(text='我已經閉嘴了 > <  (小聲)')
-		line_bot_api.reply_message(event.reply_token,message)
-
-def switch_still_on():
-	global mode	
-	mode = 1
-	return '我已經正在說話囉，歡迎來跟我互動 ^_^ '
-
-def switch_off():
-	global mode	
-	mode = 0
-	return '好的，我乖乖閉嘴 > <，如果想要我繼續說話，請跟我說 「!說話」 > <'
-
-'''
-def search_cmd(user_message):
-	operations_str = [
-	[["!閉嘴","!安靜","!你閉嘴","!你安靜"],switch_off()],
-	[["!說話"],switch_still_on()],
-	[["!使用說明書","!help","!說明書"],readme()],
-	[["即時排名","即時戰況",'排名','分數','戰況','score'],event_board(2)],
-	[["%數","%"],event_board(3)],
-	[['分數差'],event_board(5)],
-	[['場數差'],event_board(6)], 
-	[["追擊時間","脫褲子","脫內褲","內褲","褲子"],event_board(7)],
-	[['時速'],event_board(8)], 
-	[['場速'],event_board(9)],
-	[["活動進度",'進度'],event_progress()],
-	[["!抽食物","!食物",'!food'],get_food_sheet(1)],
-	[["!抽飲料","!飲料",'!drink'],get_food_sheet(2)],
-	[["!cgss單抽"],"【CGSS 單抽結果】\n" + gacha_CGSS()],
-	[["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"],"【CGSS 10連結果】\n" + ten_gacha_CGSS()],
-	[["!bgd單抽","!gbp單抽"],"【BGD 單抽結果】\n" + gacha_BGD()],
-	[["!bgd十連","!bgd十抽","!bgd10連","!bgd10抽","!gbp十連","!gbp十抽","!gbp10連","!gbp10抽"],"【BGD 10連結果】\n" + ten_gacha_BGD()],
-	[["!sc單抽"],"【SC 單抽結果】\n" + multi_gacha_SC(1)],
-	[["!sc十連","!sc十抽","!sc10連","!sc10抽"],"【SC 10連結果】\n" + multi_gacha_SC(10)]
-	]
-
-	print(len(operations_str))
-	for i in range(len(operations_str)):
-		if user_message in operations_str[i][0]:
-			return TextSendMessage(text= operations_str[i][1])
-	print("key not found in cmd box !")
-	return "not found in cmd list"
-'''
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -293,8 +241,8 @@ def other_type_message(user_message):
 			columns=[
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='小遊戲',
-					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					title='終極密碼',
+					text='猜數字1~99，比誰反應的快',
 					actions=[
 						PostbackTemplateAction(
 							label='終極密碼',
@@ -302,8 +250,8 @@ def other_type_message(user_message):
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
-							label='幾Ａ幾Ｂ',
-							text='!幾A幾B'
+							label='終極密碼',
+							text='!終極密碼'
 						),
 						# URITemplateAction(
 						# 	label='uri1',
@@ -313,12 +261,12 @@ def other_type_message(user_message):
 				),
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-					title='小遊戲',
-					text='我也不知道該說什麼，總之無聊就來玩吧XD',
+					title='幾Ａ幾Ｂ',
+					text='猜一個四位不重複的數字，A表示數字對位置對，B表示數字錯位置錯，透過已知的線索，來看看你能多快愛操到數字吧！',
 					actions=[
 						PostbackTemplateAction(
-							label='終極密碼',
-							text='!終極密碼',
+							label='幾Ａ幾Ｂ',
+							text='!幾Ａ幾Ｂ',
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
@@ -408,9 +356,9 @@ def text_message(user_message):
 	# print (isinstance(user_message,int))
 	message = "default"
 	if(user_message in ["!閉嘴"]):
-		message = switch_off()
+		message = switch.switch_off()
 	elif(user_message in ["!說話"]):
-		message = switch_still_on()
+		message = switch.switch_still_on()
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
 		message = readme()
 	elif(user_message in ["即時排名","即時戰況",'排名','分數','戰況','score']):
@@ -529,9 +477,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	global mode 
 	print("now: "+str((datetime.datetime.now() + datetime.timedelta(hours=8)).strftime("%Y/%m/%d %H:%M:%S")))
-	print("mode: "+str(mode))
+	print("mode: "+str(switch.mode))
 	print("event: " +str(event))		
 	user_message = event.message.text
 	
@@ -540,7 +487,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message== "state"):
 		message = TextSendMessage(
-			text="(silent mode)" if mode == 0 else "(active mode)"
+			text="(silent mode)" if switch.mode == 0 else "(active mode)"
 		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
@@ -552,9 +499,10 @@ def handle_message(event):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
 		sys.exit(0)
-	elif(mode == 0):
-		slient_mode(user_message,event) 
-	elif(mode == 1):
+	elif(switch.mode == 0):
+		message = slient.slient_mode(user_message,event) 
+		line_bot_api.reply_message(event.reply_token,message)
+	elif(switch.mode == 1):
 		active_mode(user_message,event)
 		
 import os
