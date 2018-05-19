@@ -266,3 +266,19 @@ https://git-scm.com/book/zh-tw/v1/Git-%E5%88%86%E6%94%AF-%E4%BD%95%E8%AC%82%E5%8
 https://ithelp.ithome.com.tw/m/articles/10194954
 http://zwindr.blogspot.tw/2016/01/python-regular-expression.html?m=1
 
+>Python 判断字串是否為數字
+
+http://www.runoob.com/python3/python3-check-is-number.html
+
+>line bot 開發指南
+
+https://medium.com/hondtour/line-chatbot-開發指南-二-3ce2d54b21ae
+
+>zsh
+
+https://github.com/robbyrussell/oh-my-zsh
+
+>python strategy pattern
+
+https://www.google.com/search?client=safari&rls=en&q=python+strategy+pattern&ie=UTF-8&oe=UTF-8
+
