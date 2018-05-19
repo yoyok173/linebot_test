@@ -245,78 +245,8 @@ def handle_message(event):
 					),
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title=' - 【散步打排名】 - ',
-						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差、場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、房號/room/rm/R/r、、r1/room1 (新房號1)、r2/room2 (新房號2)',
-						actions=[
-							PostbackTemplateAction(
-								label='終極密碼',
-								text='!終極密碼',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='幾Ａ幾Ｂ',
-								text='!幾A幾B'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
-							# )
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/jaLz5Hk.jpg',
-						title='ガルパ',
-						text='BanK Dream! Girls Bank Party!',
-						actions=[
-							PostbackTemplateAction(
-								label='1回ガチャ',
-								text='!BGD單抽',
-								data='action=buy&itemid=1'
-							),
-							MessageTemplateAction(
-								label='10回ガチャ',
-								text='!BGD10連'
-							),
-							# URITemplateAction(
-							# 	label='uri1',
-							# 	uri='http://example.com/1'
-							# )
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/qpL7l3s.png',
-						title='デレステ',
-						text='我什麼都沒有Q_Q',
-						actions=[
-							PostbackTemplateAction(
-								label='1回ガチャ',
-								text='!CGSS單抽',
-								data='action=buy&itemid=2'
-							),
-							MessageTemplateAction(
-								label='10回ガチャ',
-								text='!CGSS10連'
-							),
-							# URITemplateAction(
-							# label='uri2',
-							# uri='http://example.com/2'
-							# )
-						]
-					)
-				]
-			)
-		)
-		'''
-		message = TemplateSendMessage(
-			alt_text=' - 【使用說明書】 - ',
-			template=CarouselTemplate(
-				columns=[
-					
-					
-					CarouselColumn(
-						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title='text',
-						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
+						title=' - 【散步打排名 1】 - ',
+						text='即時排名/即時戰況/排名/分數/戰況/score、%數/%、一位差、分數差',
 						actions=[
 							PostbackTemplateAction(
 								label='終極密碼',
@@ -335,8 +265,28 @@ def handle_message(event):
 					),
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
-						title='text',
-						text='!機率、!抽數字',
+						title=' - 【散步打排名 2】 - ',
+						text='場數差、追擊時間/脫褲子、時速、場速、活動進度/進度、剩餘時間、',
+						actions=[
+							PostbackTemplateAction(
+								label='終極密碼',
+								text='!終極密碼',
+								data='action=buy&itemid=1'
+							),
+							MessageTemplateAction(
+								label='幾Ａ幾Ｂ',
+								text='!幾A幾B'
+							),
+							# URITemplateAction(
+							# 	label='uri1',
+							# 	uri='http://example.com/1'
+							# )
+						]
+					),
+					CarouselColumn(
+						humbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
+						title=' - 【散步打排名 3】 - ',
+						text='房號/room/rm/R/r、、r1/room1 (新房號1)、r2/room2 (新房號2)',
 						actions=[
 							PostbackTemplateAction(
 								label='終極密碼',
@@ -355,8 +305,7 @@ def handle_message(event):
 					)
 				]
 			)
-		)	
-		'''
+		)
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
