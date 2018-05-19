@@ -106,12 +106,12 @@ def handle_message(event):
 						actions=[
 							PostbackTemplateAction(
 								label='說明書',
-								text='!使用說明書',
+								text='!help',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='test',
-								text='!使用說明書'
+								label='readme',
+								text='!help'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -125,8 +125,8 @@ def handle_message(event):
 						text='!壞掉啦、呼叫四月、呼叫工程師',
 						actions=[
 							PostbackTemplateAction(
-								label='呼叫四月',
-								text='呼叫四月',
+								label='壞掉啦！！！',
+								text='呼叫工程師',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
@@ -162,16 +162,16 @@ def handle_message(event):
 					CarouselColumn(
 						thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 						title=' - 【健康教育類】 - ',
-						text='!教育/調教、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
+						text='!教育/調教、!看圖、!智乃看圖片、!給智乃看圖、!智乃看圖圖、〖修復中〗!忘記',
 						actions=[
 							PostbackTemplateAction(
-								label='test',
-								text='test',
+								label='學習文字',
+								text='!教育 ?',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='test',
-								text='test'
+								label='學習圖片',
+								text='!學圖 ?'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -185,13 +185,13 @@ def handle_message(event):
 						text='!機率、!抽數字',
 						actions=[
 							PostbackTemplateAction(
-								label='test',
-								text='test',
+								label='機率',
+								text='!機率 ?',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='test',
-								text='test'
+								label='抽數字',
+								text='!抽數字 ?'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -205,13 +205,13 @@ def handle_message(event):
 						text='!抽抽、!終極密碼、!幾A幾B、小遊戲、機會命運',
 						actions=[
 							PostbackTemplateAction(
-								label='test',
-								text='test',
+								label='終極密碼',
+								text='!終極密碼',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='test',
-								text='test'
+								label='幾A幾B',
+								text='!幾A幾B'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
@@ -225,13 +225,13 @@ def handle_message(event):
 						text='貼圖辣、母湯、母湯電影版',
 						actions=[
 							PostbackTemplateAction(
-								label='test',
-								text='test',
+								label='貼圖辣',
+								text='貼圖辣',
 								data='action=buy&itemid=1'
 							),
 							MessageTemplateAction(
-								label='test',
-								text='test'
+								label='貼圖辣',
+								text='貼圖辣'
 							),
 							# URITemplateAction(
 							# 	label='uri1',
