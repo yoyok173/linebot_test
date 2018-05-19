@@ -38,10 +38,6 @@ from linebot.models import (
 )
 
 # ------ below are self define function ------	
-import gacha as gacha
-import game_set as game
-import event as event
-import teach as teach
 import slient_mode as slient
 import switch as switch
 import active_mode as active

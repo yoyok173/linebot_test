@@ -104,20 +104,20 @@ def other_type_message(user_message):
 		)
 	elif(user_message == "機會命運"):
 		random_result = random.randint(0,1)
-		answer = ["我死了","我贏了"]
+		answer = ["ＱＱ，你死惹","恭喜！你活下來了！"]
 		message = TemplateSendMessage(
 			alt_text='【機會命運】',
 			template=ConfirmTemplate(
-				text='【機會、命運請選擇？】',
+				text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
 				actions=[
 				PostbackTemplateAction(
 					label='機會',
-					text='【機會】：'+answer[random_result],
+					text= answer[random_result]
 					data='action=buy&itemid=1'
 					),
 				MessageTemplateAction(
 					label='命運',
-					text="【命運】："+answer[1-random_result]
+					text= answer[1-random_result]
 					)
 				]
 			)
@@ -335,7 +335,7 @@ def text_message(user_message):
 		message = event.event_progress()
 	elif(user_message in ["剩餘時間"]):
 		message = event.event_remain_time()
-	elif(user_message in ["房號","room","rm","r"]):
+	elif(user_message.lower() in ["房號","room","rm","r"]):
 		message = event.room_get()
 	elif(user_message.find("room1") == 0):
 		message = event.room_update(user_message)
@@ -345,27 +345,27 @@ def text_message(user_message):
 		message = event.room_update(user_message)
 	elif(user_message.find("r2") == 0):
 		message = event.room_update2(user_message)
-	elif(user_message.lower()  in ["!抽食物"]):
+	elif(user_message in ["!抽食物"]):
 		message = food.get_food_sheet(1)
-	elif(user_message.lower()  in ["!抽飲料"]):
+	elif(user_message in ["!抽飲料"]):
 		message = food.get_food_sheet(2)
-	elif(user_message in ["!cgss單抽"]):
+	elif(user_message.lower()  in ["!cgss單抽"]):
 		message = "【CGSS 單抽結果】\n" + gacha.gacha_CGSS()
-	elif(user_message in ["!cgss10連"]):
+	elif(user_message.lower()  in ["!cgss10連"]):
 		message = "【CGSS 10連結果】\n" + gacha.ten_gacha_CGSS()
-	elif(user_message in ["!bgd單抽"]):
+	elif(user_message.lower()  in ["!bgd單抽"]):
 		message = "【BGD 單抽結果】\n" + gacha.gacha_BGD()
-	elif(user_message in ["!bgd10連"]):
+	elif(user_message.lower()  in ["!bgd10連"]):
 		message = "【BGD 10連結果】\n" + gacha.ten_gacha_BGD()
-	elif(user_message  in ["!sc單抽"]):
+	elif(user_message.lower()   in ["!sc單抽"]):
 		message = "【SC 單抽結果】\n" + gacha.multi_gacha_SC(1)
-	elif(user_message  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
+	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + gacha.multi_gacha_SC(10)
 	elif(user_message == "!終極密碼"):
 		message = game.guess_number_set()
 	elif(game.guess_number_mode == 1 and is_number(user_message)):
 		message = game.guess_number(int(user_message))
-	elif(user_message == "!幾a幾b"):
+	elif(user_message == "!幾A幾B"):
 		message = game.guess_AB_set()
 	elif(game.guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
@@ -411,7 +411,6 @@ def active_mode(user_message,event):
 	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
 	'''
-	user_message = user_message.lower()
 	message = text_message(user_message)
 	print(message)
 	if message != 0:
