@@ -60,54 +60,6 @@ my_database_sheet_ID = '1RaGPlEJKQeg_xnUGi1mlUt95-Gc6n-XF_czwudIP5Qk'
 april_ID='Udf8f28a8b752786fa7a6be7d8c808ec6'
 
 
-def is_number(s):
-	try:
-		float(s)
-		return True
-	except ValueError:
-		pass
-
-def is_numberAB(s):
-	try:
-		float(s)
-		if(int(s)>=0 and int(s)<=9999):
-			return True
-		else:
-			return False
-	except ValueError:
-		pass
-
-def get_value_from_google_sheet(SPREADSHEET_ID,RANGE_NAME):
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	# Call the Sheets API
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
-												 range=RANGE_NAME).execute()
-	return result.get('values', [])
-
-def get_food_sheet(key):
-	global my_database_sheet_ID
-	if key == 1:
-		values = get_value_from_google_sheet(my_database_sheet_ID,'food!A2:A')
-	elif key == 2:
-		values = get_value_from_google_sheet(my_database_sheet_ID,'food!B2:B')
-	if not values:
-		print('No data found.')
-	else:
-		list_food = []
-		for row in values:	
-			list_food.append(row[0])
-			
-		random_food_index = random.randint(0,len(list_food)-1)
-		return str(list_food[random_food_index])
-	
 def readme():
 	with open('readme.txt', 'r') as f:
 		content = f.read()
@@ -153,7 +105,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):
 		line_bot_api.push_message(april_ID, TextSendMessage(text='智乃壞掉囉~~~'))
-		line_bot_api.reply_message(event.reply_token,TextSendMessage(text="已經幫您通知四月拔拔了! 請稍等~~"))
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text="已經幫您通知拔拔了! 請稍等~~"))
 	elif(user_message== "!重新開機" or user_message == "!restart"):
 		message = TextSendMessage(text="restarting...")
 		line_bot_api.reply_message(event.reply_token,message)
@@ -168,13 +120,3 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
-
-# notes 
-	
-#push message to one user
-# line_bot_api.push_message(user_id, 
-    # TextSendMessage(text='Hello World!'))
-# push message to multiple users
-# line_bot_api.multicast(['user_id1', 'user_id2'], 
-    # TextSendMessage(text='Hello World!'))	

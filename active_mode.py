@@ -45,9 +45,28 @@ import event as event
 import teach as teach
 import slient_mode as slient
 import switch as switch
+import food as food 
 
 # Channel Access Token
 line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
+
+
+def is_number(s):
+	try:
+		float(s)
+		return True
+	except ValueError:
+		pass
+
+def is_numberAB(s):
+	try:
+		float(s)
+		if(int(s)>=0 and int(s)<=9999):
+			return True
+		else:
+			return False
+	except ValueError:
+		pass
 
 def other_type_message(user_message):
 	if(user_message in ["貼圖辣","貼圖啦","貼圖","貼圖喇"]):
@@ -280,7 +299,7 @@ def other_type_message(user_message):
 		)
 	)
 	else:
-		print ("start finding library")
+		print ("start finding library...")
 		message = teach.get_key_response(user_message)
 
 	if message != 0:
@@ -316,7 +335,7 @@ def text_message(user_message):
 		message = event.event_progress()
 	elif(user_message in ["剩餘時間"]):
 		message = event.event_remain_time()
-	elif(user_message in ["房號","room","rm","R","r"]):
+	elif(user_message in ["房號","room","rm","r"]):
 		message = event.room_get()
 	elif(user_message.find("room1") == 0):
 		message = event.room_update(user_message)
@@ -327,26 +346,26 @@ def text_message(user_message):
 	elif(user_message.find("r2") == 0):
 		message = event.room_update2(user_message)
 	elif(user_message.lower()  in ["!抽食物"]):
-		message = get_food_sheet(1)
+		message = food.get_food_sheet(1)
 	elif(user_message.lower()  in ["!抽飲料"]):
-		message = get_food_sheet(2)
-	elif(user_message in ["!CGSS單抽"]):
+		message = food.get_food_sheet(2)
+	elif(user_message in ["!cgss單抽"]):
 		message = "【CGSS 單抽結果】\n" + gacha.gacha_CGSS()
-	elif(user_message in ["!CGSS10連"]):
+	elif(user_message in ["!cgss10連"]):
 		message = "【CGSS 10連結果】\n" + gacha.ten_gacha_CGSS()
-	elif(user_message in ["!BGD單抽"]):
+	elif(user_message in ["!bgd單抽"]):
 		message = "【BGD 單抽結果】\n" + gacha.gacha_BGD()
-	elif(user_message in ["!BGD10連"]):
+	elif(user_message in ["!bgd10連"]):
 		message = "【BGD 10連結果】\n" + gacha.ten_gacha_BGD()
-	elif(user_message.lower()  in ["!sc單抽"]):
+	elif(user_message  in ["!sc單抽"]):
 		message = "【SC 單抽結果】\n" + gacha.multi_gacha_SC(1)
-	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
+	elif(user_message  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + gacha.multi_gacha_SC(10)
 	elif(user_message == "!終極密碼"):
 		message = game.guess_number_set()
 	elif(game.guess_number_mode == 1 and is_number(user_message)):
 		message = game.guess_number(int(user_message))
-	elif(user_message == "!幾A幾B"):
+	elif(user_message == "!幾a幾b"):
 		message = game.guess_AB_set()
 	elif(game.guess_AB_mode == 1 and is_numberAB(user_message)):
 		message = game.guess_AB(user_message)
@@ -392,7 +411,18 @@ def active_mode(user_message,event):
 	if str(message_get) != "not found in cmd list" :
 		line_bot_api.reply_message(event.reply_token,message_get)
 	'''
+	user_message = user_message.lower()
 	message = text_message(user_message)
 	print(message)
 	if message != 0:
 		line_bot_api.reply_message(event.reply_token,message)
+
+
+# notes 
+	
+#push message to one user
+# line_bot_api.push_message(user_id, 
+    # TextSendMessage(text='Hello World!'))
+# push message to multiple users
+# line_bot_api.multicast(['user_id1', 'user_id2'], 
+    # TextSendMessage(text='Hello World!'))	
