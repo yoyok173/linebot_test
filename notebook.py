@@ -12,6 +12,8 @@ def add_note(user_message):
 	return "新增筆記成功！"
 
 def show_note():
+	if len(notebook_content) == 0:
+		return "筆記本內容為空！"
 	message = ""
 	for i in range(len(notebook_content)):
 		message += str(i+1)
@@ -32,7 +34,7 @@ def del_note(user_message):
 		del notebook_content[content_key]
 		return "刪除筆記成功！"
 	except:
-		return "刪除筆記失敗！"
+		return "刪除筆記失敗！請確定有該欄位！"
 
 def restore_note(user_message):
 	try:
