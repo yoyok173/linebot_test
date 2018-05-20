@@ -200,7 +200,7 @@ def user_guide():
 				CarouselColumn(
 					thumbnail_image_url='https://i.imgur.com/02b6MnB.jpg',
 					title=' - 【散步打排名 3】 - ',
-					text='房號/room/rm/R/r、r1/room1、r2/room2',
+					text='房號/room/rm/R/r、r1/room1、r2/room2、!pt、!fire、!stone、!lz',
 					actions=[
 						PostbackTemplateAction(
 							label='test',
