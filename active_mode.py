@@ -89,7 +89,7 @@ def other_type_message(user_message):
 		message = TemplateSendMessage(
 			alt_text='【機會命運】',
 			template=ConfirmTemplate(
-				text='【機會、命運請選擇？\n(一個會死、一個會活下來)】',
+				text='【機會、命運請選擇？】\n(一個會死、一個會活下來)',
 				actions=[
 				PostbackTemplateAction(
 					label='機會',
