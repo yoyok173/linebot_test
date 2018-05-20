@@ -100,7 +100,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!helptxt"]):
 		message = readme()
-		line_bot_api.reply_message(event.reply_token,message)
+		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=message))
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):
