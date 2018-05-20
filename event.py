@@ -177,11 +177,11 @@ def stone_calculator(user_message):
 
 def percent_table():
 	message = ""
-	for i in range(15):
-		message += str(i+1)
+	for i in range(16):
+		message += str(i)
 		message += "0% "
-		message += str(int(3900*(1+((i+1)*10/100))))
-		if i < 15-1:
+		message += str(int(3900*(1+(i*10/100))))
+		if i < 15:
 			message += "\n"
 	return message
 

@@ -40,3 +40,7 @@
 房號、room、rm、R、r
 r1/room1 (新房號1)
 r2/room2 (新房號2)
+!pt %數pt表
+!fire 火>分
+!stone 石>分
+!lz 火+石>分

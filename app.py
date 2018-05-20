@@ -98,6 +98,9 @@ def handle_message(event):
 	elif(user_message in ["!使用說明書","!help","!說明書"]):
 		message = user_guide.user_guide()
 		line_bot_api.reply_message(event.reply_token,message)
+	elif(user_message in ["!helptxt"]):
+		message = readme()
+		line_bot_api.reply_message(event.reply_token,message)
 	elif(user_message in ["!getinfo"]):
 		line_bot_api.reply_message(event.reply_token,TextSendMessage(text=str(event)))
 	elif(user_message in ["!壞掉啦","呼叫工程師","呼叫四月"]):

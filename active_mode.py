@@ -59,16 +59,13 @@ def other_type_message(user_message):
 		message = VideoSendMessage(
 		original_content_url='https://i.imgur.com/Upmorh0.mp4',
 		preview_image_url='https://i.imgur.com/Upmorh0.gif'
-		)
-	# ------ below are find function ------	 
+		) 
 	elif(user_message.find("母湯") >= 0):
 		message = ImageSendMessage(
 			original_content_url= "https://i.imgur.com/rUZ4AdD.jpg",
 			preview_image_url= "https://i.imgur.com/rUZ4AdD.jpg"
 		)
 	elif(user_message == "!開關"):
-		# random_result = random.randint(0,1)
-		# answer = ["幹你娘","恭喜你獲得了空虛！"]
 		message = TemplateSendMessage(
 			alt_text='【請問您今天要來點靜音嗎？】',
 			template=ConfirmTemplate(
@@ -280,13 +277,14 @@ def other_type_message(user_message):
 		return 0
 
 def text_message(user_message):
-	# global guess_number_mode,guess_AB_mode
-	# print (isinstance(user_message,int))
+	## ------ below are switch function ------	
 	message = "default"
 	if(user_message in ["!閉嘴"]):
 		message = switch.switch_off()
 	elif(user_message in ["!說話"]):
 		message = switch.switch_still_on()
+
+	# ------ below are event function ------		
 	elif(user_message in ["即時排名","即時戰況",'排名','排行','分數','戰況','score']):
 		message = event.event_board(2)
 	elif(user_message in ["%數","%"]):
@@ -326,13 +324,13 @@ def text_message(user_message):
 	elif(user_message.lower().find("!lz") == 0):
 		message = event.total_calculator(user_message)
 
-
-
-
+	# ------ below are food function ------	
 	elif(user_message in ["!抽食物"]):
 		message = food.get_food_sheet(1)
 	elif(user_message in ["!抽飲料"]):
 		message = food.get_food_sheet(2)
+
+	# ------ below are gacha function ------	
 	elif(user_message.lower()  in ["!cgss單抽"]):
 		message = "【CGSS 單抽結果】\n" + gacha.gacha_CGSS()
 	elif(user_message.lower()  in ["!cgss十連","!cgss十抽","!cgss10連","!cgss10抽"]):
@@ -345,6 +343,8 @@ def text_message(user_message):
 		message = "【SC 單抽結果】\n" + gacha.multi_gacha_SC(1)
 	elif(user_message.lower()  in ["!sc十連","!sc十抽","!sc10連","!sc10抽"]):
 		message = "【SC 10連結果】\n" + gacha.multi_gacha_SC(10)
+
+	# ------ below are game function ------	
 	elif(user_message == "!終極密碼"):
 		message = game.guess_number_set()
 	elif(game.guess_number_mode == 1 and game.is_number(user_message)):
@@ -372,6 +372,8 @@ def text_message(user_message):
 			message = random.randint(1,int(reply_message[1]))
 		except:
 			message = "【請依照範例輸入：】\n!抽數字 (你的數字)\n(「1~你的數字」抽一個數字)"
+
+	# ------ below are teach function ------	
 	elif(user_message.find("!教育") == 0):
 		message = teach.teach(user_message,0)
 	elif(user_message.find("!調教") == 0):
@@ -389,6 +391,7 @@ def text_message(user_message):
 	# 	message = TextSendMessage(text=forget_result)
 	# 	line_bot_api.reply_message(event.reply_token,message)
 
+	# ------ below are note function ------	
 	elif(user_message.lower().find("!addnote") == 0):
 		message = note.add_note(user_message)
 	elif(user_message.lower().find("!delnote") == 0):

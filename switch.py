@@ -1,6 +1,4 @@
 
-
-
 mode = 1
 
 def switch_still_on():
