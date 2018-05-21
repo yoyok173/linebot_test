@@ -45,9 +45,9 @@ import user_guide as user_guide
 
 app = Flask(__name__)
 # Channel Access Token
-line_bot_api = LineBotApi('+wjG+A6ltvlFVrmQmxyBaXcfljMtYaCTMXnVBoTxhWwMcSRX9+1mMObUO6oVongrp2y7parq1a1/bbbwvOhn/iO26lASkwoWX1u0HBisf7ZRr4cfMzcXFYM/8eFwpeQkdcXYz2obPYl1sE6+kWyC4QdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('3Qkr3SNlqPpzhZ0FYrPZupD/TcYAxK0+Kdh7J0u3JzH2qQkzZVGVjivLQ32olTcPIWOPg/jSaRvyekXU3gsLRs5BLHgCZEw1sHcTZoEy8yMOnTuXGvqh+27/RHYrQHVjTibPpU/YsK+qDXR+mrgEEQdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('4c154ea12f7a284b5edd99087d760143')
+handler = WebhookHandler('2aeccaa784bd1a4d7f86f6516d91851a')
 # user_id = "Udf8f28a8b752786fa7a6be7d8c808ec6"
 
 now = datetime.datetime.now()
