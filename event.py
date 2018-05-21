@@ -182,7 +182,7 @@ def pt_stone(user_message):
 		percent = int(split[2])
 		# percent = 150
 	except:
-		return "【請依照範例輸入：】\n!stone (想打的分數) (活動％,不用打％)"
+		return "【請依照範例輸入：】\n!ptstone (想打的分數) (活動％,不用打％)"
 
 	message = ("您想要打幾分: "+str(pt)+
 		"\n您的％數: "+str(percent)+
@@ -217,7 +217,7 @@ def total_calculator(user_message):
 		print('No data found.')
 	else:
 		for row in values:	
-			time = 126-round(float(row[0]),2)
+			time = 198-round(float(row[0]),2)
 	message = ("活動剩餘時間: "+str(round(time,2))+
 		"\n目前所剩石頭量: "+str(stone)+
 		"\n全速到結束所需石頭: "+str(int(time*25*3*100/10))+
