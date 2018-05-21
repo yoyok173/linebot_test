@@ -323,6 +323,8 @@ def text_message(user_message):
 		message = event.percent_table()
 	elif(user_message.lower().find("!lz") == 0):
 		message = event.total_calculator(user_message)
+	elif(user_message.lower().find("!ptstone") == 0):
+		message = event.pt_stone(user_message)
 
 	# ------ below are food function ------	
 	elif(user_message in ["!抽食物"]):

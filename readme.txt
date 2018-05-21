@@ -44,3 +44,4 @@ r2/room2 (新房號2)
 !fire 火>分
 !stone 石>分
 !lz 火+石>分
+!ptstone 分>火+石
