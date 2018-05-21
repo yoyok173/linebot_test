@@ -188,7 +188,7 @@ def pt_stone(user_message):
 		"\n您的％數: "+str(percent)+
 		"%\n您需要打的場數: "+str(round(pt/(3900*(1+((percent)/100))),2))+
 		"\n您需要多少火: "+str(round(3*pt/(3900*(1+((percent)/100))),2))+
-		"%\n您需要多少石頭: "+str(round(3*pt/(3900*(1+((percent)/100)))/10*100),2))
+		"%\n您需要多少石頭: "+str(round(3*pt/(3900*(1+((percent)/100)))/10*100,2)))
 
 	return message
 
