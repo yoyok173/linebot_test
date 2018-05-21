@@ -90,7 +90,7 @@ def guess_AB(user_guess):
 		guess_AB_counter = 0
 		someone_playing_AB = 0
 		target_AB = ["a","a","a","a"]
-		return "恭喜！！！答案就是【"+str(user_guess)+"】！"
+		return "恭喜！！！答案就是【"+str(user_guess)+"】！\n你們一共花了【 "+str(guess_AB_counter)+" 】次猜到！"
 	for i in range(4):
 		if user_guess_numberlist[i] == target_AB[i]:
 			user_guess_numberlist[i] = "a"
