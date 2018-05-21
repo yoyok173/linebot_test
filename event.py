@@ -179,16 +179,16 @@ def pt_stone(user_message):
 	try:
 		split = user_message.split(" ",2)
 		pt = int(split[1])
-		# percent = int(split[2])
-		percent = 150
+		percent = int(split[2])
+		# percent = 150
 	except:
-		return "【請依照範例輸入：】\n!stone (想打的分數)"
+		return "【請依照範例輸入：】\n!stone (想打的分數) (活動％,不用打％)"
 
 	message = ("您想要打幾分: "+str(pt)+
 		"\n您的％數: "+str(percent)+
-		"%\n您需要打的場數: "+str(round(pt/(3900*(1+((percent)/100))),2))+
-		"\n您需要多少火: "+str(round(3*pt/(3900*(1+((percent)/100))),2))+
-		"%\n您需要多少石頭: "+str(round(3*pt/(3900*(1+((percent)/100)))/10*100,2)))
+		"%\n您需要打的場數: "+str(int(pt/(3900*(1+((percent)/100)))))+
+		"\n您需要多少火: "+str(int(3*pt/(3900*(1+((percent)/100)))))+
+		"\n您需要多少石頭: "+str(int(3*pt/(3900*(1+((percent)/100)))/10*100)))
 
 	return message
 
